@@ -28,9 +28,9 @@ const TableRow = ({
 
   const { pathname } = useLocation();
 
-  const isProperty = pathname === '/property_info';
-  const isSpeed = pathname === '/how_quickly';
-  const isSalary = pathname === '/salary_formula';
+  const isProperty = pathname.startsWith('/property_info');
+  const isSpeed = pathname.startsWith('/how_quickly');
+  const isSalary = pathname.startsWith('/salary_formula');
 
   const { t } = useTranslation();
 
