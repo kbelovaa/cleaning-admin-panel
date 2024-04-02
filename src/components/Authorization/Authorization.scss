@@ -1,0 +1,99 @@
+.auth {
+  padding: 50px 120px 200px;
+  border-radius: 4px;
+  background: #fff;
+
+  &.login {
+    padding-bottom: 452px;
+  }
+
+  &__tabs {
+    display: flex;
+    margin-bottom: 100px;
+    justify-content: center;
+  }
+
+  &__tab {
+    color: #284657;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: normal;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:first-of-type {
+      margin-right: 40px;
+    }
+
+    &::after {
+      display: block;
+      content: '';
+      background: transparent;
+      width: 100%;
+      height: 1px;
+      transition: all 0.3s ease;
+      position: absolute;
+    }
+
+    &.active {
+      color: #0603a5;
+
+      &::after {
+        background: #0603a5;
+      }
+    }
+  }
+
+  &__title {
+    font-family: 'SF Pro Display', sans-serif;
+    color: #0603a5;
+    font-size: 60px;
+    font-weight: 500;
+    line-height: 120%;
+    letter-spacing: -0.6px;
+    text-align: center;
+  }
+
+  &__note {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: normal;
+    margin-top: 5px;
+    animation: fadeIn 0.3s ease-in;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__fields {
+    width: 615px;
+    margin: 50px 0 40px;
+  }
+
+  &__field-wrap {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  &__label {
+    color: #000;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 130%;
+    letter-spacing: 0.36px;
+    margin-bottom: 10px;
+  }
+
+  &__eye {
+    position: absolute;
+    top: 52px;
+    right: 12px;
+    cursor: pointer;
+  }
+}

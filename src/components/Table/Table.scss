@@ -1,0 +1,251 @@
+.pricing {
+  position: relative;
+
+  &__table {
+    border-collapse: collapse;
+    width: 100%;
+
+    &.col-1 th,
+    &.col-1 td {
+      width: 100%;
+    }
+
+    &.col-2 th,
+    &.col-2 td {
+      width: calc(100% / 2);
+    }
+
+    &.col-3 th,
+    &.col-3 td {
+      width: calc(100% / 3);
+    }
+
+    &.col-5 th,
+    &.col-5 td {
+      width: calc(100% / 5);
+    }
+
+    & th,
+    & td {
+      padding: 12px 10px 12px 0;
+      background: #fff;
+      display: flex;
+      align-items: center;
+    }
+
+    & td:last-of-type,
+    & th:last-of-type {
+      width: 24px;
+      padding-right: 0;
+    }
+
+    & tr {
+      border-bottom: 1px solid #edf2fa;
+      display: flex;
+      flex-direction: row;
+
+      &.pricing__edit-row {
+        position: relative;
+        height: 103px;
+        border-bottom: none;
+      }
+
+      &:hover .rerange,
+      &.dragging .rerange {
+        opacity: 1;
+      }
+
+      &:hover .pricing__cell,
+      &.dragging .pricing__cell {
+        margin-left: 34px;
+
+        &.non-dragable {
+          margin-left: 0;
+        }
+      }
+    }
+
+    & th {
+      color: #284657;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: normal;
+      text-align: left;
+    }
+
+    & td {
+      color: #284657;
+      font-size: 18px;
+      line-height: normal;
+    }
+  }
+
+  &__cell {
+    transition: all 0.3s ease;
+  }
+
+  &__add {
+    color: #d8d8d8;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(237, 242, 250, 0.5);
+    transition: all 0.3s ease;
+    position: relative;
+
+    &::after {
+      display: block;
+      content: '';
+      background: transparent;
+      width: 100%;
+      height: 1px;
+      bottom: 0;
+      position: absolute;
+      transition: all 0.3s ease;
+    }
+
+    & path {
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      color: #5b5ebe;
+
+      &::after {
+        background: #5b5ebe;
+      }
+
+      & path {
+        stroke: #5b5ebe;
+      }
+    }
+
+    &:active,
+    &:focus,
+    &:focus-visible {
+      color: #2329d6;
+
+      &::after {
+        background: #2329d6;
+      }
+
+      & path {
+        stroke: #2329d6;
+      }
+    }
+
+    &-icon {
+      margin-left: 4px;
+    }
+  }
+
+  &__btn {
+    margin-top: 60px;
+  }
+
+  &__edit {
+    &-row {
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    &-window {
+      width: 100%;
+      height: 103px;
+      border-radius: 6px;
+      background: #fff;
+      box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+      padding: 12px 10px 14px;
+
+      &.editing {
+        position: absolute;
+        z-index: 1;
+      }
+
+      &.col-1 .pricing__edit-wrap {
+        width: 100%;
+      }
+
+      &.col-2 .pricing__edit-wrap {
+        width: calc(100% / 2);
+      }
+
+      &.col-3 .pricing__edit-wrap {
+        width: calc(100% / 3);
+      }
+
+      &.col-5 .pricing__edit-wrap {
+        width: calc(100% / 5);
+      }
+    }
+
+    &-line {
+      display: flex;
+      align-items: center;
+
+      &:first-of-type {
+        padding-bottom: 12px;
+        margin-bottom: 10px;
+        position: relative;
+
+        &::after {
+          display: block;
+          content: '';
+          background: #edf2fa;
+          width: 100%;
+          height: 1px;
+          bottom: 0;
+          position: absolute;
+        }
+      }
+    }
+
+    &-wrap {
+      margin-right: 10px;
+      height: 21px;
+    }
+
+    &-value {
+      color: #284657;
+      font-size: 18px;
+      line-height: normal;
+    }
+
+    &-input {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid #d8d8d8;
+      padding: 6px 12px;
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: normal;
+
+      &.disabled {
+        pointer-events: none;
+        color: #d8d8d8;
+      }
+
+      &:active,
+      &:focus,
+      &:focus-visible {
+        border: 1px solid #130eff;
+        box-shadow: 0px 0px 5px 0px rgba(19, 14, 255, 0.4);
+      }
+    }
+
+    &-icon {
+      width: 24px;
+    }
+  }
+}
+
+.rerange {
+  position: absolute;
+  opacity: 0;
+  transition: all 0.3s ease;
+}

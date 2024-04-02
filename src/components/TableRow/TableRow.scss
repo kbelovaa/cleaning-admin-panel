@@ -1,0 +1,68 @@
+.actions {
+  position: relative;
+
+  &__window {
+    padding: 20px;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+    position: absolute;
+    top: 29px;
+    right: 0;
+    z-index: 1;
+    width: 188px;
+  }
+
+  &__item {
+    color: #284657;
+    font-size: 18px;
+    line-height: normal;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:nth-of-type(2) {
+      margin-top: 10px;
+    }
+
+    &:hover .actions__label::after {
+      background: #284657;
+    }
+
+    &:active,
+    &:focus,
+    &:focus-visible {
+      & .actions__label {
+        color: #2329d6;
+      }
+    }
+
+    &:active,
+    &:focus,
+    &:focus-visible {
+      & .actions__label::after {
+        background: transparent;
+      }
+    }
+  }
+
+  &__label {
+    position: relative;
+    transition: all 0.3s ease;
+
+    &::after {
+      display: block;
+      content: '';
+      background: transparent;
+      width: 100%;
+      height: 1px;
+      bottom: 0;
+      position: absolute;
+      transition: all 0.3s ease;
+    }
+  }
+
+  &__icon {
+    margin-right: 10px;
+  }
+}

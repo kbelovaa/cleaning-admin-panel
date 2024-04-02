@@ -1,0 +1,10 @@
+.home {
+  animation: fadeIn 0.3s ease-in;
+
+  &__title {
+    color: #284657;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: normal;
+  }
+}

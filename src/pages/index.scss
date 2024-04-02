@@ -1,0 +1,110 @@
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../fonts/sfProDisplay-light.woff') format('woff');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../fonts/sfProDisplay-regular.woff') format('woff');
+  font-weight: 400;
+}
+//+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../fonts/sfProDisplay-medium.woff') format('woff');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../fonts/sfProDisplay-semibold.woff') format('woff');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../fonts/sfProDisplay-bold.woff') format('woff');
+  font-weight: 700;
+}
+
+//+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/inter-light.woff') format('woff');
+  font-weight: 300;
+}
+
+//+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/inter-regular.woff') format('woff');
+  font-weight: 400;
+}
+
+//+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/inter-medium.woff') format('woff');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/poppins-regular.woff') format('woff');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/roboto-medium.woff') format('woff');
+  font-weight: 500;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:active,
+*:focus,
+*:focus-visible {
+  outline: none;
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background: #fff;
+  color: #3a3a3a;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  display: none;
+}
+
+input::placeholder {
+  color: #d8d8d8;
+}
