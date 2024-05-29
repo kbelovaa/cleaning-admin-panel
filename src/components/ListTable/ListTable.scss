@@ -1,0 +1,15 @@
+td::after {
+  display: none;
+}
+
+tbody tr:hover {
+  background-color: #edf2f7 !important;
+}
+
+.data {
+  min-height: calc(100vh - 114px);
+
+  & * {
+    box-shadow: none !important;
+  }
+}

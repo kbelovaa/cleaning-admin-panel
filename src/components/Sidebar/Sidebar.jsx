@@ -20,18 +20,23 @@ const Sidebar = () => {
               </NavLink>
             </li>
             <li className="sidebar__item">
-              <NavLink className="sidebar__link" to="/payments">
-                {t('payments')}
+              <NavLink className="sidebar__link" to="/cleaners">
+                {t('cleaners')}
               </NavLink>
             </li>
             <li className="sidebar__item">
-              <NavLink className="sidebar__link" to="/users">
-                {t('users')}
+              <NavLink className="sidebar__link" to="/customers">
+                {t('customers')}
               </NavLink>
             </li>
             <li className="sidebar__item">
-              <NavLink className="sidebar__link" to="/orders">
-                {t('orders')}
+              <NavLink className="sidebar__link" to="/addresses">
+                {t('addresses')}
+              </NavLink>
+            </li>
+            <li className="sidebar__item">
+              <NavLink className="sidebar__link" to="/jobs">
+                {t('jobs')}
               </NavLink>
             </li>
           </ul>

@@ -13,14 +13,13 @@
 }
 
 .sidebar {
-  width: 320px;
-  padding: 30px 20px 0 120px;
+  width: 260px;
+  padding: 30px 20px 30px 100px;
 
   &__project {
     color: #284657;
     font-size: 18px;
     line-height: normal;
-    margin-left: 47px;
   }
 
   &__list {
@@ -37,10 +36,11 @@
     line-height: normal;
     display: block;
     transition: all 0.3s ease;
+    font-weight: 500;
 
     &.active {
-      border-left: 1px solid #0603a5;
-      color: #0603a5;
+      border-left: 1px solid #2329d6;
+      color: #2329d6;
       padding-left: 10px;
     }
   }
@@ -50,5 +50,5 @@
   height: 100vh;
   background: #fff;
   width: calc(100% - 320px);
-  padding: 0 120px 0 60px;
+  padding: 0 60px;
 }

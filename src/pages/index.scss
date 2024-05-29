@@ -73,6 +73,23 @@
   outline: none;
 }
 
+*::-webkit-scrollbar {
+  right: 0;
+  width: 4px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #2329d61a;
+  border-radius: 4px;
+  width: 4px;
+  height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
 ul,
 li {
   list-style-type: none;

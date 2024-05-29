@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Users = () => {
+const Addresses = () => {
   return <div></div>;
 };
 
-export default Users;
+export default Addresses;

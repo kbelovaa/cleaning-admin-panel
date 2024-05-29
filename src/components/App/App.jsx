@@ -6,9 +6,10 @@ import { setIsAuthAction, setUserAction } from '../../store/actions/userActions'
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import Sidebar from '../Sidebar/Sidebar';
 import Home from '../Home/Home';
-import Payments from '../Payments/Payments';
-import Users from '../Users/Users';
-import Orders from '../Orders/Orders';
+import Cleaners from '../Cleaners/Cleaners';
+import Customers from '../Customers/Customers';
+import Addresses from '../Addresses/Addresses';
+import Jobs from '../Jobs/Jobs';
 import Settings from '../Settings/Settings';
 import Authorization from '../Authorization/Authorization';
 import Holidays from '../Pricing/Holidays';
@@ -55,9 +56,10 @@ const App = () => {
           {isAuth ? (
             <Route path="/" element={<Sidebar />}>
               <Route index element={<Home />} />
-              <Route path="payments" element={<Payments />} />
-              <Route path="users" element={<Users />} />
-              <Route path="orders" element={<Orders />} />
+              <Route path="cleaners" element={<Cleaners />} />
+              <Route path="customers" element={<Customers />} />
+              <Route path="addresses" element={<Addresses />} />
+              <Route path="jobs" element={<Jobs />} />
               <Route path="settings" element={<Settings />} />
               <Route path="holidays" element={<Holidays />} />
               <Route path="price_per_sqm" element={<PricePerSqm />} />

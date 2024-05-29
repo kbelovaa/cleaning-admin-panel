@@ -1,0 +1,15 @@
+.status-wrapper {
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 400;
+
+  &.Active {
+    background-color: #1fb42e1a;
+  }
+
+  &.Working {
+    background-color: #dd8b101a;
+  }
+}
