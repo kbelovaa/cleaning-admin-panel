@@ -39,6 +39,7 @@ const ListTable = ({ data, columns, loading, paths }) => {
     enableRowVirtualization: true,
     enableColumnActions: false,
     enableDensityToggle: false,
+    enableColumnResizing: true,
     muiPaginationProps: {
       color: 'primary',
       showRowsPerPage: false,
@@ -48,7 +49,7 @@ const ListTable = ({ data, columns, loading, paths }) => {
     },
     paginationDisplayMode: 'pages',
     initialState: { pagination: { pageSize: 10 } },
-    muiTableBodyCellProps: ({ cell }) => ({
+    muiTableBodyCellProps: {
       sx: {
         padding: '16px 0',
         marginRight: '12px',
@@ -57,12 +58,11 @@ const ListTable = ({ data, columns, loading, paths }) => {
         fontWeight: 500,
         border: 'none',
         whiteSpace: 'nowrap',
-        overflow: 'hidden',
+        overflowX: 'hidden',
         textOverflow: 'ellipsis',
-        maxWidth: `${cell.column.size}px`,
         display: 'block',
       },
-    }),
+    },
     muiTableHeadCellProps: {
       sx: {
         padding: '16px 0',
@@ -71,6 +71,7 @@ const ListTable = ({ data, columns, loading, paths }) => {
         fontSize: '16px',
         fontWeight: 500,
         border: 'none',
+        position: 'relative',
       },
     },
     muiTableHeadRowProps: {

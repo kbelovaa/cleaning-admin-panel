@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { getAllCleaners } from '../../http/listsAPI';
 import ListTable from '../ListTable/ListTable';
-import './Cleaners.scss';
 
 const Cleaners = () => {
   const [cleaners, setCleaners] = useState([]);

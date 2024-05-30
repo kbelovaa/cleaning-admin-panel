@@ -13,3 +13,47 @@ tbody tr:hover {
     box-shadow: none !important;
   }
 }
+
+.status-wrapper {
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 400;
+  position: relative;
+
+  &.Active,
+  &.Confirmed {
+    background-color: #1fb42e1a;
+  }
+
+  &.Working,
+  &.Inprogress {
+    background-color: #dd8b101a;
+  }
+}
+
+.warning {
+  border-radius: 50%;
+  position: absolute;
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  top: -3px;
+  right: -3px;
+  cursor: pointer;
+
+  &__text {
+    display: none;
+    position: absolute;
+    top: -15px;
+    left: -70px;
+    background-color: rgb(228, 142, 142);
+    border-radius: 5px;
+    animation: fadeIn 0.3s ease-in;
+
+    // .warning:hover & {
+    //   display: block;
+    // }
+  }
+}
