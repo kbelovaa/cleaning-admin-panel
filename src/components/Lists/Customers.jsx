@@ -1,10 +1,15 @@
 import React, { useEffect, useState, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { getAllCustomers } from '../../http/listsAPI';
-import ListTable from '../ListTable/ListTable';
+import { setCustomersAction } from '../../store/actions/listActions';
+import ListTable from './ListTable/ListTable';
 
 const Customers = () => {
-  const [customers, setCustomers] = useState([]);
+  const customers = useSelector((state) => state.list.customers);
+
   const [loading, setLoading] = useState(true);
+
+  const dispatch = useDispatch();
 
   const paths = [{ name: 'Customers', link: 'customers' }];
 
@@ -13,12 +18,16 @@ const Customers = () => {
       const result = await getAllCustomers();
 
       if (result.status === 200) {
-        setCustomers(result.data.customers.reverse());
+        dispatch(setCustomersAction(result.data.customers.reverse()));
         setLoading(false);
       }
     };
 
-    fetchData();
+    if (customers.length === 0) {
+      fetchData();
+    } else {
+      setLoading(false);
+    }
   }, []);
 
   const columns = useMemo(

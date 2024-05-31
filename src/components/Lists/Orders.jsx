@@ -1,24 +1,35 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { getAllJobs } from '../../http/listsAPI';
-import ListTable from '../ListTable/ListTable';
+import { useSelector, useDispatch } from 'react-redux';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
+import { getAllOrders } from '../../http/listsAPI';
+import { setOrdersAction } from '../../store/actions/listActions';
+import ListTable from './ListTable/ListTable';
 
-const Jobs = () => {
-  const [jobs, setJobs] = useState([]);
+const Orders = () => {
+  const orders = useSelector((state) => state.list.orders);
+
   const [loading, setLoading] = useState(true);
 
-  const paths = [{ name: 'Jobs', link: 'job' }];
+  const dispatch = useDispatch();
+
+  const paths = [{ name: 'Orders', link: 'orders' }];
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getAllJobs();
+      const result = await getAllOrders();
 
       if (result.status === 200) {
-        setJobs(result.data.jobs.reverse());
+        dispatch(setOrdersAction(result.data.orders.reverse()));
         setLoading(false);
       }
     };
 
-    fetchData();
+    if (orders.length === 0) {
+      fetchData();
+    } else {
+      setLoading(false);
+    }
   }, []);
 
   const columns = useMemo(
@@ -31,23 +42,23 @@ const Jobs = () => {
       {
         accessorKey: 'status',
         header: 'Status',
-        size: 120,
+        size: 145,
         filterVariant: 'select',
-        filterSelectOptions: ['Confirmed', 'In progress', 'Done'],
+        filterSelectOptions: ['Not paid', 'Awaiting payment', 'Awaiting confirmation', 'Cancelled'],
         Cell: ({ cell, row }) => (
           <div className={`status-wrapper ${cell.getValue().replace(/\s/g, '')}`}>
             {cell.getValue()}
-            {row.original.adjustmentNeeded && (
+            {/* {row.original.adjustmentNeeded && (
               <div className="warning">
                 <div className="warning__text">Adjustment needed</div>
               </div>
-            )}
+            )} */}
           </div>
         ),
       },
       {
-        accessorKey: 'cleaner',
-        header: 'Cleaner',
+        accessorKey: 'customer',
+        header: 'Customer',
         size: 150,
       },
       {
@@ -76,14 +87,14 @@ const Jobs = () => {
         size: 120,
       },
       {
-        accessorKey: 'salary',
-        header: 'Salary',
+        accessorKey: 'price',
+        header: 'Price',
         size: 100,
       },
       {
-        accessorKey: 'customer',
-        header: 'Customer',
-        size: 150,
+        accessorKey: 'tariff',
+        header: 'Tariff',
+        size: 100,
       },
       {
         accessorKey: 'fullAddress',
@@ -101,20 +112,22 @@ const Jobs = () => {
         size: 205,
       },
       {
-        accessorKey: 'rating',
-        header: 'Rating',
-        size: 100,
+        accessorKey: 'isRecurring',
+        header: 'Recurring',
+        size: 125,
+        filterVariant: 'checkbox',
+        Cell: ({ cell }) => (cell.getValue() ? <CheckIcon /> : <CloseIcon />),
       },
       {
-        accessorKey: 'feedbackText',
-        header: 'Feedback',
-        size: 130,
+        accessorKey: 'creationDate',
+        header: 'Creation date',
+        size: 155,
       },
     ],
     [],
   );
 
-  return <ListTable data={jobs} columns={columns} loading={loading} paths={paths} />;
+  return <ListTable data={orders} columns={columns} loading={loading} paths={paths} />;
 };
 
-export default Jobs;
+export default Orders;

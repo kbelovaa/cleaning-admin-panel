@@ -1,10 +1,15 @@
 import React, { useEffect, useState, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { getAllCleaners } from '../../http/listsAPI';
-import ListTable from '../ListTable/ListTable';
+import { setCleanersAction } from '../../store/actions/listActions';
+import ListTable from './ListTable/ListTable';
 
 const Cleaners = () => {
-  const [cleaners, setCleaners] = useState([]);
+  const cleaners = useSelector((state) => state.list.cleaners);
+
   const [loading, setLoading] = useState(true);
+
+  const dispatch = useDispatch();
 
   const paths = [{ name: 'Cleaners', link: 'cleaners' }];
 
@@ -13,12 +18,16 @@ const Cleaners = () => {
       const result = await getAllCleaners();
 
       if (result.status === 200) {
-        setCleaners(result.data.cleaners.reverse());
+        dispatch(setCleanersAction(result.data.cleaners.reverse()));
         setLoading(false);
       }
     };
 
-    fetchData();
+    if (cleaners.length === 0) {
+      fetchData();
+    } else {
+      setLoading(false);
+    }
   }, []);
 
   const columns = useMemo(

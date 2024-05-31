@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MaterialReactTable, useMaterialReactTable } from 'material-react-table';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
+import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
 import './ListTable.scss';
 
 const ListTable = ({ data, columns, loading, paths }) => {
+  const [dataList, setDataList] = useState([]);
+
+  useEffect(() => {
+    setDataList(data);
+  }, [data]);
+
   const theme = createTheme({
     palette: {
       primary: {
@@ -34,7 +40,7 @@ const ListTable = ({ data, columns, loading, paths }) => {
 
   const table = useMaterialReactTable({
     columns,
-    data,
+    data: dataList,
     columnFilterDisplayMode: 'popover',
     enableRowVirtualization: true,
     enableColumnActions: false,

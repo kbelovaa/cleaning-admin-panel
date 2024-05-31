@@ -51,3 +51,16 @@ export const getAllJobs = async () => {
     return { error: 'Unexpected error' };
   }
 };
+
+export const getAllOrders = async () => {
+  try {
+    const data = await $host.get('api/order/get_all_orders');
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      return { message: error.response.data.message, error: true };
+    }
+
+    return { error: 'Unexpected error' };
+  }
+};

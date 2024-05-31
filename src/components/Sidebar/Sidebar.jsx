@@ -39,6 +39,11 @@ const Sidebar = () => {
                 {t('jobs')}
               </NavLink>
             </li>
+            <li className="sidebar__item">
+              <NavLink className="sidebar__link" to="/orders">
+                {t('orders')}
+              </NavLink>
+            </li>
           </ul>
         </div>
         <div className="content">

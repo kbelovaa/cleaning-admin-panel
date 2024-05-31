@@ -28,8 +28,17 @@ tbody tr:hover {
   }
 
   &.Working,
-  &.Inprogress {
+  &.Inprogress,
+  &.Awaitingpayment {
     background-color: #dd8b101a;
+  }
+
+  &.Awaitingconfirmation {
+    background-color: #a4188e1a;
+  }
+
+  &.Cancelled {
+    color: #be0f0f;
   }
 }
 
