@@ -67,6 +67,7 @@ const ListTable = ({ data, columns, loading, paths }) => {
         overflowX: 'hidden',
         textOverflow: 'ellipsis',
         display: 'block',
+        height: '57px',
       },
     },
     muiTableHeadCellProps: {

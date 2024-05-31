@@ -1,6 +1,10 @@
 .breadcrumbs {
-  margin-bottom: 60px;
+  margin-bottom: 20px;
   display: flex;
+
+  .settings & {
+    margin-bottom: 60px;
+  }
 
   &__item {
     display: flex;

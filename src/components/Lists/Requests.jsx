@@ -1,29 +1,31 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllJobs } from '../../http/listsAPI';
-import { setJobsAction } from '../../store/actions/listActions';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
+import { getAllOrders } from '../../http/listsAPI';
+import { setOrdersAction } from '../../store/actions/listActions';
 import ListTable from './ListTable/ListTable';
 
-const Jobs = () => {
-  const jobs = useSelector((state) => state.list.jobs);
+const Requests = () => {
+  const orders = useSelector((state) => state.list.orders);
 
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
 
-  const paths = [{ name: 'Jobs', link: 'jobs' }];
+  const paths = [{ name: 'Requests', link: 'requests' }];
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getAllJobs();
+      const result = await getAllOrders();
 
       if (result.status === 200) {
-        dispatch(setJobsAction(result.data.jobs.reverse()));
+        dispatch(setOrdersAction(result.data.orders.reverse()));
         setLoading(false);
       }
     };
 
-    if (jobs.length === 0) {
+    if (orders.length === 0) {
       fetchData();
     } else {
       setLoading(false);
@@ -40,9 +42,9 @@ const Jobs = () => {
       {
         accessorKey: 'status',
         header: 'Status',
-        size: 120,
+        size: 145,
         filterVariant: 'select',
-        filterSelectOptions: ['Accepted', 'In progress', 'Done'],
+        filterSelectOptions: ['Not paid', 'Awaiting payment', 'Awaiting confirmation', 'Cancelled'],
         Cell: ({ cell, row }) => (
           <div className={`status-wrapper ${cell.getValue().replace(/\s/g, '')}`}>
             {cell.getValue()}
@@ -55,8 +57,8 @@ const Jobs = () => {
         ),
       },
       {
-        accessorKey: 'cleaner',
-        header: 'Cleaner',
+        accessorKey: 'customer',
+        header: 'Customer',
         size: 150,
       },
       {
@@ -85,14 +87,14 @@ const Jobs = () => {
         size: 120,
       },
       {
-        accessorKey: 'salary',
-        header: 'Salary',
+        accessorKey: 'price',
+        header: 'Price',
         size: 100,
       },
       {
-        accessorKey: 'customer',
-        header: 'Customer',
-        size: 150,
+        accessorKey: 'tariff',
+        header: 'Tariff',
+        size: 100,
       },
       {
         accessorKey: 'fullAddress',
@@ -110,25 +112,22 @@ const Jobs = () => {
         size: 205,
       },
       {
-        accessorKey: 'rating',
-        header: 'Rating',
-        size: 100,
+        accessorKey: 'isRecurring',
+        header: 'Recurring',
+        size: 125,
+        filterVariant: 'checkbox',
+        Cell: ({ cell }) => (cell.getValue() ? <CheckIcon /> : <CloseIcon />),
       },
       {
-        accessorKey: 'clientFeedbackText',
-        header: 'Client feedback',
-        size: 172,
-      },
-      {
-        accessorKey: 'cleanerFeedbackText',
-        header: 'Cleaner feedback',
-        size: 187,
+        accessorKey: 'creationDate',
+        header: 'Creation date',
+        size: 155,
       },
     ],
     [],
   );
 
-  return <ListTable data={jobs} columns={columns} loading={loading} paths={paths} />;
+  return <ListTable data={orders} columns={columns} loading={loading} paths={paths} />;
 };
 
-export default Jobs;
+export default Requests;

@@ -14,7 +14,7 @@
 
 .sidebar {
   width: 260px;
-  padding: 30px 20px 30px 100px;
+  padding: 30px 20px 30px 70px;
 
   &__project {
     color: #284657;
@@ -28,6 +28,10 @@
 
   &__item {
     margin-bottom: 20px;
+
+    .sidebar__sublist & {
+      margin-bottom: 6px;
+    }
   }
 
   &__link {
@@ -38,17 +42,26 @@
     transition: all 0.3s ease;
     font-weight: 500;
 
+    .sidebar__sublist & {
+      font-size: 14px;
+    }
+
     &.active {
       border-left: 1px solid #2329d6;
       color: #2329d6;
       padding-left: 10px;
     }
   }
+
+  &__sublist {
+    margin-top: 10px;
+    padding-left: 16px;
+  }
 }
 
 .content {
   height: 100vh;
   background: #fff;
-  width: calc(100% - 320px);
+  width: calc(100% - 260px);
   padding: 0 60px;
 }

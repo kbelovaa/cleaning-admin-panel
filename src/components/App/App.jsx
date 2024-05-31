@@ -10,7 +10,11 @@ import Cleaners from '../Lists/Cleaners';
 import Customers from '../Lists/Customers';
 import Addresses from '../Lists/Addresses';
 import Jobs from '../Lists/Jobs';
-import Orders from '../Lists/Orders';
+import JobsAdjustment from '../Lists/JobsAdjustment';
+import JobsCancelled from '../Lists/JobsCancelled';
+import Requests from '../Lists/Requests';
+import RequestsUnconfirmed from '../Lists/RequestsUnconfirmed';
+import RequestsCancelled from '../Lists/RequestsCancelled';
 import Settings from '../Settings/Settings';
 import Authorization from '../Authorization/Authorization';
 import Holidays from '../Pricing/Holidays';
@@ -61,7 +65,11 @@ const App = () => {
               <Route path="customers" element={<Customers />} />
               <Route path="addresses" element={<Addresses />} />
               <Route path="jobs" element={<Jobs />} />
-              <Route path="orders" element={<Orders />} />
+              <Route path="jobs_needing_adjustment" element={<JobsAdjustment />} />
+              <Route path="jobs_cancelled" element={<JobsCancelled />} />
+              <Route path="requests" element={<Requests />} />
+              <Route path="requests_unconfirmed" element={<RequestsUnconfirmed />} />
+              <Route path="requests_cancelled" element={<RequestsCancelled />} />
               <Route path="settings" element={<Settings />} />
               <Route path="holidays" element={<Holidays />} />
               <Route path="price_per_sqm" element={<PricePerSqm />} />

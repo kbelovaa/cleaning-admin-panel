@@ -5,15 +5,17 @@ import CloseIcon from '@mui/icons-material/Close';
 import { getAllOrders } from '../../http/listsAPI';
 import { setOrdersAction } from '../../store/actions/listActions';
 import ListTable from './ListTable/ListTable';
+import TimerCell from './TimerCell';
 
-const Orders = () => {
+const RequestsUnconfirmed = () => {
   const orders = useSelector((state) => state.list.orders);
 
+  const [unconfirmedOrders, setUnconfirmedOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
 
-  const paths = [{ name: 'Orders', link: 'orders' }];
+  const paths = [{ name: 'Unconfirmed requests', link: 'requests_unconfirmed' }];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +34,12 @@ const Orders = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const filteredOrders = orders.filter((order) => order.status === 'Awaiting confirmation');
+    const ordersList = filteredOrders.map((order, i) => ({ ...order, id: filteredOrders.length - i }));
+    setUnconfirmedOrders(ordersList);
+  }, [orders]);
+
   const columns = useMemo(
     () => [
       {
@@ -40,26 +48,20 @@ const Orders = () => {
         size: 68,
       },
       {
-        accessorKey: 'status',
-        header: 'Status',
-        size: 145,
-        filterVariant: 'select',
-        filterSelectOptions: ['Not paid', 'Awaiting payment', 'Awaiting confirmation', 'Cancelled'],
-        Cell: ({ cell, row }) => (
-          <div className={`status-wrapper ${cell.getValue().replace(/\s/g, '')}`}>
-            {cell.getValue()}
-            {/* {row.original.adjustmentNeeded && (
-              <div className="warning">
-                <div className="warning__text">Adjustment needed</div>
-              </div>
-            )} */}
-          </div>
-        ),
-      },
-      {
         accessorKey: 'customer',
         header: 'Customer',
         size: 150,
+      },
+      {
+        accessorKey: 'creationDate',
+        header: 'Creation date',
+        size: 155,
+      },
+      {
+        accessorKey: 'paymentReservationDate',
+        header: 'Time to confirm',
+        size: 172,
+        Cell: TimerCell,
       },
       {
         accessorKey: 'date',
@@ -118,16 +120,11 @@ const Orders = () => {
         filterVariant: 'checkbox',
         Cell: ({ cell }) => (cell.getValue() ? <CheckIcon /> : <CloseIcon />),
       },
-      {
-        accessorKey: 'creationDate',
-        header: 'Creation date',
-        size: 155,
-      },
     ],
     [],
   );
 
-  return <ListTable data={orders} columns={columns} loading={loading} paths={paths} />;
+  return <ListTable data={unconfirmedOrders} columns={columns} loading={loading} paths={paths} />;
 };
 
-export default Orders;
+export default RequestsUnconfirmed;

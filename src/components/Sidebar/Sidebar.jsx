@@ -38,11 +38,35 @@ const Sidebar = () => {
               <NavLink className="sidebar__link" to="/jobs">
                 {t('jobs')}
               </NavLink>
+              <ul className="sidebar__sublist">
+                <li className="sidebar__item">
+                  <NavLink className="sidebar__link" to="/jobs_needing_adjustment">
+                    {t('needingAdjustment')}
+                  </NavLink>
+                </li>
+                <li className="sidebar__item">
+                  <NavLink className="sidebar__link" to="/jobs_cancelled">
+                    {t('cancelled')}
+                  </NavLink>
+                </li>
+              </ul>
             </li>
             <li className="sidebar__item">
-              <NavLink className="sidebar__link" to="/orders">
-                {t('orders')}
+              <NavLink className="sidebar__link" to="/requests">
+                {t('requests')}
               </NavLink>
+              <ul className="sidebar__sublist">
+                <li className="sidebar__item">
+                  <NavLink className="sidebar__link" to="/requests_unconfirmed">
+                    {t('unconfirmed')}
+                  </NavLink>
+                </li>
+                <li className="sidebar__item">
+                  <NavLink className="sidebar__link" to="/requests_cancelled">
+                    {t('cancelled')}
+                  </NavLink>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
