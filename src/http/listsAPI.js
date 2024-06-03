@@ -64,3 +64,16 @@ export const getAllOrders = async () => {
     return { error: 'Unexpected error' };
   }
 };
+
+export const getCancelledOrders = async () => {
+  try {
+    const data = await $host.get('api/order/get_cancelled_orders');
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      return { message: error.response.data.message, error: true };
+    }
+
+    return { error: 'Unexpected error' };
+  }
+};

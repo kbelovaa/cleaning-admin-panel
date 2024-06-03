@@ -87,13 +87,18 @@ const Requests = () => {
         size: 120,
       },
       {
+        accessorKey: 'tariff',
+        header: 'Tariff',
+        size: 100,
+      },
+      {
         accessorKey: 'price',
         header: 'Price',
         size: 100,
       },
       {
-        accessorKey: 'tariff',
-        header: 'Tariff',
+        accessorKey: 'salary',
+        header: 'Salary',
         size: 100,
       },
       {

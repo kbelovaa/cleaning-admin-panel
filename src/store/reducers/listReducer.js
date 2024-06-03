@@ -1,4 +1,11 @@
-import { SET_ADDRESSES, SET_CLEANERS, SET_CUSTOMERS, SET_JOBS, SET_ORDERS } from '../../constants/actionsRedux';
+import {
+  SET_ADDRESSES,
+  SET_CANCELLED_ORDERS,
+  SET_CLEANERS,
+  SET_CUSTOMERS,
+  SET_JOBS,
+  SET_ORDERS,
+} from '../../constants/actionsRedux';
 
 const defaultState = {
   cleaners: [],
@@ -6,6 +13,7 @@ const defaultState = {
   addresses: [],
   jobs: [],
   orders: [],
+  cancelledOrders: [],
 };
 
 const listReducer = (state = defaultState, action) => {
@@ -20,6 +28,8 @@ const listReducer = (state = defaultState, action) => {
       return { ...state, jobs: action.payload };
     case SET_ORDERS:
       return { ...state, orders: action.payload };
+    case SET_CANCELLED_ORDERS:
+      return { ...state, cancelledOrders: action.payload };
     default:
       return state;
   }

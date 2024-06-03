@@ -4,6 +4,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { getAllOrders } from '../../http/listsAPI';
 import { setOrdersAction } from '../../store/actions/listActions';
+import { calculateTimeLeft } from '../../utils/formatDate';
 import ListTable from './ListTable/ListTable';
 import TimerCell from './TimerCell';
 
@@ -61,6 +62,18 @@ const RequestsUnconfirmed = () => {
         accessorKey: 'paymentReservationDate',
         header: 'Time to confirm',
         size: 172,
+        filterVariant: 'select',
+        filterSelectOptions: ['Active', 'Expired'],
+        filterFn: (row, columnId, filterValue) => {
+          const cellValue = calculateTimeLeft(row.original[columnId]);
+          if (filterValue === 'Active') {
+            return cellValue !== null;
+          }
+          if (filterValue === 'Expired') {
+            return cellValue === null;
+          }
+          return true;
+        },
         Cell: TimerCell,
       },
       {
@@ -89,13 +102,18 @@ const RequestsUnconfirmed = () => {
         size: 120,
       },
       {
+        accessorKey: 'tariff',
+        header: 'Tariff',
+        size: 100,
+      },
+      {
         accessorKey: 'price',
         header: 'Price',
         size: 100,
       },
       {
-        accessorKey: 'tariff',
-        header: 'Tariff',
+        accessorKey: 'salary',
+        header: 'Salary',
         size: 100,
       },
       {

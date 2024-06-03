@@ -1,5 +1,11 @@
-import { SET_ADDRESSES, SET_CLEANERS, SET_CUSTOMERS, SET_JOBS, SET_ORDERS } from '../../constants/actionsRedux';
-import { getAllAddresses, getAllCleaners, getAllCustomers, getAllJobs, getAllOrders } from '../../http/listsAPI';
+import {
+  SET_ADDRESSES,
+  SET_CANCELLED_ORDERS,
+  SET_CLEANERS,
+  SET_CUSTOMERS,
+  SET_JOBS,
+  SET_ORDERS,
+} from '../../constants/actionsRedux';
 
 export const setCleanersAction = (payload) => ({
   type: SET_CLEANERS,
@@ -23,5 +29,10 @@ export const setJobsAction = (payload) => ({
 
 export const setOrdersAction = (payload) => ({
   type: SET_ORDERS,
+  payload,
+});
+
+export const setCancelledOrdersAction = (payload) => ({
+  type: SET_CANCELLED_ORDERS,
   payload,
 });
