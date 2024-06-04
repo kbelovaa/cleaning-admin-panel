@@ -32,7 +32,7 @@ i18n.use(initReactI18next).init({
         customers: 'Customers',
         addresses: 'Addresses',
         jobs: 'Jobs',
-        needingAdjustment: 'Needing adjustment',
+        adjustment: 'Adjustment',
         orders: 'Orders',
         requests: 'Requests',
         cancelled: 'Cancelled',

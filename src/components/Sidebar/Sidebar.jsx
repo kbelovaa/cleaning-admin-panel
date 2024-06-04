@@ -58,7 +58,7 @@ const Sidebar = () => {
               <ul className="sidebar__sublist">
                 <li className="sidebar__item">
                   <NavLink className="sidebar__link" to="/jobs_needing_adjustment">
-                    {t('needingAdjustment')}
+                    {t('adjustment')}
                   </NavLink>
                 </li>
                 <li className="sidebar__item">
