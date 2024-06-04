@@ -43,9 +43,10 @@ const RequestsCancelled = () => {
         size: 160,
       },
       {
-        accessorKey: 'orderN',
+        accessorFn: (originalRow) => `Order №${originalRow.orderN}`,
+        id: 'orderN',
         header: 'Order №',
-        size: 130,
+        size: 144,
       },
       {
         accessorKey: 'reason',
@@ -60,12 +61,12 @@ const RequestsCancelled = () => {
       {
         accessorKey: 'date',
         header: 'Date',
-        size: 100,
+        size: 95,
       },
       {
         accessorKey: 'time',
         header: 'Time',
-        size: 94,
+        size: 85,
       },
     ],
     [],

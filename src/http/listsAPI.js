@@ -52,6 +52,32 @@ export const getAllJobs = async () => {
   }
 };
 
+export const getAdjustmentJobs = async () => {
+  try {
+    const data = await $host.get('api/job/get_adjustment_jobs');
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      return { message: error.response.data.message, error: true };
+    }
+
+    return { error: 'Unexpected error' };
+  }
+};
+
+export const getCancelledJobs = async () => {
+  try {
+    const data = await $host.get('api/job/get_cancelled_jobs');
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      return { message: error.response.data.message, error: true };
+    }
+
+    return { error: 'Unexpected error' };
+  }
+};
+
 export const getAllOrders = async () => {
   try {
     const data = await $host.get('api/order/get_all_orders');

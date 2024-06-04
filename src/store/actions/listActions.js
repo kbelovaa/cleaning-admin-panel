@@ -1,5 +1,7 @@
 import {
   SET_ADDRESSES,
+  SET_ADJUSTMENT_JOBS,
+  SET_CANCELLED_JOBS,
   SET_CANCELLED_ORDERS,
   SET_CLEANERS,
   SET_CUSTOMERS,
@@ -24,6 +26,16 @@ export const setAddressesAction = (payload) => ({
 
 export const setJobsAction = (payload) => ({
   type: SET_JOBS,
+  payload,
+});
+
+export const setAdjustmentJobsAction = (payload) => ({
+  type: SET_ADJUSTMENT_JOBS,
+  payload,
+});
+
+export const setCancelledJobsAction = (payload) => ({
+  type: SET_CANCELLED_JOBS,
   payload,
 });
 
