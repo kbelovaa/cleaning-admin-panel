@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import LaunchIcon from '@mui/icons-material/Launch';
 import { getAdjustmentJobs } from '../../http/listsAPI';
 import { setAdjustmentJobsAction } from '../../store/actions/listActions';
 import ListTable from './ListTable/ListTable';
@@ -11,7 +13,9 @@ const JobsAdjustment = () => {
 
   const dispatch = useDispatch();
 
-  const paths = [{ name: 'Jobs needing adjustment', link: 'jobs_needing_adjustment' }];
+  const navigate = useNavigate();
+
+  const paths = [{ name: 'Adjustments', link: 'adjustments' }];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,25 +42,29 @@ const JobsAdjustment = () => {
         size: 68,
       },
       {
-        accessorKey: 'cleaner',
-        header: 'Cleaner',
-        size: 159,
+        accessorKey: 'orderId',
+        header: 'Cleaning',
+        size: 80,
+        enableSorting: false,
+        enableColumnFilter: false,
+        Cell: ({ cell }) => (
+          <LaunchIcon className="launch-icon" onClick={() => navigate(`/cleaning/${cell.getValue()}`)} />
+        ),
       },
       {
-        accessorFn: (originalRow) => `Job №${originalRow.jobN}`,
-        id: 'jobN',
-        header: 'Job №',
-        size: 130,
+        accessorKey: 'cleaner',
+        header: 'Cleaner',
+        size: 189,
       },
       {
         accessorKey: 'reason',
         header: 'Reason',
-        size: 210,
+        size: 220,
       },
       {
         accessorKey: 'comment',
         header: 'Comment',
-        size: 210,
+        size: 220,
       },
       {
         accessorKey: 'date',

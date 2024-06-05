@@ -32,6 +32,8 @@ i18n.use(initReactI18next).init({
         customers: 'Customers',
         addresses: 'Addresses',
         jobs: 'Jobs',
+        active: 'Active',
+        past: 'Past',
         adjustments: 'Adjustments',
         orders: 'Orders',
         requests: 'Requests',

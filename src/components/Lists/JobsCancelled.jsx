@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import LaunchIcon from '@mui/icons-material/Launch';
 import { getCancelledJobs } from '../../http/listsAPI';
 import { setCancelledJobsAction } from '../../store/actions/listActions';
 import ListTable from './ListTable/ListTable';
@@ -11,7 +13,9 @@ const JobsCancelled = () => {
 
   const dispatch = useDispatch();
 
-  const paths = [{ name: 'Cancelled jobs', link: 'jobs_cancelled' }];
+  const navigate = useNavigate();
+
+  const paths = [{ name: 'Cancelled jobs', link: 'cancelled_jobs' }];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,29 +42,47 @@ const JobsCancelled = () => {
         size: 68,
       },
       {
+        accessorKey: 'orderId',
+        header: 'Cleaning',
+        size: 80,
+        enableSorting: false,
+        enableColumnFilter: false,
+        Cell: ({ cell }) => (
+          <LaunchIcon className="launch-icon" onClick={() => navigate(`/cleaning/${cell.getValue()}`)} />
+        ),
+      },
+      {
         accessorKey: 'newCleaner',
         header: 'New cleaner',
-        size: 147,
+        size: 160,
+        Cell: ({ cell, row }) => (
+          <span
+            className={row.original.newCleanerId && 'link'}
+            onClick={() => row.original.newCleanerId && navigate(`/cleaner/${row.original.newCleanerId}`)}
+          >
+            {cell.getValue()}
+          </span>
+        ),
       },
       {
         accessorKey: 'cleaner',
         header: 'Cleaner',
-        size: 140,
-      },
-      {
-        accessorKey: 'itemN',
-        header: 'Job/Order',
-        size: 130,
+        size: 160,
+        Cell: ({ cell, row }) => (
+          <span className="link" onClick={() => navigate(`/cleaner/${row.original.cleanerId}`)}>
+            {cell.getValue()}
+          </span>
+        ),
       },
       {
         accessorKey: 'reason',
         header: 'Reason',
-        size: 150,
+        size: 158,
       },
       {
         accessorKey: 'comment',
         header: 'Comment',
-        size: 150,
+        size: 159,
       },
       {
         accessorKey: 'date',

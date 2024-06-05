@@ -1,6 +1,8 @@
 .breadcrumbs {
   margin-bottom: 20px;
   display: flex;
+  position: relative;
+  z-index: 2;
 
   .settings & {
     margin-bottom: 60px;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { getAllOrders } from '../../http/listsAPI';
@@ -12,6 +13,8 @@ const Requests = () => {
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const paths = [{ name: 'Requests', link: 'requests' }];
 
@@ -45,21 +48,19 @@ const Requests = () => {
         size: 145,
         filterVariant: 'select',
         filterSelectOptions: ['Not paid', 'Awaiting payment', 'Awaiting confirmation', 'Cancelled'],
-        Cell: ({ cell, row }) => (
-          <div className={`status-wrapper ${cell.getValue().replace(/\s/g, '')}`}>
-            {cell.getValue()}
-            {/* {row.original.adjustmentNeeded && (
-              <div className="warning">
-                <div className="warning__text">Adjustment needed</div>
-              </div>
-            )} */}
-          </div>
+        Cell: ({ cell }) => (
+          <div className={`status-wrapper ${cell.getValue().replace(/\s/g, '')}`}>{cell.getValue()}</div>
         ),
       },
       {
         accessorKey: 'customer',
         header: 'Customer',
         size: 150,
+        Cell: ({ cell, row }) => (
+          <span className="link" onClick={() => navigate(`/customer/${row.original.customerId}`)}>
+            {cell.getValue()}
+          </span>
+        ),
       },
       {
         accessorKey: 'date',
@@ -73,12 +74,12 @@ const Requests = () => {
       },
       {
         accessorKey: 'cleaningType',
-        header: 'Cleaning type',
-        size: 157,
+        header: 'Type',
+        size: 110,
       },
       {
         accessorKey: 'extraServices',
-        header: 'Extra services',
+        header: 'Extras',
         size: 160,
       },
       {

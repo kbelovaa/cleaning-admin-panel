@@ -1,12 +1,13 @@
 import {
+  SET_ACTIVE_JOBS,
   SET_ADDRESSES,
   SET_ADJUSTMENT_JOBS,
   SET_CANCELLED_JOBS,
   SET_CANCELLED_ORDERS,
   SET_CLEANERS,
   SET_CUSTOMERS,
-  SET_JOBS,
   SET_ORDERS,
+  SET_PAST_JOBS,
 } from '../../constants/actionsRedux';
 
 export const setCleanersAction = (payload) => ({
@@ -24,8 +25,13 @@ export const setAddressesAction = (payload) => ({
   payload,
 });
 
-export const setJobsAction = (payload) => ({
-  type: SET_JOBS,
+export const setActiveJobsAction = (payload) => ({
+  type: SET_ACTIVE_JOBS,
+  payload,
+});
+
+export const setPastJobsAction = (payload) => ({
+  type: SET_PAST_JOBS,
   payload,
 });
 

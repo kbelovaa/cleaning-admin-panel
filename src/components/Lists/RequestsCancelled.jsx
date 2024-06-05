@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import LaunchIcon from '@mui/icons-material/Launch';
 import { getCancelledOrders } from '../../http/listsAPI';
 import { setCancelledOrdersAction } from '../../store/actions/listActions';
 import ListTable from './ListTable/ListTable';
@@ -11,7 +13,9 @@ const RequestsCancelled = () => {
 
   const dispatch = useDispatch();
 
-  const paths = [{ name: 'Cancelled requests', link: 'requests_cancelled' }];
+  const navigate = useNavigate();
+
+  const paths = [{ name: 'Cancelled requests', link: 'cancelled_requests' }];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,25 +42,34 @@ const RequestsCancelled = () => {
         size: 68,
       },
       {
-        accessorKey: 'customer',
-        header: 'Customer',
-        size: 160,
+        accessorKey: 'orderId',
+        header: 'Cleaning',
+        size: 80,
+        enableSorting: false,
+        enableColumnFilter: false,
+        Cell: ({ cell }) => (
+          <LaunchIcon className="launch-icon" onClick={() => navigate(`/cleaning/${cell.getValue()}`)} />
+        ),
       },
       {
-        accessorFn: (originalRow) => `Order №${originalRow.orderN}`,
-        id: 'orderN',
-        header: 'Order №',
-        size: 144,
+        accessorKey: 'customer',
+        header: 'Customer',
+        size: 190,
+        Cell: ({ cell, row }) => (
+          <span className="link" onClick={() => navigate(`/customer/${row.original.customerId}`)}>
+            {cell.getValue()}
+          </span>
+        ),
       },
       {
         accessorKey: 'reason',
         header: 'Reason',
-        size: 210,
+        size: 220,
       },
       {
         accessorKey: 'comment',
         header: 'Comment',
-        size: 210,
+        size: 220,
       },
       {
         accessorKey: 'date',

@@ -15,6 +15,10 @@ import JobsCancelled from '../Lists/JobsCancelled';
 import Requests from '../Lists/Requests';
 import RequestsUnconfirmed from '../Lists/RequestsUnconfirmed';
 import RequestsCancelled from '../Lists/RequestsCancelled';
+import Cleaner from '../Cleaner/Cleaner';
+import Customer from '../Customer/Customer';
+import Address from '../Address/Address';
+import Cleaning from '../Cleaning/Cleaning';
 import Settings from '../Settings/Settings';
 import Authorization from '../Authorization/Authorization';
 import Holidays from '../Pricing/Holidays';
@@ -65,11 +69,15 @@ const App = () => {
               <Route path="customers" element={<Customers />} />
               <Route path="addresses" element={<Addresses />} />
               <Route path="jobs" element={<Jobs />} />
-              <Route path="jobs_needing_adjustment" element={<JobsAdjustment />} />
-              <Route path="jobs_cancelled" element={<JobsCancelled />} />
+              <Route path="adjustments" element={<JobsAdjustment />} />
+              <Route path="cancelled_jobs" element={<JobsCancelled />} />
               <Route path="requests" element={<Requests />} />
-              <Route path="requests_unconfirmed" element={<RequestsUnconfirmed />} />
-              <Route path="requests_cancelled" element={<RequestsCancelled />} />
+              <Route path="unconfirmed_requests" element={<RequestsUnconfirmed />} />
+              <Route path="cancelled_requests" element={<RequestsCancelled />} />
+              <Route path="cleaner/:id" element={<Cleaner />} />
+              <Route path="customer/:id" element={<Customer />} />
+              <Route path="address/:id" element={<Address />} />
+              <Route path="cleaning/:id" element={<Cleaning />} />
               <Route path="settings" element={<Settings />} />
               <Route path="holidays" element={<Holidays />} />
               <Route path="price_per_sqm" element={<PricePerSqm />} />

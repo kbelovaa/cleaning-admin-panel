@@ -1,12 +1,15 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllJobs } from '../../http/listsAPI';
-import { setJobsAction } from '../../store/actions/listActions';
+import { setActiveJobsAction, setPastJobsAction } from '../../store/actions/listActions';
 import ListTable from './ListTable/ListTable';
 
 const Jobs = () => {
-  const jobs = useSelector((state) => state.list.jobs);
+  const activeJobs = useSelector((state) => state.list.activeJobs);
+  const pastJobs = useSelector((state) => state.list.pastJobs);
 
+  const [jobs, setJobs] = useState([]);
+  const [jobsType, setJobsType] = useState('Active');
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
@@ -18,17 +21,26 @@ const Jobs = () => {
       const result = await getAllJobs();
 
       if (result.status === 200) {
-        dispatch(setJobsAction(result.data.jobs.reverse()));
+        dispatch(setActiveJobsAction(result.data.activeJobs.reverse()));
+        dispatch(setPastJobsAction(result.data.pastJobs.reverse()));
         setLoading(false);
       }
     };
 
-    if (jobs.length === 0) {
+    if (activeJobs.length === 0 && pastJobs.length === 0) {
       fetchData();
     } else {
       setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    if (jobsType === 'Active') {
+      setJobs(activeJobs);
+    } else {
+      setJobs(pastJobs);
+    }
+  }, [jobsType, activeJobs, pastJobs]);
 
   const columns = useMemo(
     () => [
@@ -43,15 +55,8 @@ const Jobs = () => {
         size: 120,
         filterVariant: 'select',
         filterSelectOptions: ['Accepted', 'In progress', 'Done'],
-        Cell: ({ cell, row }) => (
-          <div className={`status-wrapper ${cell.getValue().replace(/\s/g, '')}`}>
-            {cell.getValue()}
-            {/* {row.original.adjustmentNeeded && (
-              <div className="warning">
-                <div className="warning__text">Adjustment needed</div>
-              </div>
-            )} */}
-          </div>
+        Cell: ({ cell }) => (
+          <div className={`status-wrapper ${cell.getValue().replace(/\s/g, '')}`}>{cell.getValue()}</div>
         ),
       },
       {
@@ -71,12 +76,12 @@ const Jobs = () => {
       },
       {
         accessorKey: 'cleaningType',
-        header: 'Cleaning type',
-        size: 157,
+        header: 'Type',
+        size: 110,
       },
       {
         accessorKey: 'extraServices',
-        header: 'Extra services',
+        header: 'Extras',
         size: 160,
       },
       {
@@ -128,7 +133,16 @@ const Jobs = () => {
     [],
   );
 
-  return <ListTable data={jobs} columns={columns} loading={loading} paths={paths} />;
+  return (
+    <ListTable
+      data={jobs}
+      columns={columns}
+      loading={loading}
+      paths={paths}
+      jobsType={jobsType}
+      setJobsType={setJobsType}
+    />
+  );
 };
 
 export default Jobs;

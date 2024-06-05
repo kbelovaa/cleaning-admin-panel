@@ -40,12 +40,12 @@ const Sidebar = () => {
               </NavLink>
               <ul className="sidebar__sublist">
                 <li className="sidebar__item">
-                  <NavLink className="sidebar__link" to="/requests_unconfirmed">
+                  <NavLink className="sidebar__link" to="/unconfirmed_requests">
                     {t('unconfirmed')}
                   </NavLink>
                 </li>
                 <li className="sidebar__item">
-                  <NavLink className="sidebar__link" to="/requests_cancelled">
+                  <NavLink className="sidebar__link" to="/cancelled_requests">
                     {t('cancelled')}
                   </NavLink>
                 </li>
@@ -57,12 +57,12 @@ const Sidebar = () => {
               </NavLink>
               <ul className="sidebar__sublist">
                 <li className="sidebar__item">
-                  <NavLink className="sidebar__link" to="/jobs_needing_adjustment">
+                  <NavLink className="sidebar__link" to="/adjustments">
                     {t('adjustments')}
                   </NavLink>
                 </li>
                 <li className="sidebar__item">
-                  <NavLink className="sidebar__link" to="/jobs_cancelled">
+                  <NavLink className="sidebar__link" to="/cancelled_jobs">
                     {t('cancelled')}
                   </NavLink>
                 </li>

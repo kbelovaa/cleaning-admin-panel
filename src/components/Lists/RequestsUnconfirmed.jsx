@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { getAllOrders } from '../../http/listsAPI';
@@ -16,7 +17,9 @@ const RequestsUnconfirmed = () => {
 
   const dispatch = useDispatch();
 
-  const paths = [{ name: 'Unconfirmed requests', link: 'requests_unconfirmed' }];
+  const navigate = useNavigate();
+
+  const paths = [{ name: 'Unconfirmed requests', link: 'unconfirmed_requests' }];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,6 +55,11 @@ const RequestsUnconfirmed = () => {
         accessorKey: 'customer',
         header: 'Customer',
         size: 150,
+        Cell: ({ cell, row }) => (
+          <span className="link" onClick={() => navigate(`/customer/${row.original.customerId}`)}>
+            {cell.getValue()}
+          </span>
+        ),
       },
       {
         accessorKey: 'creationDate',
@@ -88,12 +96,12 @@ const RequestsUnconfirmed = () => {
       },
       {
         accessorKey: 'cleaningType',
-        header: 'Cleaning type',
-        size: 157,
+        header: 'Type',
+        size: 110,
       },
       {
         accessorKey: 'extraServices',
-        header: 'Extra services',
+        header: 'Extras',
         size: 160,
       },
       {
