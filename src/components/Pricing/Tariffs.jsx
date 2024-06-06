@@ -14,12 +14,6 @@ const Tariffs = () => {
 
   const navigate = useNavigate();
 
-  const paths = [
-    { name: 'Settings', link: 'settings' },
-    { name: 'Pricing', link: 'settings' },
-    { name: 'Tariffs', link: 'tariffs' },
-  ];
-
   useEffect(() => {
     const getData = async () => {
       const result = await getTimePricing();
@@ -58,7 +52,7 @@ const Tariffs = () => {
 
   return (
     <div className="settings">
-      <Breadcrumbs paths={paths} />
+      <Breadcrumbs />
       {loading ? (
         <div className="spinner"></div>
       ) : (

@@ -15,8 +15,6 @@ const JobsAdjustment = () => {
 
   const navigate = useNavigate();
 
-  const paths = [{ name: 'Adjustments', link: 'adjustments' }];
-
   useEffect(() => {
     const fetchData = async () => {
       const result = await getAdjustmentJobs();
@@ -55,6 +53,14 @@ const JobsAdjustment = () => {
         accessorKey: 'cleaner',
         header: 'Cleaner',
         size: 189,
+        Cell: ({ cell, row }) => (
+          <span
+            className={row.original.cleanerId && 'link'}
+            onClick={() => row.original.cleanerId && navigate(`/cleaner/${row.original.cleanerId}`)}
+          >
+            {cell.getValue()}
+          </span>
+        ),
       },
       {
         accessorKey: 'reason',
@@ -80,7 +86,7 @@ const JobsAdjustment = () => {
     [],
   );
 
-  return <ListTable data={adjustmentJobs} columns={columns} loading={loading} paths={paths} />;
+  return <ListTable data={adjustmentJobs} columns={columns} loading={loading} />;
 };
 
 export default JobsAdjustment;

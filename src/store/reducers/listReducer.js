@@ -1,5 +1,4 @@
 import {
-  SET_ADDRESSES,
   SET_CANCELLED_JOBS,
   SET_CANCELLED_ORDERS,
   SET_CLEANERS,
@@ -13,7 +12,6 @@ import {
 const defaultState = {
   cleaners: [],
   customers: [],
-  addresses: [],
   activeJobs: [],
   pastJobs: [],
   adjustmentJobs: [],
@@ -28,8 +26,6 @@ const listReducer = (state = defaultState, action) => {
       return { ...state, cleaners: action.payload };
     case SET_CUSTOMERS:
       return { ...state, customers: action.payload };
-    case SET_ADDRESSES:
-      return { ...state, addresses: action.payload };
     case SET_ACTIVE_JOBS:
       return { ...state, activeJobs: action.payload };
     case SET_PAST_JOBS:

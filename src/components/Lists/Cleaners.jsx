@@ -11,8 +11,6 @@ const Cleaners = () => {
 
   const dispatch = useDispatch();
 
-  const paths = [{ name: 'Cleaners', link: 'cleaners' }];
-
   useEffect(() => {
     const fetchData = async () => {
       const result = await getAllCleaners();
@@ -57,13 +55,13 @@ const Cleaners = () => {
       },
       {
         accessorKey: 'salary',
-        header: 'Salary',
-        size: 100,
+        header: 'Salary, €',
+        size: 118,
       },
       {
         accessorKey: 'avgJobPrice',
-        header: 'Avg job price',
-        size: 151,
+        header: 'Avg job price, €',
+        size: 170,
       },
       {
         accessorKey: 'numberOfJobs',
@@ -72,8 +70,13 @@ const Cleaners = () => {
       },
       {
         accessorKey: 'doneJobsNumber',
-        header: 'Done',
-        size: 70,
+        header: 'Completed',
+        size: 136,
+      },
+      {
+        accessorKey: 'pendingJobsNumber',
+        header: 'Pending',
+        size: 114,
       },
       {
         accessorKey: 'cancelledJobsNumber',
@@ -104,7 +107,7 @@ const Cleaners = () => {
     [],
   );
 
-  return <ListTable data={cleaners} columns={columns} loading={loading} paths={paths} />;
+  return <ListTable data={cleaners} columns={columns} loading={loading} />;
 };
 
 export default Cleaners;

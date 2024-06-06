@@ -14,12 +14,6 @@ const CleaningCoeff = () => {
 
   const { t } = useTranslation();
 
-  const paths = [
-    { name: 'Settings', link: 'settings' },
-    { name: 'Pricing', link: 'settings' },
-    { name: 'Type of cleaning coefficient', link: 'type_of_cleaning_coeff' },
-  ];
-
   useEffect(() => {
     const getData = async () => {
       const result = await getCleaningSizePricing();
@@ -44,7 +38,7 @@ const CleaningCoeff = () => {
 
   return (
     <div className="settings">
-      <Breadcrumbs paths={paths} />
+      <Breadcrumbs />
       {loading ? (
         <div className="spinner"></div>
       ) : (

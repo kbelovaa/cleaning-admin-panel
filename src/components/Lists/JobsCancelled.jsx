@@ -15,8 +15,6 @@ const JobsCancelled = () => {
 
   const navigate = useNavigate();
 
-  const paths = [{ name: 'Cancelled jobs', link: 'cancelled_jobs' }];
-
   useEffect(() => {
     const fetchData = async () => {
       const result = await getCancelledJobs();
@@ -98,7 +96,7 @@ const JobsCancelled = () => {
     [],
   );
 
-  return <ListTable data={cancelledJobs} columns={columns} loading={loading} paths={paths} />;
+  return <ListTable data={cancelledJobs} columns={columns} loading={loading} />;
 };
 
 export default JobsCancelled;

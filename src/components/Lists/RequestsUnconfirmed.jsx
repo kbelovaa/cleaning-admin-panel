@@ -19,8 +19,6 @@ const RequestsUnconfirmed = () => {
 
   const navigate = useNavigate();
 
-  const paths = [{ name: 'Unconfirmed requests', link: 'unconfirmed_requests' }];
-
   useEffect(() => {
     const fetchData = async () => {
       const result = await getAllOrders();
@@ -44,6 +42,11 @@ const RequestsUnconfirmed = () => {
     setUnconfirmedOrders(ordersList);
   }, [orders]);
 
+  const openLink = (e, row, item) => {
+    e.stopPropagation();
+    navigate(`/${item}/${row.original.customerId}`);
+  };
+
   const columns = useMemo(
     () => [
       {
@@ -56,7 +59,7 @@ const RequestsUnconfirmed = () => {
         header: 'Customer',
         size: 150,
         Cell: ({ cell, row }) => (
-          <span className="link" onClick={() => navigate(`/customer/${row.original.customerId}`)}>
+          <span className="link" onClick={(e) => openLink(e, row, 'customer')}>
             {cell.getValue()}
           </span>
         ),
@@ -87,7 +90,7 @@ const RequestsUnconfirmed = () => {
       {
         accessorKey: 'date',
         header: 'Date',
-        size: 90,
+        size: 100,
       },
       {
         accessorKey: 'time',
@@ -116,13 +119,13 @@ const RequestsUnconfirmed = () => {
       },
       {
         accessorKey: 'price',
-        header: 'Price',
-        size: 100,
+        header: 'Price, €',
+        size: 110,
       },
       {
         accessorKey: 'salary',
-        header: 'Salary',
-        size: 100,
+        header: 'Salary, €',
+        size: 118,
       },
       {
         accessorKey: 'fullAddress',
@@ -150,7 +153,7 @@ const RequestsUnconfirmed = () => {
     [],
   );
 
-  return <ListTable data={unconfirmedOrders} columns={columns} loading={loading} paths={paths} />;
+  return <ListTable data={unconfirmedOrders} columns={columns} loading={loading} />;
 };
 
 export default RequestsUnconfirmed;

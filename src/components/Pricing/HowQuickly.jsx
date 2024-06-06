@@ -14,12 +14,6 @@ const HowQuickly = () => {
 
   const { t } = useTranslation();
 
-  const paths = [
-    { name: 'Settings', link: 'settings' },
-    { name: 'Pricing', link: 'settings' },
-    { name: 'How quickly', link: 'how_quickly' },
-  ];
-
   useEffect(() => {
     const getData = async () => {
       const result = await getSpeedPricing();
@@ -49,7 +43,7 @@ const HowQuickly = () => {
 
   return (
     <div className="settings">
-      <Breadcrumbs paths={paths} />
+      <Breadcrumbs />
       {loading ? (
         <div className="spinner"></div>
       ) : (

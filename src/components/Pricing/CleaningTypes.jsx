@@ -14,12 +14,6 @@ const CleaningTypes = () => {
 
   const { t } = useTranslation();
 
-  const paths = [
-    { name: 'Settings', link: 'settings' },
-    { name: 'Pricing', link: 'settings' },
-    { name: 'Type of cleanings', link: 'type_of_cleanings' },
-  ];
-
   useEffect(() => {
     const getData = async () => {
       const result = await getCleaningTypes();
@@ -42,7 +36,7 @@ const CleaningTypes = () => {
 
   return (
     <div className="settings">
-      <Breadcrumbs paths={paths} />
+      <Breadcrumbs />
       {loading ? (
         <div className="spinner"></div>
       ) : (

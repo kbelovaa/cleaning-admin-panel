@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { getAllJobs } from '../../http/listsAPI';
 import { setActiveJobsAction, setPastJobsAction } from '../../store/actions/listActions';
 import ListTable from './ListTable/ListTable';
@@ -14,7 +15,7 @@ const Jobs = () => {
 
   const dispatch = useDispatch();
 
-  const paths = [{ name: 'Jobs', link: 'jobs' }];
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,6 +43,11 @@ const Jobs = () => {
     }
   }, [jobsType, activeJobs, pastJobs]);
 
+  const openLink = (e, row, item) => {
+    e.stopPropagation();
+    navigate(`/${item}/${row.original.customerId}`);
+  };
+
   const columns = useMemo(
     () => [
       {
@@ -54,7 +60,7 @@ const Jobs = () => {
         header: 'Status',
         size: 120,
         filterVariant: 'select',
-        filterSelectOptions: ['Accepted', 'In progress', 'Done'],
+        filterSelectOptions: ['Confirmed', 'In progress', 'Completed'],
         Cell: ({ cell }) => (
           <div className={`status-wrapper ${cell.getValue().replace(/\s/g, '')}`}>{cell.getValue()}</div>
         ),
@@ -63,11 +69,16 @@ const Jobs = () => {
         accessorKey: 'cleaner',
         header: 'Cleaner',
         size: 150,
+        Cell: ({ cell, row }) => (
+          <span className={row.original.cleanerId && 'link'} onClick={(e) => openLink(e, row, 'cleaner')}>
+            {cell.getValue()}
+          </span>
+        ),
       },
       {
         accessorKey: 'date',
         header: 'Date',
-        size: 90,
+        size: 100,
       },
       {
         accessorKey: 'time',
@@ -91,13 +102,18 @@ const Jobs = () => {
       },
       {
         accessorKey: 'salary',
-        header: 'Salary',
-        size: 100,
+        header: 'Salary, €',
+        size: 118,
       },
       {
         accessorKey: 'customer',
         header: 'Customer',
         size: 150,
+        Cell: ({ cell, row }) => (
+          <span className={row.original.customerId && 'link'} onClick={(e) => openLink(e, row, 'customer')}>
+            {cell.getValue()}
+          </span>
+        ),
       },
       {
         accessorKey: 'fullAddress',
@@ -136,9 +152,8 @@ const Jobs = () => {
   return (
     <ListTable
       data={jobs}
-      columns={columns}
+      columns={jobsType === 'Active' ? columns.slice(0, -3) : columns}
       loading={loading}
-      paths={paths}
       jobsType={jobsType}
       setJobsType={setJobsType}
     />

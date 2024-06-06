@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { MaterialReactTable, useMaterialReactTable } from 'material-react-table';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
 import './ListTable.scss';
 
-const ListTable = ({ data, columns, loading, paths, jobsType, setJobsType }) => {
+const ListTable = ({ data, columns, loading, jobsType, setJobsType }) => {
   const [dataList, setDataList] = useState([]);
 
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const { t } = useTranslation();
 
@@ -43,6 +44,16 @@ const ListTable = ({ data, columns, loading, paths, jobsType, setJobsType }) => 
       },
     },
   });
+
+  const handleRowClick = (row) => {
+    if (
+      !pathname.startsWith('/cancelled_requests') &&
+      !pathname.startsWith('/adjustments') &&
+      !pathname.startsWith('/cancelled_jobs')
+    ) {
+      navigate(`/${row.original.item}/${row.original.itemId}`);
+    }
+  };
 
   const table = useMaterialReactTable({
     columns,
@@ -92,16 +103,23 @@ const ListTable = ({ data, columns, loading, paths, jobsType, setJobsType }) => 
         borderBottom: '1px solid #EDF2FA',
       },
     },
-    muiTableBodyRowProps: {
+    muiTableBodyRowProps: ({ row }) => ({
+      onClick: () => handleRowClick(row),
       sx: {
         borderBottom: '1px solid #EDF2FA',
+        cursor:
+          !pathname.startsWith('/cancelled_requests') &&
+          !pathname.startsWith('/adjustments') &&
+          !pathname.startsWith('/cancelled_jobs')
+            ? 'pointer'
+            : 'default',
       },
-    },
+    }),
   });
 
   return (
     <div className="data">
-      <Breadcrumbs paths={paths} />
+      <Breadcrumbs />
       {loading ? (
         <div className="spinner"></div>
       ) : (

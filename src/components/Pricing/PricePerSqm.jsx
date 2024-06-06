@@ -14,12 +14,6 @@ const PricePerSqm = () => {
 
   const { t } = useTranslation();
 
-  const paths = [
-    { name: 'Settings', link: 'settings' },
-    { name: 'Pricing', link: 'settings' },
-    { name: 'Price per sqm', link: 'price_per_sqm' },
-  ];
-
   useEffect(() => {
     const getData = async () => {
       const result = await getSqmSizePricing();
@@ -44,7 +38,7 @@ const PricePerSqm = () => {
 
   return (
     <div className="settings">
-      <Breadcrumbs paths={paths} />
+      <Breadcrumbs />
       {loading ? (
         <div className="spinner"></div>
       ) : (

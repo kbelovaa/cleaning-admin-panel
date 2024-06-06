@@ -14,12 +14,6 @@ const ExtraServices = () => {
 
   const { t } = useTranslation();
 
-  const paths = [
-    { name: 'Settings', link: 'settings' },
-    { name: 'Pricing', link: 'settings' },
-    { name: 'Extra services', link: 'extra_services' },
-  ];
-
   useEffect(() => {
     const getData = async () => {
       const result = await getExtraServices();
@@ -42,7 +36,7 @@ const ExtraServices = () => {
 
   return (
     <div className="settings">
-      <Breadcrumbs paths={paths} />
+      <Breadcrumbs />
       {loading ? (
         <div className="spinner"></div>
       ) : (

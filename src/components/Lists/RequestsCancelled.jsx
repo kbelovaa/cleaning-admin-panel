@@ -15,8 +15,6 @@ const RequestsCancelled = () => {
 
   const navigate = useNavigate();
 
-  const paths = [{ name: 'Cancelled requests', link: 'cancelled_requests' }];
-
   useEffect(() => {
     const fetchData = async () => {
       const result = await getCancelledOrders();
@@ -54,7 +52,7 @@ const RequestsCancelled = () => {
       {
         accessorKey: 'customer',
         header: 'Customer',
-        size: 190,
+        size: 204,
         Cell: ({ cell, row }) => (
           <span className="link" onClick={() => navigate(`/customer/${row.original.customerId}`)}>
             {cell.getValue()}
@@ -64,17 +62,17 @@ const RequestsCancelled = () => {
       {
         accessorKey: 'reason',
         header: 'Reason',
-        size: 220,
+        size: 215,
       },
       {
         accessorKey: 'comment',
         header: 'Comment',
-        size: 220,
+        size: 215,
       },
       {
         accessorKey: 'date',
         header: 'Date',
-        size: 95,
+        size: 105,
       },
       {
         accessorKey: 'time',
@@ -85,7 +83,7 @@ const RequestsCancelled = () => {
     [],
   );
 
-  return <ListTable data={cancelledOrders} columns={columns} loading={loading} paths={paths} />;
+  return <ListTable data={cancelledOrders} columns={columns} loading={loading} />;
 };
 
 export default RequestsCancelled;

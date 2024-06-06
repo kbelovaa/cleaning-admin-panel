@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { auth } from '../../http/authAPI';
 import { setIsAuthAction, setUserAction } from '../../store/actions/userActions';
+import { HistoryProvider } from '../../utils/HistoryContext';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import Sidebar from '../Sidebar/Sidebar';
 import Home from '../Home/Home';
 import Cleaners from '../Lists/Cleaners';
 import Customers from '../Lists/Customers';
-import Addresses from '../Lists/Addresses';
 import Jobs from '../Lists/Jobs';
 import JobsAdjustment from '../Lists/JobsAdjustment';
 import JobsCancelled from '../Lists/JobsCancelled';
@@ -57,44 +57,45 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <ScrollToTop />
-      {loading ? (
-        <div className="spinner"></div>
-      ) : (
-        <Routes>
-          {isAuth ? (
-            <Route path="/" element={<Sidebar />}>
-              <Route index element={<Home />} />
-              <Route path="cleaners" element={<Cleaners />} />
-              <Route path="customers" element={<Customers />} />
-              <Route path="addresses" element={<Addresses />} />
-              <Route path="jobs" element={<Jobs />} />
-              <Route path="adjustments" element={<JobsAdjustment />} />
-              <Route path="cancelled_jobs" element={<JobsCancelled />} />
-              <Route path="requests" element={<Requests />} />
-              <Route path="unconfirmed_requests" element={<RequestsUnconfirmed />} />
-              <Route path="cancelled_requests" element={<RequestsCancelled />} />
-              <Route path="cleaner/:id" element={<Cleaner />} />
-              <Route path="customer/:id" element={<Customer />} />
-              <Route path="address/:id" element={<Address />} />
-              <Route path="cleaning/:id" element={<Cleaning />} />
-              <Route path="settings" element={<Settings />} />
-              <Route path="holidays" element={<Holidays />} />
-              <Route path="price_per_sqm" element={<PricePerSqm />} />
-              <Route path="type_of_cleaning_coeff" element={<CleaningCoeff />} />
-              <Route path="type_of_cleanings" element={<CleaningTypes />} />
-              <Route path="extra_services" element={<ExtraServices />} />
-              <Route path="property_info" element={<PropertyPricing />} />
-              <Route path="how_quickly" element={<HowQuickly />} />
-              <Route path="tariffs" element={<Tariffs />} />
-              <Route path="salary_formula" element={<SalaryFormula />} />
-            </Route>
-          ) : (
-            <Route path="/" element={<Authorization />} />
-          )}
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      )}
+      <HistoryProvider>
+        <ScrollToTop />
+        {loading ? (
+          <div className="spinner"></div>
+        ) : (
+          <Routes>
+            {isAuth ? (
+              <Route path="/" element={<Sidebar />}>
+                <Route index element={<Home />} />
+                <Route path="cleaners" element={<Cleaners />} />
+                <Route path="customers" element={<Customers />} />
+                <Route path="jobs" element={<Jobs />} />
+                <Route path="adjustments" element={<JobsAdjustment />} />
+                <Route path="cancelled_jobs" element={<JobsCancelled />} />
+                <Route path="requests" element={<Requests />} />
+                <Route path="unconfirmed_requests" element={<RequestsUnconfirmed />} />
+                <Route path="cancelled_requests" element={<RequestsCancelled />} />
+                <Route path="cleaner/:id" element={<Cleaner />} />
+                <Route path="customer/:id" element={<Customer />} />
+                <Route path="address/:id" element={<Address />} />
+                <Route path="cleaning/:id" element={<Cleaning />} />
+                <Route path="settings" element={<Settings />} />
+                <Route path="holidays" element={<Holidays />} />
+                <Route path="price_per_sqm" element={<PricePerSqm />} />
+                <Route path="type_of_cleaning_coefficient" element={<CleaningCoeff />} />
+                <Route path="type_of_cleanings" element={<CleaningTypes />} />
+                <Route path="extra_services" element={<ExtraServices />} />
+                <Route path="property_info" element={<PropertyPricing />} />
+                <Route path="how_quickly" element={<HowQuickly />} />
+                <Route path="tariffs" element={<Tariffs />} />
+                <Route path="salary_formula" element={<SalaryFormula />} />
+              </Route>
+            ) : (
+              <Route path="/" element={<Authorization />} />
+            )}
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        )}
+      </HistoryProvider>
     </BrowserRouter>
   );
 };

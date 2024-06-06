@@ -14,12 +14,6 @@ const PropertyPricing = () => {
 
   const { t } = useTranslation();
 
-  const paths = [
-    { name: 'Settings', link: 'settings' },
-    { name: 'Pricing', link: 'settings' },
-    { name: 'Property info', link: 'property_info' },
-  ];
-
   useEffect(() => {
     const getData = async () => {
       const result = await getPropertyPricing();
@@ -49,7 +43,7 @@ const PropertyPricing = () => {
 
   return (
     <div className="settings">
-      <Breadcrumbs paths={paths} />
+      <Breadcrumbs />
       {loading ? (
         <div className="spinner"></div>
       ) : (

@@ -1,11 +1,15 @@
 .breadcrumbs {
-  margin-bottom: 20px;
+  margin-bottom: 36px;
   display: flex;
   position: relative;
   z-index: 2;
 
   .settings & {
     margin-bottom: 60px;
+  }
+
+  .data & {
+    margin-bottom: 20px;
   }
 
   &__item {
@@ -33,6 +37,6 @@
   }
 
   &__icon {
-    margin: 0 2px;
+    margin: 0 6px;
   }
 }

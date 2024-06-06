@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { getAllCustomers } from '../../http/listsAPI';
 import { setCustomersAction } from '../../store/actions/listActions';
 import ListTable from './ListTable/ListTable';
@@ -11,7 +12,7 @@ const Customers = () => {
 
   const dispatch = useDispatch();
 
-  const paths = [{ name: 'Customers', link: 'customers' }];
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +30,11 @@ const Customers = () => {
       setLoading(false);
     }
   }, []);
+
+  const openLink = (e, row, item) => {
+    e.stopPropagation();
+    navigate(`/${item}/${row.original.nextCleaningId}`);
+  };
 
   const columns = useMemo(
     () => [
@@ -51,11 +57,16 @@ const Customers = () => {
         accessorKey: 'nextCleaning',
         header: 'Next cleaning',
         size: 156,
+        Cell: ({ cell, row }) => (
+          <span className={row.original.nextCleaningId && 'link'} onClick={(e) => openLink(e, row, 'cleaning')}>
+            {cell.getValue()}
+          </span>
+        ),
       },
       {
         accessorKey: 'numberOfOrders',
-        header: 'Nr of orders',
-        size: 143,
+        header: 'Cleanings',
+        size: 130,
       },
       {
         accessorKey: 'numberOfCompletedOrders',
@@ -89,8 +100,13 @@ const Customers = () => {
       },
       {
         accessorKey: 'avgOrder',
-        header: 'Avg order, €',
-        size: 144,
+        header: 'Avg cleaning, €',
+        size: 170,
+      },
+      {
+        accessorKey: 'orderPriceSum',
+        header: 'Total spend, €',
+        size: 160,
       },
       {
         accessorKey: 'email',
@@ -106,7 +122,7 @@ const Customers = () => {
     [],
   );
 
-  return <ListTable data={customers} columns={columns} loading={loading} paths={paths} />;
+  return <ListTable data={customers} columns={columns} loading={loading} />;
 };
 
 export default Customers;

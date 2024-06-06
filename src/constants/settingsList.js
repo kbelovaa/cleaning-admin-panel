@@ -1,7 +1,7 @@
 const pricingList = [
   { name: 'Holidays', link: 'holidays' },
   { name: 'Price per sqm', link: 'price_per_sqm' },
-  { name: 'Type of cleaning coefficient', link: 'type_of_cleaning_coeff' },
+  { name: 'Type of cleaning coefficient', link: 'type_of_cleaning_coefficient' },
   { name: 'Type of cleanings', link: 'type_of_cleanings' },
   { name: 'Extra services', link: 'extra_services' },
   { name: 'Property info', link: 'property_info' },

@@ -8,11 +8,9 @@ import './Settings.scss';
 const Settings = () => {
   const { t } = useTranslation();
 
-  const paths = [{ name: 'Settings', link: 'settings' }];
-
   return (
     <div className="settings">
-      <Breadcrumbs paths={paths} />
+      <Breadcrumbs />
       <div className="settings__wrap">
         <div className="settings__block">
           <h3 className="settings__subtitle">{t('pricing')}</h3>

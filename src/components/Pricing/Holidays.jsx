@@ -14,12 +14,6 @@ const Holidays = () => {
 
   const { t } = useTranslation();
 
-  const paths = [
-    { name: 'Settings', link: 'settings' },
-    { name: 'Pricing', link: 'settings' },
-    { name: 'Holidays', link: 'holidays' },
-  ];
-
   useEffect(() => {
     const getData = async () => {
       const result = await getHolidays();
@@ -42,7 +36,7 @@ const Holidays = () => {
 
   return (
     <div className="settings">
-      <Breadcrumbs paths={paths} />
+      <Breadcrumbs />
       {loading ? (
         <div className="spinner"></div>
       ) : (

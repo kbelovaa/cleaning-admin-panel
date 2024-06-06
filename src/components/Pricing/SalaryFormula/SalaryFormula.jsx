@@ -15,12 +15,6 @@ const SalaryFormula = () => {
 
   const { t } = useTranslation();
 
-  const paths = [
-    { name: 'Settings', link: 'settings' },
-    { name: 'Pricing', link: 'settings' },
-    { name: 'Salary formula', link: 'salary_formula' },
-  ];
-
   useEffect(() => {
     const getData = async () => {
       const result = await getSalaryCoeffs();
@@ -50,7 +44,7 @@ const SalaryFormula = () => {
 
   return (
     <div className="settings">
-      <Breadcrumbs paths={paths} />
+      <Breadcrumbs />
       {loading ? (
         <div className="spinner"></div>
       ) : (

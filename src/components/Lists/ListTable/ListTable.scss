@@ -55,13 +55,13 @@ tbody tr:hover {
   position: relative;
 
   &.Active,
-  &.Done {
+  &.Completed {
     background-color: #1fb42e1a;
   }
 
   &.Working,
   &.Inprogress,
-  &.Awaitingpayment {
+  &.Invoiced {
     background-color: #dd8b101a;
   }
 
