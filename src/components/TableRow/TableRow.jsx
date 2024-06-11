@@ -165,10 +165,10 @@ const TableRow = ({
           {t(values[0])}
         </span>
       </td>
-      {values[1] && <td>{values[1]}</td>}
-      {values[2] && <td>{values[2]}</td>}
-      {values[3] && <td>{values[3]}</td>}
-      {values[4] && <td>{values[4]}</td>}
+      {(values[1] || values[1] === 0) && <td>{values[1]}</td>}
+      {(values[2] || values[2] === 0) && <td>{values[2]}</td>}
+      {(values[3] || values[3] === 0) && <td>{values[3]}</td>}
+      {(values[4] || values[4] === 0) && <td>{values[4]}</td>}
       <td>
         <div className="actions">
           <div className="icon" ref={actionsIconRef} onClick={openActions}>

@@ -26,7 +26,6 @@ const CleaningTypes = () => {
 
   const handleSavingData = async () => {
     setSavingLoading(true);
-    console.log(cleaningTypes)
     const result = await updateCleaningTypes(cleaningTypes);
 
     if (result.status === 201) {
