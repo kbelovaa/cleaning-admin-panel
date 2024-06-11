@@ -162,7 +162,7 @@ const Customer = () => {
               <h2 className="card__title">{`Addresses (${customer.addressesList.length})`}</h2>
             </div>
             <div className="block__table">
-              <ListTable data={customer.addressesList} columns={addressColumns} isClickable={false} />
+              <ListTable data={customer.addressesList} columns={addressColumns} isClickable={true} />
             </div>
           </div>
           <div className={`block ${isRequestsExpanded ? 'expanded' : ''}`}>
