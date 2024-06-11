@@ -60,8 +60,6 @@ export const HistoryProvider = ({ children }) => {
     localStorage.setItem('history', JSON.stringify(history));
   }, [history]);
 
-  console.log(history);
-
   return <HistoryContext.Provider value={history}>{children}</HistoryContext.Provider>;
 };
 
