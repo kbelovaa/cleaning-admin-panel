@@ -27,8 +27,8 @@ const Jobs = () => {
       const result = await getAllJobs();
 
       if (result.status === 200) {
-        dispatch(setActiveJobsAction(result.data.activeJobs.reverse()));
-        dispatch(setPastJobsAction(result.data.pastJobs.reverse()));
+        dispatch(setActiveJobsAction(result.data.activeJobs));
+        dispatch(setPastJobsAction(result.data.pastJobs));
         setLoading(false);
       }
     };

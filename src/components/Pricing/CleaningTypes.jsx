@@ -26,7 +26,8 @@ const CleaningTypes = () => {
 
   const handleSavingData = async () => {
     setSavingLoading(true);
-    const result = await updateCleaningTypes(cleaningTypes);
+    const orderedCleaningTypes = cleaningTypes.map((elem, i) => ({ ...elem, order: i + 1 }));
+    const result = await updateCleaningTypes(orderedCleaningTypes);
 
     if (result.status === 201) {
       setSavingLoading(false);

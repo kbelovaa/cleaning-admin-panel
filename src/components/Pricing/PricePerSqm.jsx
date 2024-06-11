@@ -18,8 +18,7 @@ const PricePerSqm = () => {
     const getData = async () => {
       const result = await getSqmSizePricing();
       const pricesPerSqm = result.sqmSizePricing;
-      pricesPerSqm[pricesPerSqm.length - 1].rangeEnd = '+';
-      setPricesPerSqm(pricesPerSqm);
+      setPricesPerSqm(pricesPerSqm.map((elem) => ({ ...elem, rangeEnd: elem.rangeEnd ? elem.rangeEnd : '+' })));
       setLoading(false);
     };
 
@@ -28,7 +27,8 @@ const PricePerSqm = () => {
 
   const handleSavingData = async () => {
     setSavingLoading(true);
-    const result = await updateSqmSizePricing(pricesPerSqm);
+    const orderedPricesPerSqm = pricesPerSqm.map((elem, i) => ({ ...elem, order: i + 1 }));
+    const result = await updateSqmSizePricing(orderedPricesPerSqm);
 
     if (result.status === 201) {
       setSavingLoading(false);

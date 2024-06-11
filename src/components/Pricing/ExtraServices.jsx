@@ -26,7 +26,8 @@ const ExtraServices = () => {
 
   const handleSavingData = async () => {
     setSavingLoading(true);
-    const result = await updateExtraServices(extraServices);
+    const orderedExtraServices = extraServices.map((elem, i) => ({ ...elem, order: i + 1 }));
+    const result = await updateExtraServices(orderedExtraServices);
 
     if (result.status === 201) {
       setSavingLoading(false);

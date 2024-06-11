@@ -18,8 +18,7 @@ const CleaningCoeff = () => {
     const getData = async () => {
       const result = await getCleaningSizePricing();
       const cleaningCoeffs = result.cleaningSizePricing;
-      cleaningCoeffs[cleaningCoeffs.length - 1].rangeEnd = '+';
-      setCleaningCoeffs(cleaningCoeffs);
+      setCleaningCoeffs(cleaningCoeffs.map((elem) => ({ ...elem, rangeEnd: elem.rangeEnd ? elem.rangeEnd : '+' })));
       setLoading(false);
     };
 
@@ -28,7 +27,8 @@ const CleaningCoeff = () => {
 
   const handleSavingData = async () => {
     setSavingLoading(true);
-    const result = await updateCleaningSizePricing(cleaningCoeffs);
+    const orderedCleaningCoeffs = cleaningCoeffs.map((elem, i) => ({ ...elem, order: i + 1 }));
+    const result = await updateCleaningSizePricing(orderedCleaningCoeffs);
 
     if (result.status === 201) {
       setSavingLoading(false);

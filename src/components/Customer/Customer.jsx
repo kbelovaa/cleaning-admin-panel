@@ -162,7 +162,7 @@ const Customer = () => {
               <h2 className="card__title">{`Addresses (${customer.addressesList.length})`}</h2>
             </div>
             <div className="block__table">
-              <ListTable data={customer.addressesList.reverse()} columns={addressColumns} isClickable={false} />
+              <ListTable data={customer.addressesList} columns={addressColumns} isClickable={false} />
             </div>
           </div>
           <div className={`block ${isRequestsExpanded ? 'expanded' : ''}`}>
@@ -195,7 +195,7 @@ const Customer = () => {
                 </div>
               </div>
               <ListTable
-                data={requestsType === 'All' ? customer.requestsList.reverse() : customer.cancelledOrdersList.reverse()}
+                data={requestsType === 'All' ? customer.requestsList : customer.cancelledOrdersList}
                 columns={requestsType === 'All' ? requestColumns : cancelledRequestColumns}
                 isClickable={requestsType === 'All'}
               />
@@ -235,8 +235,8 @@ const Customer = () => {
               <ListTable
                 data={
                   cleaningsType === 'Active'
-                    ? customer.cleaningsList.activeJobs.reverse()
-                    : customer.cleaningsList.pastJobs.reverse()
+                    ? customer.cleaningsList.activeJobs
+                    : customer.cleaningsList.pastJobs
                 }
                 columns={cleaningsType === 'Active' ? cleaningColumns.slice(0, -3) : cleaningColumns}
                 isClickable={true}
@@ -277,8 +277,8 @@ const Customer = () => {
               <ListTable
                 data={
                   subscriptionType === 'Active'
-                    ? customer.activeSubscriptionsList.reverse()
-                    : customer.pastSubscriptionsList.reverse()
+                    ? customer.activeSubscriptionsList
+                    : customer.pastSubscriptionsList
                 }
                 columns={subscriptionType === 'Active' ? subscriptionColumns : pastSubscriptionColumns}
                 isClickable={true}

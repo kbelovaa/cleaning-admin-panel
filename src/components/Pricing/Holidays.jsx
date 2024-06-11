@@ -26,7 +26,8 @@ const Holidays = () => {
 
   const handleSavingData = async () => {
     setSavingLoading(true);
-    const result = await updateHolidays(holidays);
+    const orderedHolidays = holidays.map((elem, i) => ({ ...elem, order: i + 1 }));
+    const result = await updateHolidays(orderedHolidays);
 
     if (result.status === 201) {
       setSavingLoading(false);
