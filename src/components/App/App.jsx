@@ -19,6 +19,7 @@ import Cleaner from '../Cleaner/Cleaner';
 import Customer from '../Customer/Customer';
 import Address from '../Address/Address';
 import Cleaning from '../Cleaning/Cleaning';
+import Subscription from '../Subscription/Subscription';
 import Settings from '../Settings/Settings';
 import Authorization from '../Authorization/Authorization';
 import Holidays from '../Pricing/Holidays';
@@ -78,6 +79,7 @@ const App = () => {
                 <Route path="customer/:id" element={<Customer />} />
                 <Route path="address/:id" element={<Address />} />
                 <Route path="cleaning/:id" element={<Cleaning />} />
+                <Route path="subscription/:id" element={<Subscription />} />
                 <Route path="settings" element={<Settings />} />
                 <Route path="holidays" element={<Holidays />} />
                 <Route path="price_per_sqm" element={<PricePerSqm />} />

@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import LaunchIcon from '@mui/icons-material/Launch';
 import { getCancelledOrders } from '../../http/listsAPI';
 import { setCancelledOrdersAction } from '../../store/actions/listActions';
+import { getCancelledRequestCols } from '../../constants/tableColumns';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import ListTable from './ListTable/ListTable';
 
 const RequestsCancelled = () => {
@@ -32,58 +33,20 @@ const RequestsCancelled = () => {
     }
   }, []);
 
-  const columns = useMemo(
-    () => [
-      {
-        accessorKey: 'id',
-        header: '№',
-        size: 68,
-      },
-      {
-        accessorKey: 'orderId',
-        header: 'Cleaning',
-        size: 80,
-        enableSorting: false,
-        enableColumnFilter: false,
-        Cell: ({ cell }) => (
-          <LaunchIcon className="launch-icon" onClick={() => navigate(`/cleaning/${cell.getValue()}`)} />
-        ),
-      },
-      {
-        accessorKey: 'customer',
-        header: 'Customer',
-        size: 204,
-        Cell: ({ cell, row }) => (
-          <span className="link" onClick={() => navigate(`/customer/${row.original.customerId}`)}>
-            {cell.getValue()}
-          </span>
-        ),
-      },
-      {
-        accessorKey: 'reason',
-        header: 'Reason',
-        size: 215,
-      },
-      {
-        accessorKey: 'comment',
-        header: 'Comment',
-        size: 215,
-      },
-      {
-        accessorKey: 'date',
-        header: 'Date',
-        size: 105,
-      },
-      {
-        accessorKey: 'time',
-        header: 'Time',
-        size: 85,
-      },
-    ],
-    [],
-  );
+  const columns = useMemo(() => getCancelledRequestCols(navigate, false), []);
 
-  return <ListTable data={cancelledOrders} columns={columns} loading={loading} />;
+  return (
+    <div className="data">
+      <Breadcrumbs />
+      {loading ? (
+        <div className="spinner"></div>
+      ) : (
+        <div className="data__table-wrap">
+          <ListTable data={cancelledOrders} columns={columns} isClickable={false} />
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default RequestsCancelled;

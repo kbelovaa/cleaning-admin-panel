@@ -9,12 +9,10 @@ const Breadcrumbs = () => {
 
   const history = useContext(HistoryContext);
 
-  const paths = history.map((item) => item.split('/')[1]);
-
   return (
     <div className="breadcrumbs">
-      {paths.map((path, index) => {
-        const link = path.replace(/_/g, ' ');
+      {history.map((path, index) => {
+        const link = path.split('/')[1].replace(/_/g, ' ');
         const linkName = link.charAt(0).toUpperCase() + link.slice(1);
         return (
           <span className="breadcrumbs__item" key={index}>
@@ -30,7 +28,7 @@ const Breadcrumbs = () => {
                 <path d="M9 19L15 13L9 7" stroke="#D8D8D8" strokeLinecap="round" />
               </svg>
             )}
-            <NavLink to={`/${path}`}>{t(linkName)}</NavLink>
+            <NavLink to={`${path}`}>{t(linkName)}</NavLink>
           </span>
         );
       })}

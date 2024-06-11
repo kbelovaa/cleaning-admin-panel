@@ -1,4 +1,4 @@
-import format from 'date-fns/format';
+import { differenceInDays, format, parseISO, formatDistance } from 'date-fns';
 
 const formatDate = (dateString) => {
   const dateParts = dateString.split('.');
@@ -32,4 +32,16 @@ const calculateTimeLeft = (creationDate) => {
   return timeLeft;
 };
 
-export { formatDate, calculateTimeLeft };
+const formatActivityDate = (dateStr) => {
+  const date = parseISO(dateStr);
+  const today = new Date();
+  const difference = differenceInDays(today, date);
+
+  if (difference >= 2) {
+    return format(date, 'dd.MM.yyyy');
+  }
+
+  return formatDistance(date, today, { addSuffix: true });
+};
+
+export { formatDate, calculateTimeLeft, formatActivityDate };

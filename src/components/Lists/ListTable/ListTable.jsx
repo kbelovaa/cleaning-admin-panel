@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { MaterialReactTable, useMaterialReactTable } from 'material-react-table';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Breadcrumbs from '../../Breadcrumbs/Breadcrumbs';
 import './ListTable.scss';
 
-const ListTable = ({ data, columns, loading, jobsType, setJobsType }) => {
+const ListTable = ({ data, columns, isClickable }) => {
   const [dataList, setDataList] = useState([]);
 
-  const { pathname } = useLocation();
   const navigate = useNavigate();
-
-  const { t } = useTranslation();
 
   useEffect(() => {
     setDataList(data);
@@ -46,11 +41,7 @@ const ListTable = ({ data, columns, loading, jobsType, setJobsType }) => {
   });
 
   const handleRowClick = (row) => {
-    if (
-      !pathname.startsWith('/cancelled_requests') &&
-      !pathname.startsWith('/adjustments') &&
-      !pathname.startsWith('/cancelled_jobs')
-    ) {
+    if (isClickable) {
       navigate(`/${row.original.item}/${row.original.itemId}`);
     }
   };
@@ -60,6 +51,7 @@ const ListTable = ({ data, columns, loading, jobsType, setJobsType }) => {
     data: dataList,
     columnFilterDisplayMode: 'popover',
     enableRowVirtualization: true,
+    // enableColumnOrdering: true,
     enableColumnActions: false,
     enableDensityToggle: false,
     enableColumnResizing: true,
@@ -107,39 +99,17 @@ const ListTable = ({ data, columns, loading, jobsType, setJobsType }) => {
       onClick: () => handleRowClick(row),
       sx: {
         borderBottom: '1px solid #EDF2FA',
-        cursor:
-          !pathname.startsWith('/cancelled_requests') &&
-          !pathname.startsWith('/adjustments') &&
-          !pathname.startsWith('/cancelled_jobs')
-            ? 'pointer'
-            : 'default',
+        cursor: isClickable ? 'pointer' : 'default',
       },
     }),
   });
 
   return (
-    <div className="data">
-      <Breadcrumbs />
-      {loading ? (
-        <div className="spinner"></div>
-      ) : (
-        <ThemeProvider theme={theme}>
-          {pathname.startsWith('/jobs') && (
-            <div className="data__tabs">
-              <div className={`data__tab ${jobsType === 'Active' && 'active'}`} onClick={() => setJobsType('Active')}>
-                {t('active')}
-              </div>
-              <div className={`data__tab ${jobsType === 'Past' && 'active'}`} onClick={() => setJobsType('Past')}>
-                {t('past')}
-              </div>
-            </div>
-          )}
-          <div className="data__table">
-            <MaterialReactTable table={table} />
-          </div>
-        </ThemeProvider>
-      )}
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="data__table">
+        <MaterialReactTable table={table} />
+      </div>
+    </ThemeProvider>
   );
 };
 

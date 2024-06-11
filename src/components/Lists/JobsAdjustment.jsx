@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import LaunchIcon from '@mui/icons-material/Launch';
 import { getAdjustmentJobs } from '../../http/listsAPI';
 import { setAdjustmentJobsAction } from '../../store/actions/listActions';
+import { getAdjustmentCols } from '../../constants/tableColumns';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import ListTable from './ListTable/ListTable';
 
 const JobsAdjustment = () => {
@@ -32,61 +33,20 @@ const JobsAdjustment = () => {
     }
   }, []);
 
-  const columns = useMemo(
-    () => [
-      {
-        accessorKey: 'id',
-        header: '№',
-        size: 68,
-      },
-      {
-        accessorKey: 'orderId',
-        header: 'Cleaning',
-        size: 80,
-        enableSorting: false,
-        enableColumnFilter: false,
-        Cell: ({ cell }) => (
-          <LaunchIcon className="launch-icon" onClick={() => navigate(`/cleaning/${cell.getValue()}`)} />
-        ),
-      },
-      {
-        accessorKey: 'cleaner',
-        header: 'Cleaner',
-        size: 189,
-        Cell: ({ cell, row }) => (
-          <span
-            className={row.original.cleanerId && 'link'}
-            onClick={() => row.original.cleanerId && navigate(`/cleaner/${row.original.cleanerId}`)}
-          >
-            {cell.getValue()}
-          </span>
-        ),
-      },
-      {
-        accessorKey: 'reason',
-        header: 'Reason',
-        size: 220,
-      },
-      {
-        accessorKey: 'comment',
-        header: 'Comment',
-        size: 220,
-      },
-      {
-        accessorKey: 'date',
-        header: 'Date',
-        size: 100,
-      },
-      {
-        accessorKey: 'time',
-        header: 'Time',
-        size: 95,
-      },
-    ],
-    [],
-  );
+  const columns = useMemo(() => getAdjustmentCols(navigate), []);
 
-  return <ListTable data={adjustmentJobs} columns={columns} loading={loading} />;
+  return (
+    <div className="data">
+      <Breadcrumbs />
+      {loading ? (
+        <div className="spinner"></div>
+      ) : (
+        <div className="data__table-wrap">
+          <ListTable data={adjustmentJobs} columns={columns} isClickable={false} />
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default JobsAdjustment;

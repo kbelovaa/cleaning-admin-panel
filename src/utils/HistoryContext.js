@@ -36,12 +36,16 @@ export const HistoryProvider = ({ children }) => {
 
   useEffect(() => {
     const handlePopState = () => {
-      setHistory((prevHistory) => {
-        if (prevHistory.length >= 2) {
-          return prevHistory.slice(0, -2);
-        }
-        return prevHistory;
-      });
+      const previousPath = history[history.length - 2];
+
+      if (pathname === previousPath) {
+        setHistory((prevHistory) => {
+          if (prevHistory.length >= 2) {
+            return prevHistory.slice(0, -2);
+          }
+          return prevHistory;
+        });
+      }
     };
 
     window.addEventListener('popstate', handlePopState);

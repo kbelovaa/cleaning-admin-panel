@@ -1,8 +1,11 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { getAllJobs } from '../../http/listsAPI';
 import { setActiveJobsAction, setPastJobsAction } from '../../store/actions/listActions';
+import { getJobCols } from '../../constants/tableColumns';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import ListTable from './ListTable/ListTable';
 
 const Jobs = () => {
@@ -16,6 +19,8 @@ const Jobs = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,120 +48,27 @@ const Jobs = () => {
     }
   }, [jobsType, activeJobs, pastJobs]);
 
-  const openLink = (e, row, item) => {
-    e.stopPropagation();
-    navigate(`/${item}/${row.original.customerId}`);
-  };
-
-  const columns = useMemo(
-    () => [
-      {
-        accessorKey: 'id',
-        header: '№',
-        size: 68,
-      },
-      {
-        accessorKey: 'status',
-        header: 'Status',
-        size: 120,
-        filterVariant: 'select',
-        filterSelectOptions: ['Confirmed', 'In progress', 'Completed'],
-        Cell: ({ cell }) => (
-          <div className={`status-wrapper ${cell.getValue().replace(/\s/g, '')}`}>{cell.getValue()}</div>
-        ),
-      },
-      {
-        accessorKey: 'cleaner',
-        header: 'Cleaner',
-        size: 150,
-        Cell: ({ cell, row }) => (
-          <span className={row.original.cleanerId && 'link'} onClick={(e) => openLink(e, row, 'cleaner')}>
-            {cell.getValue()}
-          </span>
-        ),
-      },
-      {
-        accessorKey: 'date',
-        header: 'Date',
-        size: 100,
-      },
-      {
-        accessorKey: 'time',
-        header: 'Time',
-        size: 85,
-      },
-      {
-        accessorKey: 'cleaningType',
-        header: 'Type',
-        size: 110,
-      },
-      {
-        accessorKey: 'extraServices',
-        header: 'Extras',
-        size: 160,
-      },
-      {
-        accessorKey: 'howFast',
-        header: 'How fast',
-        size: 120,
-      },
-      {
-        accessorKey: 'salary',
-        header: 'Salary, €',
-        size: 118,
-      },
-      {
-        accessorKey: 'customer',
-        header: 'Customer',
-        size: 150,
-        Cell: ({ cell, row }) => (
-          <span className={row.original.customerId && 'link'} onClick={(e) => openLink(e, row, 'customer')}>
-            {cell.getValue()}
-          </span>
-        ),
-      },
-      {
-        accessorKey: 'fullAddress',
-        header: 'Address',
-        size: 200,
-      },
-      {
-        accessorKey: 'sqm',
-        header: 'sqm',
-        size: 84,
-      },
-      {
-        accessorKey: 'specialInstructions',
-        header: 'Special instructions',
-        size: 205,
-      },
-      {
-        accessorKey: 'rating',
-        header: 'Rating',
-        size: 100,
-      },
-      {
-        accessorKey: 'clientFeedbackText',
-        header: 'Client feedback',
-        size: 172,
-      },
-      {
-        accessorKey: 'cleanerFeedbackText',
-        header: 'Cleaner feedback',
-        size: 187,
-      },
-    ],
-    [],
-  );
+  const columns = useMemo(() => getJobCols(navigate), []);
 
   return (
-    <ListTable
-      data={jobs}
-      columns={jobsType === 'Active' ? columns.slice(0, -3) : columns}
-      loading={loading}
-      jobsType={jobsType}
-      setJobsType={setJobsType}
-    />
+    <div className="data">
+      <Breadcrumbs />
+      {loading ? (
+        <div className="spinner"></div>
+      ) : (
+        <div className="data__table-wrap">
+          <div className="data__tabs">
+            <div className={`data__tab ${jobsType === 'Active' && 'active'}`} onClick={() => setJobsType('Active')}>
+              {`${t('active')} (${activeJobs.length})`}
+            </div>
+            <div className={`data__tab ${jobsType === 'Past' && 'active'}`} onClick={() => setJobsType('Past')}>
+              {`${t('past')} (${pastJobs.length})`}
+            </div>
+          </div>
+          <ListTable data={jobs} columns={jobsType === 'Active' ? columns.slice(0, -3) : columns} isClickable={true} />
+        </div>
+      )}
+    </div>
   );
 };
 
