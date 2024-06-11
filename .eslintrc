@@ -5,6 +5,7 @@
     "node": true
   },
   "rules" : {
+    "linebreak-style": "off",
     "object-curly-newline": "off",
     "comma-dangle": "off",
     "max-len": "off",

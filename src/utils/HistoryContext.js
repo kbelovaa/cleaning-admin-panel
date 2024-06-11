@@ -25,7 +25,8 @@ export const HistoryProvider = ({ children }) => {
       setHistory([pathname]);
     } else {
       setHistory((prevHistory) => {
-        const existingIndex = prevHistory.indexOf(pathname);
+        const cleanHistory = prevHistory.map((str) => str.replace(/\//g, ''));
+        const existingIndex = cleanHistory.indexOf(pathname.replace(/\//g, ''));
         if (existingIndex !== -1) {
           return prevHistory.slice(0, existingIndex + 1);
         }
@@ -38,7 +39,7 @@ export const HistoryProvider = ({ children }) => {
     const handlePopState = () => {
       const previousPath = history[history.length - 2];
 
-      if (pathname === previousPath) {
+      if (pathname.replace(/\//g, '') === previousPath.replace(/\//g, '')) {
         setHistory((prevHistory) => {
           if (prevHistory.length >= 2) {
             return prevHistory.slice(0, -2);
