@@ -51,7 +51,7 @@
   }
 
   &__title {
-    color: var(--Blue, #2329d6);
+    color: #2329d6;
     font-size: 20px;
     font-weight: 500;
   }
@@ -83,6 +83,7 @@
 
   &__text {
     margin-bottom: 8px;
+    align-self: flex-start;
 
     &:last-of-type {
       margin-bottom: 0;
@@ -168,6 +169,7 @@
     margin-top: 0;
   }
 
+  .block:nth-last-of-type(3).expanded .card__title-wrap,
   .block:nth-last-of-type(2).expanded .card__title-wrap {
     margin-bottom: 56px;
   }

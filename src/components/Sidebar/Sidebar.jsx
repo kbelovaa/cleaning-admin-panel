@@ -38,11 +38,6 @@ const Sidebar = () => {
                 {t('customers')}
               </NavLink>
             </li>
-            {/* <li className="sidebar__item">
-              <NavLink className="sidebar__link" to="/addresses">
-                {t('addresses')}
-              </NavLink>
-            </li> */}
             <li className="sidebar__item">
               <NavLink className="sidebar__link" to="/requests">
                 {t('requests')}

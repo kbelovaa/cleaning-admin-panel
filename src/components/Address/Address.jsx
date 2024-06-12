@@ -102,7 +102,7 @@ const Address = () => {
                 <span className="personal__text">Postal code</span>
               </div>
               <div className="personal__values">
-                <span className="personal__text">{address.customer}</span>
+                <span className="personal__text link" onClick={() => navigate(`/customer/${address.customerId}`)}>{address.customer}</span>
                 <span className="personal__text">{address.address1}</span>
                 <span className="personal__text">{address.address2}</span>
                 <span className="personal__text">{address.city}</span>
@@ -159,19 +159,19 @@ const Address = () => {
                 </div>
                 <div
                   className={`data__tab ${requestsType === 'Cancelled' && 'active'}`}
-                  onClick={() => setRequestsType('Active')}
+                  onClick={() => setRequestsType('Cancelled')}
                 >
                   {`Cancelled (${address.cancelledRequests.length})`}
                 </div>
               </div>
               <ListTable
-                data={cleaningsType === 'All' ? address.requests : address.cancelledRequests}
+                data={requestsType === 'All' ? address.requests : address.cancelledRequests}
                 columns={
-                  cleaningsType === 'All'
+                  requestsType === 'All'
                     ? requestColumns.filter((_, i) => i !== 2 && i !== 11 && i !== 12)
                     : cancelledRequestColumns
                 }
-                isClickable={cleaningsType === 'All'}
+                isClickable={requestsType === 'All'}
               />
             </div>
           </div>
