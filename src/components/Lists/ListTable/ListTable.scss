@@ -3,7 +3,7 @@ td::after {
 }
 
 tbody tr:hover {
-  background-color: #edf2f7 !important;
+  background-color: #F7F8FF !important;
 }
 
 .data {
@@ -17,6 +17,10 @@ tbody tr:hover {
     display: inline-flex;
     position: relative;
     z-index: 2;
+
+    .card & {
+      margin-top: 18px;
+    }
   }
 
   &__tab {
@@ -34,6 +38,15 @@ tbody tr:hover {
     margin-right: 10px;
     transition: all 0.2s ease;
     user-select: none;
+
+    &:hover {
+      border-color: #2329d6;
+    }
+
+    &:active {
+      border-color: #2329d6;
+      color: #2329D6;
+    }
 
     &.active {
       color: #2329d6;

@@ -1,25 +1,37 @@
 .page {
   width: 100%;
-  height: 100vh;
   position: relative;
+  background: transparent;
+  transition: all 0.3s ease;
+
+  &.reduced {
+    background: rgba(0, 9, 255, 0.03);
+  }
 }
 
 .background {
   width: 50%;
   height: 100%;
-  background: #fafbfd;
+  background: rgba(0, 9, 255, 0.03);
   position: absolute;
   z-index: -1;
+  transition: all 0.3s ease;
+
+  .reduced & {
+    background: transparent;
+  }
 }
 
 .sidebar {
   width: 260px;
   padding: 30px 20px 30px 70px;
   transition: all 0.3s ease;
+  opacity: 1;
 
-  &.reduced {
+  .reduced & {
     width: 0;
     padding: 30px 0;
+    opacity: 0;
   }
 
   &__project {
@@ -66,7 +78,7 @@
 }
 
 .content {
-  height: 100vh;
+  min-height: 100vh;
   background: #fff;
   width: calc(100% - 260px);
   padding: 0 60px;
@@ -74,5 +86,6 @@
 
   &.expanded {
     width: 100%;
+    background: transparent;
   }
 }

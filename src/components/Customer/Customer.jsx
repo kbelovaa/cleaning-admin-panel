@@ -74,77 +74,79 @@ const Customer = () => {
         <div className="spinner"></div>
       ) : (
         <div className="card">
-          <div className="card__title-wrap">
-            <svg
-              className="card__back"
-              onClick={goBack}
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path d="M21 12L3 12" stroke="#2329D6" strokeLinecap="round" />
-              <path d="M9 6L3 12L9 18" stroke="#2329D6" strokeLinecap="round" />
-            </svg>
-            <h2 className="card__title">{customer.fullName}</h2>
-            <span className="card__activity">{`last activity: ${formatActivityDate(customer.lastActivity)}`}</span>
-          </div>
-          <div className={`personal ${isPersonalExpanded ? 'expanded' : ''}`}>
-            <div className="personal__wrap" onClick={() => setIsPersonalExpanded((state) => !state)}>
+          <div className="card__block">
+            <div className="card__title-wrap">
               <svg
-                className={isPersonalExpanded ? 'arrow rotated' : 'arrow'}
+                className="card__back"
+                onClick={goBack}
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
               >
-                <path d="M6 10L12 16L18 10" stroke="#2329D6" strokeLinecap="round" />
+                <path d="M21 12L3 12" stroke="#2329D6" strokeLinecap="round" />
+                <path d="M9 6L3 12L9 18" stroke="#2329D6" strokeLinecap="round" />
               </svg>
-              <h3 className="personal__title">Personal info</h3>
+              <h2 className="card__title">{customer.fullName}</h2>
+              <span className="card__activity">{`last activity: ${formatActivityDate(customer.lastActivity)}`}</span>
             </div>
-            <div className="personal__info">
-              <div className="personal__values">
-                <span className="personal__text">Email</span>
-                <span className="personal__text">Phone</span>
-                <span className="personal__text">Reg.</span>
+            <div className={`personal ${isPersonalExpanded ? 'expanded' : ''}`}>
+              <div className="personal__wrap" onClick={() => setIsPersonalExpanded((state) => !state)}>
+                <svg
+                  className={isPersonalExpanded ? 'arrow rotated' : 'arrow'}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path d="M6 10L12 16L18 10" stroke="#2329D6" strokeLinecap="round" />
+                </svg>
+                <h3 className="personal__title">Personal info</h3>
               </div>
-              <div className="personal__values">
-                <span className="personal__text">{customer.email}</span>
-                <span className="personal__text">{customer.mobile}</span>
-                <span className="personal__text">{customer.regDate}</span>
+              <div className="personal__info">
+                <div className="personal__values">
+                  <span className="personal__text">Email</span>
+                  <span className="personal__text">Phone</span>
+                  <span className="personal__text">Reg.</span>
+                </div>
+                <div className="personal__values">
+                  <span className="personal__text">{customer.email}</span>
+                  <span className="personal__text">{customer.mobile}</span>
+                  <span className="personal__text">{customer.regDate}</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="kpi">
-            <div className="kpi__block">
-              <span className="kpi__label">Cleanings</span>
-              <span className="kpi__value">{customer.numberOfOrders}</span>
-            </div>
-            <div className="kpi__block">
-              <span className="kpi__label">Completed</span>
-              <span className="kpi__value">{customer.numberOfCompletedOrders}</span>
-            </div>
-            <div className="kpi__block">
-              <span className="kpi__label">Pending</span>
-              <span className="kpi__value">{customer.numberOfPendingOrders}</span>
-            </div>
-            <div className="kpi__block">
-              <span className="kpi__label">Cancelled</span>
-              <span className="kpi__value">{customer.numberOfCancelledOrders}</span>
-            </div>
-            <div className="kpi__block">
-              <span className="kpi__label">Avg score</span>
-              <span className="kpi__value">{customer.avgScore}</span>
-            </div>
-            <div className="kpi__block">
-              <span className="kpi__label">Avg cleaning, €</span>
-              <span className="kpi__value">{customer.avgOrder}</span>
-            </div>
-            <div className="kpi__block">
-              <span className="kpi__label">Total spend, €</span>
-              <span className="kpi__value">{customer.orderPriceSum}</span>
+            <div className="kpi">
+              <div className="kpi__block">
+                <span className="kpi__label">Cleanings</span>
+                <span className="kpi__value">{customer.numberOfOrders}</span>
+              </div>
+              <div className="kpi__block">
+                <span className="kpi__label">Completed</span>
+                <span className="kpi__value">{customer.numberOfCompletedOrders}</span>
+              </div>
+              <div className="kpi__block">
+                <span className="kpi__label">Pending</span>
+                <span className="kpi__value">{customer.numberOfPendingOrders}</span>
+              </div>
+              <div className="kpi__block">
+                <span className="kpi__label">Cancelled</span>
+                <span className="kpi__value">{customer.numberOfCancelledOrders}</span>
+              </div>
+              <div className="kpi__block">
+                <span className="kpi__label">Avg score</span>
+                <span className="kpi__value">{customer.avgScore}</span>
+              </div>
+              <div className="kpi__block">
+                <span className="kpi__label">Avg cleaning, €</span>
+                <span className="kpi__value">{customer.avgOrder}</span>
+              </div>
+              <div className="kpi__block">
+                <span className="kpi__label">Total spend, €</span>
+                <span className="kpi__value">{customer.orderPriceSum}</span>
+              </div>
             </div>
           </div>
           <div className={`block ${isAddressesExpanded ? 'expanded' : ''}`}>
@@ -161,7 +163,7 @@ const Customer = () => {
               </svg>
               <h2 className="card__title">{`Addresses (${customer.addressesList.length})`}</h2>
             </div>
-            <div className="block__table">
+            <div className="block__table card__block">
               <ListTable data={customer.addressesList} columns={addressColumns} isClickable={true} />
             </div>
           </div>
@@ -179,7 +181,7 @@ const Customer = () => {
               </svg>
               <h2 className="card__title">{`Requests (${customer.requestsList.length})`}</h2>
             </div>
-            <div className="block__table">
+            <div className="block__table card__block">
               <div className="data__tabs">
                 <div
                   className={`data__tab ${requestsType === 'All' && 'active'}`}
@@ -217,7 +219,7 @@ const Customer = () => {
                 customer.cleaningsList.activeJobs.length + customer.cleaningsList.pastJobs.length
               })`}</h2>
             </div>
-            <div className="block__table">
+            <div className="block__table card__block">
               <div className="data__tabs">
                 <div
                   className={`data__tab ${cleaningsType === 'Active' && 'active'}`}
@@ -255,7 +257,7 @@ const Customer = () => {
                 customer.activeSubscriptionsList.length + customer.pastSubscriptionsList.length
               })`}</h2>
             </div>
-            <div className="block__table">
+            <div className="block__table card__block">
               <div className="data__tabs">
                 <div
                   className={`data__tab ${subscriptionType === 'Active' && 'active'}`}

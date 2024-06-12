@@ -39,7 +39,7 @@ export const HistoryProvider = ({ children }) => {
     const handlePopState = () => {
       const previousPath = history[history.length - 2];
 
-      if (pathname.replace(/\//g, '') === previousPath.replace(/\//g, '')) {
+      if (previousPath && pathname.replace(/\//g, '') === previousPath.replace(/\//g, '')) {
         setHistory((prevHistory) => {
           if (prevHistory.length >= 2) {
             return prevHistory.slice(0, -2);

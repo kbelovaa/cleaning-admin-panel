@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Header from '../Header/Header';
@@ -9,18 +9,16 @@ const Sidebar = () => {
 
   const { pathname } = useLocation();
 
-  const isHidden =
-    pathname.startsWith('/customer/') ||
-    pathname.startsWith('/cleaner/') ||
-    pathname.startsWith('/cleaning/') ||
-    pathname.startsWith('/address/') ||
-    pathname.startsWith('/subscription/');
+  const isHidden = useMemo(() => {
+    const regex = /^(\/customer\/|\/cleaner\/|\/cleaning\/|\/address\/|\/subscription\/)/;
+    return regex.test(pathname);
+  }, [pathname]);
 
   return (
-    <div className="page">
+    <div className={`page ${isHidden && 'reduced'}`}>
       <div className="background"></div>
       <div className="container side">
-        <div className={`sidebar ${isHidden && 'reduced'}`}>
+        <div className="sidebar">
           <span className="sidebar__project">{`${t('project')}:\u00A0SDL`}</span>
           <ul className="sidebar__list">
             <li className="sidebar__item">

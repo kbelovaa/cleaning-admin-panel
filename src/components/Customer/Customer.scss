@@ -5,6 +5,18 @@
     box-shadow: none !important;
   }
 
+  &__block {
+    border-radius: 20px;
+    background: #FFF;
+    padding: 40px;
+    margin-bottom: 60px;
+
+    &:first-of-type {
+      padding-top: 94px;
+      margin-top: -54px;
+    }
+  }
+
   &__back {
     cursor: pointer;
     margin-right: 40px;
@@ -105,7 +117,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 30px 0 100px;
+  margin-top: 30px;
 
   &__block {
     padding: 20px;
@@ -140,14 +152,17 @@
 
 .block {
   &__table {
-    padding: 0 40px;
+    padding-top: 0;
+    padding-bottom: 0;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
-    margin-bottom: 60px;
+    transition: all 0.3s ease;
+    margin-top: 20px;
 
     .block.expanded & {
       max-height: 5000px;
+      padding-top: 22px;
+      padding-bottom: 22px;
     }
   }
 }
@@ -155,12 +170,6 @@
 .customer {
   .block:nth-last-of-type(4) .data__table {
     margin-top: 0;
-  }
-
-  .block:nth-last-of-type(3).expanded .card__title-wrap,
-  .block:nth-last-of-type(2).expanded .card__title-wrap,
-  .block:nth-last-of-type(1).expanded .card__title-wrap {
-    margin-bottom: 56px;
   }
 }
 

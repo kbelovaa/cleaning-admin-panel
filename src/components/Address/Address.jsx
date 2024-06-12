@@ -63,74 +63,76 @@ const Address = () => {
         <div className="spinner"></div>
       ) : (
         <div className="card">
-          <div className="card__title-wrap">
-            <svg
-              className="card__back"
-              onClick={goBack}
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-            >
-              <path d="M21 12L3 12" stroke="#2329D6" strokeLinecap="round" />
-              <path d="M9 6L3 12L9 18" stroke="#2329D6" strokeLinecap="round" />
-            </svg>
-            <h2 className="card__title">{`Address №${address.orderNr}`}</h2>
-          </div>
-          <div className={`personal ${isInfoExpanded ? 'expanded' : ''}`}>
-            <div className="personal__wrap" onClick={() => setIsInfoExpanded((state) => !state)}>
+          <div className="card__block">
+            <div className="card__title-wrap">
               <svg
-                className={isInfoExpanded ? 'arrow rotated' : 'arrow'}
+                className="card__back"
+                onClick={goBack}
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
               >
-                <path d="M6 10L12 16L18 10" stroke="#2329D6" strokeLinecap="round" />
+                <path d="M21 12L3 12" stroke="#2329D6" strokeLinecap="round" />
+                <path d="M9 6L3 12L9 18" stroke="#2329D6" strokeLinecap="round" />
               </svg>
-              <h3 className="personal__title">Info</h3>
+              <h2 className="card__title">{`Address №${address.orderNr}`}</h2>
             </div>
-            <div className="personal__info">
-              <div className="personal__values">
-                <span className="personal__text">Customer</span>
-                <span className="personal__text">Address 1</span>
-                <span className="personal__text">Address 2</span>
-                <span className="personal__text">City</span>
-                <span className="personal__text">Province</span>
-                <span className="personal__text">Postal code</span>
+            <div className={`personal ${isInfoExpanded ? 'expanded' : ''}`}>
+              <div className="personal__wrap" onClick={() => setIsInfoExpanded((state) => !state)}>
+                <svg
+                  className={isInfoExpanded ? 'arrow rotated' : 'arrow'}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path d="M6 10L12 16L18 10" stroke="#2329D6" strokeLinecap="round" />
+                </svg>
+                <h3 className="personal__title">Info</h3>
               </div>
-              <div className="personal__values">
-                <span className="personal__text link" onClick={() => navigate(`/customer/${address.customerId}`)}>{address.customer}</span>
-                <span className="personal__text">{address.address1}</span>
-                <span className="personal__text">{address.address2}</span>
-                <span className="personal__text">{address.city}</span>
-                <span className="personal__text">{address.province}</span>
-                <span className="personal__text">{address.postalCode}</span>
+              <div className="personal__info">
+                <div className="personal__values">
+                  <span className="personal__text">Customer</span>
+                  <span className="personal__text">Address 1</span>
+                  <span className="personal__text">Address 2</span>
+                  <span className="personal__text">City</span>
+                  <span className="personal__text">Province</span>
+                  <span className="personal__text">Postal code</span>
+                </div>
+                <div className="personal__values">
+                  <span className="personal__text link" onClick={() => navigate(`/customer/${address.customerId}`)}>{address.customer}</span>
+                  <span className="personal__text">{address.address1}</span>
+                  <span className="personal__text">{address.address2}</span>
+                  <span className="personal__text">{address.city}</span>
+                  <span className="personal__text">{address.province}</span>
+                  <span className="personal__text">{address.postalCode}</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="kpi">
-            <div className="kpi__block">
-              <span className="kpi__label">sqm</span>
-              <span className="kpi__value">{address.sqm}</span>
-            </div>
-            <div className="kpi__block">
-              <span className="kpi__label">Living rooms</span>
-              <span className="kpi__value">{address.livingRooms}</span>
-            </div>
-            <div className="kpi__block">
-              <span className="kpi__label">Bedrooms</span>
-              <span className="kpi__value">{address.bedrooms}</span>
-            </div>
-            <div className="kpi__block">
-              <span className="kpi__label">Bathrooms</span>
-              <span className="kpi__value">{address.bathrooms}</span>
-            </div>
-            <div className="kpi__block">
-              <span className="kpi__label">Kitchens</span>
-              <span className="kpi__value">{address.kitchens}</span>
+            <div className="kpi">
+              <div className="kpi__block">
+                <span className="kpi__label">sqm</span>
+                <span className="kpi__value">{address.sqm}</span>
+              </div>
+              <div className="kpi__block">
+                <span className="kpi__label">Living rooms</span>
+                <span className="kpi__value">{address.livingRooms}</span>
+              </div>
+              <div className="kpi__block">
+                <span className="kpi__label">Bedrooms</span>
+                <span className="kpi__value">{address.bedrooms}</span>
+              </div>
+              <div className="kpi__block">
+                <span className="kpi__label">Bathrooms</span>
+                <span className="kpi__value">{address.bathrooms}</span>
+              </div>
+              <div className="kpi__block">
+                <span className="kpi__label">Kitchens</span>
+                <span className="kpi__value">{address.kitchens}</span>
+              </div>
             </div>
           </div>
           <div className={`block ${isRequestsExpanded ? 'expanded' : ''}`}>
@@ -149,7 +151,7 @@ const Address = () => {
                 address.requests.length + address.cancelledRequests.length
               })`}</h2>
             </div>
-            <div className="block__table">
+            <div className="block__table card__block">
               <div className="data__tabs">
                 <div
                   className={`data__tab ${requestsType === 'All' && 'active'}`}
@@ -191,7 +193,7 @@ const Address = () => {
                 address.cleaningsList.activeJobs.length + address.cleaningsList.pastJobs.length
               })`}</h2>
             </div>
-            <div className="block__table">
+            <div className="block__table card__block">
               <div className="data__tabs">
                 <div
                   className={`data__tab ${cleaningsType === 'Active' && 'active'}`}
@@ -231,7 +233,7 @@ const Address = () => {
               </svg>
               <h2 className="card__title">{`Adjustments (${address.adjustments.length})`}</h2>
             </div>
-            <div className="block__table">
+            <div className="block__table card__block">
               <ListTable data={address.adjustments} columns={adjustmentColumns} isClickable={false} />
             </div>
           </div>

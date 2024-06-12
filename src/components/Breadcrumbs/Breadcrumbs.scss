@@ -1,16 +1,19 @@
 .breadcrumbs {
-  margin-bottom: 30px;
+  margin-left: 40px;
   display: flex;
   position: relative;
   z-index: 2;
   height: 24px;
+  transition: all 0.3s ease;
 
   .settings & {
     margin-bottom: 60px;
+    margin-left: 0;
   }
 
   .data & {
     margin-bottom: 20px;
+    margin-left: 0;
   }
 
   &__item {
