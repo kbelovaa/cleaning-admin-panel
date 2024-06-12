@@ -118,6 +118,10 @@
     .customer & {
       width: calc((100% - 60px) / 7);
     }
+
+    .address & {
+      width: calc((100% - 60px) / 5);
+    }
   }
 
   &__label {
@@ -155,6 +159,16 @@
   .block:nth-last-of-type(3).expanded .card__title-wrap,
   .block:nth-last-of-type(2).expanded .card__title-wrap,
   .block:nth-last-of-type(1).expanded .card__title-wrap {
+    margin-bottom: 56px;
+  }
+}
+
+.address {
+  .block:nth-last-of-type(1) .data__table {
+    margin-top: 0;
+  }
+
+  .block:nth-last-of-type(2).expanded .card__title-wrap {
     margin-bottom: 56px;
   }
 }

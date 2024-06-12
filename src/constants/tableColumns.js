@@ -241,7 +241,7 @@ const getCustomerCols = (navigate) => {
   return customerCols;
 };
 
-const getJobCols = (navigate) => {
+const getJobCols = (navigate, isWide) => {
   const jobCols = [
     {
       accessorKey: 'id',
@@ -359,10 +359,14 @@ const getJobCols = (navigate) => {
     },
   ];
 
+  if (isWide) {
+    jobCols.splice(11, 2);
+  }
+
   return jobCols;
 };
 
-const getAdjustmentCols = (navigate) => {
+const getAdjustmentCols = (navigate, isWide) => {
   const adjustmentCols = [
     {
       accessorKey: 'id',
@@ -373,7 +377,7 @@ const getAdjustmentCols = (navigate) => {
       accessorKey: 'orderId',
       id: 'orderId1',
       header: 'Cleaning',
-      size: 80,
+      size: isWide ? 100 : 80,
       enableSorting: false,
       enableColumnFilter: false,
       Cell: ({ cell }) => (
@@ -384,7 +388,7 @@ const getAdjustmentCols = (navigate) => {
       accessorKey: 'cleaner',
       id: 'cleaner2',
       header: 'Cleaner',
-      size: 189,
+      size: isWide ? 250 : 189,
       Cell: ({ cell, row }) => (
         <span
           className={row.original.cleanerId && 'link'}
@@ -398,25 +402,25 @@ const getAdjustmentCols = (navigate) => {
       accessorKey: 'reason',
       id: 'reason1',
       header: 'Reason',
-      size: 220,
+      size: isWide ? 260 : 220,
     },
     {
       accessorKey: 'comment',
       id: 'comment1',
       header: 'Comment',
-      size: 220,
+      size: isWide ? 260 : 220,
     },
     {
       accessorKey: 'date',
       id: 'date2',
       header: 'Date',
-      size: 100,
+      size: isWide ? 110 : 100,
     },
     {
       accessorKey: 'time',
       id: 'time2',
       header: 'Time',
-      size: 95,
+      size: isWide ? 104 : 95,
     },
   ];
 
@@ -494,7 +498,7 @@ const getCancelledJobCols = (navigate) => {
   return cancelledJobCols;
 };
 
-const getRequestCols = (navigate, isWide) => {
+const getRequestCols = (navigate) => {
   const requestCols = [
     {
       accessorKey: 'id',
@@ -605,10 +609,6 @@ const getRequestCols = (navigate, isWide) => {
     },
   ];
 
-  if (isWide) {
-    requestCols.splice(2, 1);
-  }
-
   return requestCols;
 };
 
@@ -715,6 +715,11 @@ const getUnconfirmedRequestCols = (navigate) => {
         return true;
       },
       Cell: TimerCell,
+    },
+    {
+      accessorKey: 'cleanersNumber',
+      header: 'Nr of cleaners',
+      size: 160,
     },
     {
       accessorKey: 'date',

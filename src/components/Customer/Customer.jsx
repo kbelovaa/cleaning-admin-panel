@@ -61,7 +61,7 @@ const Customer = () => {
   };
 
   const addressColumns = useMemo(() => addressCols, []);
-  const requestColumns = useMemo(() => getRequestCols(navigate, true), []);
+  const requestColumns = useMemo(() => getRequestCols(navigate), []);
   const cancelledRequestColumns = useMemo(() => getCancelledRequestCols(navigate, true), []);
   const cleaningColumns = useMemo(() => getJobCols(navigate), []);
   const subscriptionColumns = useMemo(() => getSubscriptionCols(navigate), []);
@@ -196,7 +196,7 @@ const Customer = () => {
               </div>
               <ListTable
                 data={requestsType === 'All' ? customer.requestsList : customer.cancelledOrdersList}
-                columns={requestsType === 'All' ? requestColumns : cancelledRequestColumns}
+                columns={requestsType === 'All' ? requestColumns.filter((_, i) => i !== 2) : cancelledRequestColumns}
                 isClickable={requestsType === 'All'}
               />
             </div>
@@ -233,11 +233,7 @@ const Customer = () => {
                 </div>
               </div>
               <ListTable
-                data={
-                  cleaningsType === 'Active'
-                    ? customer.cleaningsList.activeJobs
-                    : customer.cleaningsList.pastJobs
-                }
+                data={cleaningsType === 'Active' ? customer.cleaningsList.activeJobs : customer.cleaningsList.pastJobs}
                 columns={cleaningsType === 'Active' ? cleaningColumns.slice(0, -3) : cleaningColumns}
                 isClickable={true}
               />
@@ -275,11 +271,7 @@ const Customer = () => {
                 </div>
               </div>
               <ListTable
-                data={
-                  subscriptionType === 'Active'
-                    ? customer.activeSubscriptionsList
-                    : customer.pastSubscriptionsList
-                }
+                data={subscriptionType === 'Active' ? customer.activeSubscriptionsList : customer.pastSubscriptionsList}
                 columns={subscriptionType === 'Active' ? subscriptionColumns : pastSubscriptionColumns}
                 isClickable={true}
               />

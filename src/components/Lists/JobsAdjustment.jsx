@@ -33,7 +33,7 @@ const JobsAdjustment = () => {
     }
   }, []);
 
-  const columns = useMemo(() => getAdjustmentCols(navigate), []);
+  const columns = useMemo(() => getAdjustmentCols(navigate, false), []);
 
   return (
     <div className="data">

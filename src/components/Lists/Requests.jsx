@@ -33,7 +33,7 @@ const Requests = () => {
     }
   }, []);
 
-  const columns = useMemo(() => getRequestCols(navigate, false), []);
+  const columns = useMemo(() => getRequestCols(navigate), []);
 
   return (
     <div className="data">

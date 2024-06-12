@@ -41,7 +41,7 @@ const Tariffs = () => {
       isWeekend: elem.day.toLowerCase() === 'non-working',
       coefficient: Number(elem.coefficient),
       tariffNumber: Number(elem.tariff.split(' ')[1]),
-      order: i + 1
+      order: i + 1,
     }));
     const result = await updateTimePricing(parsedTariffs);
 
