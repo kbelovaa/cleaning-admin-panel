@@ -120,7 +120,7 @@ const Customer = () => {
             </div>
             <div className="kpi">
               <div className="kpi__block">
-                <span className="kpi__label">Cleanings</span>
+                <span className="kpi__label">Nr of cleanings</span>
                 <span className="kpi__value">{customer.numberOfOrders}</span>
               </div>
               <div className="kpi__block">

@@ -1,0 +1,101 @@
+.calendar {
+  padding: 18px 0;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+
+  &__curr-date {
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__year {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  &__month {
+    font-size: 30px;
+    font-weight: 500;
+    margin-right: 16px;
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+  }
+
+  &__today {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &__arrow {
+    cursor: pointer;
+  }
+
+  &__weekdays {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__weekday {
+    display: block;
+    width: calc((100% - 24px) / 7);
+    padding: 20px 16px 20px;
+    text-align: right;
+    font-size: 16px;
+    color: #2329d6;
+    user-select: none;
+  }
+
+  &__days {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__day {
+    height: 120px;
+    width: calc(100% / 7);
+    padding: 16px;
+    text-align: right;
+    border: 1px solid #edf2fa;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+
+    &_today {
+      background: #2329d608;
+
+      & .calendar__date {
+        color: #2329d6;
+      }
+    }
+  }
+
+  &__date {
+    font-size: 18px;
+    color: #000;
+    margin-bottom: 4px;
+  }
+
+  &__times {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__time {
+    font-size: 14px;
+    color: #284657;
+    margin-bottom: 4px;
+  }
+}

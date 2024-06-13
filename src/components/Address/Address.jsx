@@ -54,7 +54,7 @@ const Address = () => {
   const requestColumns = useMemo(() => getRequestCols(navigate), []);
   const cancelledRequestColumns = useMemo(() => getCancelledRequestCols(navigate, true), []);
   const cleaningColumns = useMemo(() => getJobCols(navigate).filter((_, i) => i !== 9 && i !== 10 && i !== 11), []);
-  const adjustmentColumns = useMemo(() => getAdjustmentCols(navigate, true), []);
+  const adjustmentColumns = useMemo(() => getAdjustmentCols(navigate, true, false), []);
 
   return (
     <div className="address">

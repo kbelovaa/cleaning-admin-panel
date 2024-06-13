@@ -10,6 +10,8 @@ const openLink = (e, id, item, navigate) => {
   navigate(`/${item}/${id}`);
 };
 
+const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
 const cleanerCols = [
   {
     accessorKey: 'id',
@@ -366,7 +368,7 @@ const getJobCols = (navigate, isWide) => {
   return jobCols;
 };
 
-const getAdjustmentCols = (navigate, isWide) => {
+const getAdjustmentCols = (navigate, isWide, isWider) => {
   const adjustmentCols = [
     {
       accessorKey: 'id',
@@ -377,7 +379,7 @@ const getAdjustmentCols = (navigate, isWide) => {
       accessorKey: 'orderId',
       id: 'orderId1',
       header: 'Cleaning',
-      size: isWide ? 100 : 80,
+      size: isWider ? 106 : isWide ? 100 : 80,
       enableSorting: false,
       enableColumnFilter: false,
       Cell: ({ cell }) => (
@@ -402,32 +404,32 @@ const getAdjustmentCols = (navigate, isWide) => {
       accessorKey: 'reason',
       id: 'reason1',
       header: 'Reason',
-      size: isWide ? 260 : 220,
+      size: isWider ? 360 : isWide ? 260 : 220,
     },
     {
       accessorKey: 'comment',
       id: 'comment1',
       header: 'Comment',
-      size: isWide ? 260 : 220,
+      size: isWider ? 360 : isWide ? 260 : 220,
     },
     {
       accessorKey: 'date',
       id: 'date2',
       header: 'Date',
-      size: isWide ? 110 : 100,
+      size: isWider ? 135 : isWide ? 110 : 100,
     },
     {
       accessorKey: 'time',
       id: 'time2',
       header: 'Time',
-      size: isWide ? 104 : 95,
+      size: isWider ? 135 : isWide ? 104 : 95,
     },
   ];
 
   return adjustmentCols;
 };
 
-const getCancelledJobCols = (navigate) => {
+const getCancelledJobCols = (navigate, isWide) => {
   const cancelledJobCols = [
     {
       accessorKey: 'id',
@@ -448,7 +450,7 @@ const getCancelledJobCols = (navigate) => {
     {
       accessorKey: 'newCleaner',
       header: 'New cleaner',
-      size: 160,
+      size: isWide ? 250 : 160,
       Cell: ({ cell, row }) => (
         <span
           className={row.original.newCleanerId && 'link'}
@@ -473,25 +475,25 @@ const getCancelledJobCols = (navigate) => {
       accessorKey: 'reason',
       id: 'reason2',
       header: 'Reason',
-      size: 158,
+      size: isWide ? 257 : 158,
     },
     {
       accessorKey: 'comment',
       id: 'comment2',
       header: 'Comment',
-      size: 159,
+      size: isWide ? 257 : 159,
     },
     {
       accessorKey: 'date',
       id: 'date3',
       header: 'Date',
-      size: 90,
+      size: isWide ? 120 : 90,
     },
     {
       accessorKey: 'time',
       id: 'time3',
       header: 'Time',
-      size: 85,
+      size: isWide ? 120 : 85,
     },
   ];
 
@@ -856,6 +858,7 @@ const getSubscriptionCols = (navigate, isWide) => {
 };
 
 export {
+  weekdays,
   cleanerCols,
   addressCols,
   getCustomerCols,

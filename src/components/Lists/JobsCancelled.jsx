@@ -33,7 +33,7 @@ const JobsCancelled = () => {
     }
   }, []);
 
-  const columns = useMemo(() => getCancelledJobCols(navigate), []);
+  const columns = useMemo(() => getCancelledJobCols(navigate, false), []);
 
   return (
     <div className="data">

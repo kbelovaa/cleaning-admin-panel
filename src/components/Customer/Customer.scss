@@ -46,6 +46,26 @@
     align-self: flex-start;
     margin-left: 10px;
   }
+
+  &__status {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    align-self: flex-start;
+    margin-left: 10px;
+
+    &.Inactive {
+      background: #ea1919;
+    }
+
+    &.Working {
+      background: #f98f12;
+    }
+
+    &.Active {
+      background: #268664;
+    }
+  }
 }
 
 .personal {
@@ -128,13 +148,14 @@
     flex-direction: column;
     justify-content: space-between;
 
-    .customer & {
+    .customer &,
+    .cleaner & {
       width: calc((100% - 60px) / 7);
     }
 
     .address &,
     .subscription & {
-      width: calc((100% - 60px) / 5);
+      width: calc((100% - 40px) / 5);
     }
   }
 
