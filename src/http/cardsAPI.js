@@ -25,3 +25,16 @@ export const getAddress = async (id) => {
     return { error: 'Unexpected error' };
   }
 };
+
+export const getSubscription = async (id) => {
+  try {
+    const data = await $host.get(`api/order/get_subscription_info/${id}`);
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      return { message: error.response.data.message, error: true };
+    }
+
+    return { error: 'Unexpected error' };
+  }
+};

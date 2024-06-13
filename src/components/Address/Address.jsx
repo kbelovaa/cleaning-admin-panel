@@ -53,7 +53,7 @@ const Address = () => {
 
   const requestColumns = useMemo(() => getRequestCols(navigate), []);
   const cancelledRequestColumns = useMemo(() => getCancelledRequestCols(navigate, true), []);
-  const cleaningColumns = useMemo(() => getJobCols(navigate), []);
+  const cleaningColumns = useMemo(() => getJobCols(navigate).filter((_, i) => i !== 9 && i !== 10 && i !== 11), []);
   const adjustmentColumns = useMemo(() => getAdjustmentCols(navigate, true), []);
 
   return (
@@ -103,7 +103,9 @@ const Address = () => {
                   <span className="personal__text">Postal code</span>
                 </div>
                 <div className="personal__values">
-                  <span className="personal__text link" onClick={() => navigate(`/customer/${address.customerId}`)}>{address.customer}</span>
+                  <span className="personal__text link" onClick={() => navigate(`/customer/${address.customerId}`)}>
+                    {address.customer}
+                  </span>
                   <span className="personal__text">{address.address1}</span>
                   <span className="personal__text">{address.address2}</span>
                   <span className="personal__text">{address.city}</span>
@@ -210,11 +212,7 @@ const Address = () => {
               </div>
               <ListTable
                 data={cleaningsType === 'Active' ? address.cleaningsList.activeJobs : address.cleaningsList.pastJobs}
-                columns={
-                  cleaningsType === 'Active'
-                    ? cleaningColumns.slice(0, -3).filter((_, i) => i !== 9 && i !== 10 && i !== 11)
-                    : cleaningColumns.filter((_, i) => i !== 9 && i !== 10 && i !== 11)
-                }
+                columns={cleaningsType === 'Active' ? cleaningColumns.slice(0, -3) : cleaningColumns}
                 isClickable={true}
               />
             </div>

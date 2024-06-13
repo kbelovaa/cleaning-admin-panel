@@ -7,7 +7,7 @@
 
   &__block {
     border-radius: 20px;
-    background: #FFF;
+    background: #fff;
     padding: 40px;
     margin-bottom: 60px;
 
@@ -132,7 +132,8 @@
       width: calc((100% - 60px) / 7);
     }
 
-    .address & {
+    .address &,
+    .subscription & {
       width: calc((100% - 60px) / 5);
     }
   }
@@ -147,6 +148,7 @@
     color: #284657;
     font-size: 20px;
     font-weight: 500;
+    align-self: flex-start;
   }
 }
 

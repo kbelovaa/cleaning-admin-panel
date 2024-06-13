@@ -63,7 +63,7 @@ const Customer = () => {
   const addressColumns = useMemo(() => addressCols, []);
   const requestColumns = useMemo(() => getRequestCols(navigate), []);
   const cancelledRequestColumns = useMemo(() => getCancelledRequestCols(navigate, true), []);
-  const cleaningColumns = useMemo(() => getJobCols(navigate), []);
+  const cleaningColumns = useMemo(() => getJobCols(navigate).filter((_, i) => i !== 9), []);
   const subscriptionColumns = useMemo(() => getSubscriptionCols(navigate), []);
   const pastSubscriptionColumns = useMemo(() => getSubscriptionCols(navigate, true), []);
 
