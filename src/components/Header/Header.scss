@@ -104,12 +104,17 @@
     display: flex;
     flex-direction: column;
     user-select: none;
+    color: #284657;
+    font-weight: 500;
+    font-size: 18px;
   }
 
   &__list {
     position: relative;
     padding-bottom: 20px;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
 
     &::after {
       display: block;
@@ -126,6 +131,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    align-self: flex-start;
 
     &:first-of-type {
       margin-bottom: 10px;
@@ -156,6 +162,7 @@
     margin-left: 10px;
     position: relative;
     transition: all 0.3s ease;
+    color: #284657;
 
     &::after {
       display: block;
@@ -167,12 +174,6 @@
       position: absolute;
       transition: all 0.3s ease;
     }
-  }
-
-  &__account {
-    color: #284657;
-    font-size: 14px;
-    line-height: normal;
   }
 
   &__role {

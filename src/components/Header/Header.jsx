@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import settingsIcon from '../../images/settings.svg';
 import exitIcon from '../../images/exit.svg';
@@ -84,7 +84,6 @@ const Header = () => {
 
   const handleSettingsClick = () => {
     setIsSettingsOpen(false);
-    navigate('/settings');
   };
 
   const handleLogOut = () => {
@@ -143,7 +142,9 @@ const Header = () => {
               <ul className="settings-modal__list">
                 <li className="settings-modal__item" onClick={handleSettingsClick}>
                   <img src={settingsIcon} alt="Settings" />
-                  <span className="settings-modal__label">{t('settings')}</span>
+                  <NavLink className="settings-modal__label" to="/">
+                    {t('settings')}
+                  </NavLink>
                 </li>
                 <li className="settings-modal__item" onClick={handleLogOut}>
                   <img src={exitIcon} alt="Settings" />

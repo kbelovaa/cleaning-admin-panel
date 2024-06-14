@@ -74,7 +74,7 @@ const Calendar = ({ schedule }) => {
             <path d="M21 12L3 12" stroke="#2329D6" strokeLinecap="round" />
             <path d="M9 6L3 12L9 18" stroke="#2329D6" strokeLinecap="round" />
           </svg>
-          <span className="calendar__today" onClick={setToday}>
+          <span className="calendar__today link" onClick={setToday}>
             Today
           </span>
           <svg

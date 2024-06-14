@@ -1,0 +1,43 @@
+.status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 85px;
+  }
+
+  &__tick {
+    .status__block_inactive & {
+      opacity: 0;
+    }
+  }
+
+  &__label {
+    font-size: 16px;
+    margin: 10px 0;
+
+    .status__block_inactive & {
+      color: #d8d8d8;
+    }
+  }
+
+  &__payment {
+    color: #1a3277;
+    font-size: 14px;
+
+    .status__block_inactive & {
+      color: #d8d8d8;
+    }
+  }
+
+  &__line {
+    height: 1px;
+    width: 92.2px;
+    background: #2329d6;
+  }
+}

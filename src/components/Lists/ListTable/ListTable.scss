@@ -110,6 +110,10 @@ tbody tr:hover {
   &:hover {
     color: #2329d6;
 
+    & a {
+      color: #2329d6;
+    }
+
     &::after {
       background: #2329d6;
     }

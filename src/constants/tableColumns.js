@@ -368,7 +368,7 @@ const getJobCols = (navigate, isWide) => {
   return jobCols;
 };
 
-const getAdjustmentCols = (navigate, isWide, isWider) => {
+const getAdjustmentCols = (navigate, isWide, isWider, isMiddle) => {
   const adjustmentCols = [
     {
       accessorKey: 'id',
@@ -390,7 +390,7 @@ const getAdjustmentCols = (navigate, isWide, isWider) => {
       accessorKey: 'cleaner',
       id: 'cleaner2',
       header: 'Cleaner',
-      size: isWide ? 250 : 189,
+      size: isMiddle ? 282 : isWide ? 250 : 189,
       Cell: ({ cell, row }) => (
         <span
           className={row.original.cleanerId && 'link'}
@@ -404,13 +404,13 @@ const getAdjustmentCols = (navigate, isWide, isWider) => {
       accessorKey: 'reason',
       id: 'reason1',
       header: 'Reason',
-      size: isWider ? 360 : isWide ? 260 : 220,
+      size: isWider ? 360 : isMiddle ? 300 : isWide ? 260 : 220,
     },
     {
       accessorKey: 'comment',
       id: 'comment1',
       header: 'Comment',
-      size: isWider ? 360 : isWide ? 260 : 220,
+      size: isWider ? 360 : isMiddle ? 300 : isWide ? 260 : 220,
     },
     {
       accessorKey: 'date',
