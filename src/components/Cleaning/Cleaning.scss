@@ -39,5 +39,13 @@
     height: 1px;
     width: 92.2px;
     background: #2329d6;
+
+    &_inactive {
+      background: #d8d8d8;
+    }
+
+    .cancelled & {
+      width: 58.8px;
+    }
   }
 }

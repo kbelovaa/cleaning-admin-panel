@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { getAllCleaners } from '../../http/listsAPI';
 import { setCleanersAction } from '../../store/actions/listActions';
-import { cleanerCols } from '../../constants/tableColumns';
+import { getCleanerCols } from '../../constants/tableColumns';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import ListTable from './ListTable/ListTable';
 
@@ -12,6 +13,8 @@ const Cleaners = () => {
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +33,7 @@ const Cleaners = () => {
     }
   }, []);
 
-  const columns = useMemo(() => cleanerCols, []);
+  const columns = useMemo(() => getCleanerCols(navigate), []);
 
   return (
     <div className="data">

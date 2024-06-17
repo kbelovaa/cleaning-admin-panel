@@ -142,12 +142,12 @@ const Header = () => {
               <ul className="settings-modal__list">
                 <li className="settings-modal__item" onClick={handleSettingsClick}>
                   <img src={settingsIcon} alt="Settings" />
-                  <NavLink className="settings-modal__label" to="/">
+                  <NavLink className="settings-modal__label" to="/settings">
                     {t('settings')}
                   </NavLink>
                 </li>
                 <li className="settings-modal__item" onClick={handleLogOut}>
-                  <img src={exitIcon} alt="Settings" />
+                  <img src={exitIcon} alt="Log out" />
                   <span className="settings-modal__label">{t('logOut')}</span>
                 </li>
               </ul>

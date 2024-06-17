@@ -50,6 +50,14 @@ const Cleaning = () => {
 
   const adjustmentColumns = useMemo(() => getAdjustmentCols(navigate, true, false, true), []);
 
+  const setOrder = (stageNumber) => {
+    if (cleaning.status === 'Cancelled' && stageNumber > cleaning.stageNumber) {
+      return stageNumber + 1;
+    }
+
+    return stageNumber;
+  };
+
   return (
     <div className="cleaning">
       <Breadcrumbs />
@@ -75,8 +83,11 @@ const Cleaning = () => {
                 {cleaning.cleaningType} cleaning ({cleaning.date})
               </h2>
             </div>
-            <div className="status">
-              <div className={`status__block ${cleaning.stageNumber < 1 && 'status__block_inactive'}`}>
+            <div className={`status ${cleaning.status === 'Cancelled' ? 'cancelled' : ''}`}>
+              <div
+                className={`status__block ${cleaning.stageNumber < 1 ? 'status__block_inactive' : ''}`}
+                style={{ order: setOrder(1) }}
+              >
                 <svg
                   className="status__tick"
                   xmlns="http://www.w3.org/2000/svg"
@@ -96,8 +107,14 @@ const Cleaning = () => {
                 <span className="status__label">New</span>
                 <span className="status__payment">Not paid</span>
               </div>
-              <div className={`status__line ${cleaning.stageNumber < 2 && 'status__line_inactive'}`}></div>
-              <div className={`status__block ${cleaning.stageNumber < 2 && 'status__block_inactive'}`}>
+              <div
+                className={`status__line ${cleaning.stageNumber < 2 ? 'status__line_inactive' : ''}`}
+                style={{ order: setOrder(2) }}
+              ></div>
+              <div
+                className={`status__block ${cleaning.stageNumber < 2 ? 'status__block_inactive' : ''}`}
+                style={{ order: setOrder(2) }}
+              >
                 <svg
                   className="status__tick"
                   xmlns="http://www.w3.org/2000/svg"
@@ -117,8 +134,14 @@ const Cleaning = () => {
                 <span className="status__label">Invoiced</span>
                 <span className="status__payment">Awaiting payment</span>
               </div>
-              <div className={`status__line ${cleaning.stageNumber < 3 && 'status__line_inactive'}`}></div>
-              <div className={`status__block ${cleaning.stageNumber < 3 && 'status__block_inactive'}`}>
+              <div
+                className={`status__line ${cleaning.stageNumber < 3 ? 'status__line_inactive' : ''}`}
+                style={{ order: setOrder(3) }}
+              ></div>
+              <div
+                className={`status__block ${cleaning.stageNumber < 3 ? 'status__block_inactive' : ''}`}
+                style={{ order: setOrder(3) }}
+              >
                 <svg
                   className="status__tick"
                   xmlns="http://www.w3.org/2000/svg"
@@ -138,8 +161,14 @@ const Cleaning = () => {
                 <span className="status__label">Awaiting confirmation</span>
                 <span className="status__payment">Payment reserved</span>
               </div>
-              <div className={`status__line ${cleaning.stageNumber < 4 && 'status__line_inactive'}`}></div>
-              <div className={`status__block ${cleaning.stageNumber < 4 && 'status__block_inactive'}`}>
+              <div
+                className={`status__line ${cleaning.stageNumber < 4 ? 'status__line_inactive' : ''}`}
+                style={{ order: setOrder(4) }}
+              ></div>
+              <div
+                className={`status__block ${cleaning.stageNumber < 4 ? 'status__block_inactive' : ''}`}
+                style={{ order: setOrder(4) }}
+              >
                 <svg
                   className="status__tick"
                   xmlns="http://www.w3.org/2000/svg"
@@ -158,8 +187,14 @@ const Cleaning = () => {
                 </svg>
                 <span className="status__label">Confirmed</span>
               </div>
-              <div className={`status__line ${cleaning.stageNumber < 5 && 'status__line_inactive'}`}></div>
-              <div className={`status__block ${cleaning.stageNumber < 5 && 'status__block_inactive'}`}>
+              <div
+                className={`status__line ${cleaning.stageNumber < 5 ? 'status__line_inactive' : ''}`}
+                style={{ order: setOrder(5) }}
+              ></div>
+              <div
+                className={`status__block ${cleaning.stageNumber < 5 ? 'status__block_inactive' : ''}`}
+                style={{ order: setOrder(5) }}
+              >
                 <svg
                   className="status__tick"
                   xmlns="http://www.w3.org/2000/svg"
@@ -178,8 +213,14 @@ const Cleaning = () => {
                 </svg>
                 <span className="status__label">In progress</span>
               </div>
-              <div className={`status__line ${cleaning.stageNumber < 6 && 'status__line_inactive'}`}></div>
-              <div className={`status__block ${cleaning.stageNumber < 6 && 'status__block_inactive'}`}>
+              <div
+                className={`status__line ${cleaning.stageNumber < 6 ? 'status__line_inactive' : ''}`}
+                style={{ order: setOrder(6) }}
+              ></div>
+              <div
+                className={`status__block ${cleaning.stageNumber < 6 ? 'status__block_inactive' : ''}`}
+                style={{ order: setOrder(6) }}
+              >
                 <svg
                   className="status__tick"
                   xmlns="http://www.w3.org/2000/svg"
@@ -199,6 +240,24 @@ const Cleaning = () => {
                 <span className="status__label">Completed</span>
                 <span className="status__payment">Paid</span>
               </div>
+              {cleaning.status === 'Cancelled' && (
+                <div className="status__line" style={{ order: cleaning.stageNumber + 1 }}></div>
+              )}
+              {cleaning.status === 'Cancelled' && (
+                <div className="status__block" style={{ order: cleaning.stageNumber + 1 }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M12.4999 22C18.0228 22 22.4999 17.5228 22.4999 12C22.4999 6.47715 18.0228 2 12.4999 2C6.97709 2 2.49994 6.47715 2.49994 12C2.49994 17.5228 6.97709 22 12.4999 22Z"
+                      stroke="#BE0F0F"
+                    />
+                    <path d="M5.49994 5L19.4999 19" stroke="#BE0F0F" strokeLinecap="square" />
+                  </svg>
+                  <span className="status__label">Cancelled</span>
+                  <span className="status__payment">Refund</span>
+                </div>
+              )}
             </div>
           </div>
           <div className="card__block">

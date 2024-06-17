@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MaterialReactTable, useMaterialReactTable } from 'material-react-table';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './ListTable.scss';
@@ -39,12 +39,6 @@ const ListTable = ({ data, columns, isClickable }) => {
       },
     },
   });
-
-  const handleRowClick = (row) => {
-    if (isClickable) {
-      navigate(`/${row.original.item}/${row.original.itemId}`);
-    }
-  };
 
   const table = useMaterialReactTable({
     columns,
@@ -96,11 +90,14 @@ const ListTable = ({ data, columns, isClickable }) => {
       },
     },
     muiTableBodyRowProps: ({ row }) => ({
-      onClick: () => handleRowClick(row),
       sx: {
         borderBottom: '1px solid #EDF2FA',
         cursor: isClickable ? 'pointer' : 'default',
+        textDecoration: 'none',
+        color: 'inherit',
       },
+      component: isClickable ? Link : 'tr',
+      to: isClickable ? `/${row.original.item}/${row.original.itemId}` : undefined,
     }),
   });
 

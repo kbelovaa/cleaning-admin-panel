@@ -5,95 +5,7 @@ import LaunchIcon from '@mui/icons-material/Launch';
 import { calculateTimeLeft } from '../utils/formatDate';
 import TimerCell from '../components/Lists/TimerCell';
 
-const openLink = (e, id, item, navigate) => {
-  e.stopPropagation();
-  navigate(`/${item}/${id}`);
-};
-
 const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-
-const cleanerCols = [
-  {
-    accessorKey: 'id',
-    header: '№',
-    size: 68,
-  },
-  {
-    accessorKey: 'name',
-    id: 'name1',
-    header: 'Name',
-    size: 150,
-  },
-  {
-    accessorKey: 'surname',
-    id: 'surname1',
-    header: 'Surname',
-    size: 150,
-  },
-  {
-    accessorKey: 'workingStatus',
-    header: 'Status',
-    size: 101,
-    filterVariant: 'select',
-    filterSelectOptions: ['Active', 'Working', 'Inactive'],
-    Cell: ({ cell }) => <div className={`status-wrapper ${cell.getValue()}`}>{cell.getValue()}</div>,
-  },
-  {
-    accessorKey: 'salary',
-    id: 'salary1',
-    header: 'Salary, €',
-    size: 118,
-  },
-  {
-    accessorKey: 'avgJobPrice',
-    header: 'Avg job price, €',
-    size: 170,
-  },
-  {
-    accessorKey: 'numberOfJobs',
-    header: 'Nr of jobs',
-    size: 126,
-  },
-  {
-    accessorKey: 'doneJobsNumber',
-    header: 'Completed',
-    size: 136,
-  },
-  {
-    accessorKey: 'pendingJobsNumber',
-    header: 'Pending',
-    size: 114,
-  },
-  {
-    accessorKey: 'cancelledJobsNumber',
-    header: 'Cancelled',
-    size: 128,
-  },
-  {
-    accessorKey: 'rating',
-    id: 'rating1',
-    header: 'Rating',
-    size: 100,
-  },
-  {
-    accessorKey: 'email',
-    id: 'email1',
-    header: 'Email',
-    size: 200,
-  },
-  {
-    accessorKey: 'mobile',
-    id: 'mobile1',
-    header: 'Phone number',
-    size: 163,
-  },
-  {
-    accessorKey: 'onboardingDate',
-    id: 'onboardingDate1',
-    header: 'Onboarding date',
-    size: 180,
-  },
-];
 
 const addressCols = [
   {
@@ -147,6 +59,122 @@ const addressCols = [
   },
 ];
 
+const getCleanerCols = (navigate) => {
+  const cleanerCols = [
+    {
+      accessorKey: 'id',
+      header: '№',
+      size: 68,
+    },
+    {
+      accessorKey: 'name',
+      id: 'name1',
+      header: 'Name',
+      size: 150,
+    },
+    {
+      accessorKey: 'surname',
+      id: 'surname1',
+      header: 'Surname',
+      size: 150,
+    },
+    {
+      accessorKey: 'workingStatus',
+      header: 'Status',
+      size: 101,
+      filterVariant: 'select',
+      filterSelectOptions: ['Active', 'Working', 'Inactive'],
+      Cell: ({ cell }) => <div className={`status-wrapper ${cell.getValue()}`}>{cell.getValue()}</div>,
+    },
+    {
+      accessorKey: 'salary',
+      id: 'salary1',
+      header: 'Salary, €',
+      size: 118,
+    },
+    {
+      accessorKey: 'avgJobPrice',
+      header: 'Avg job price, €',
+      size: 170,
+    },
+    {
+      accessorKey: 'numberOfJobs',
+      header: 'Nr of jobs',
+      size: 126,
+    },
+    {
+      accessorKey: 'doneJobsNumber',
+      header: 'Completed',
+      size: 136,
+    },
+    {
+      accessorKey: 'pendingJobsNumber',
+      header: 'Pending',
+      size: 114,
+    },
+    {
+      accessorKey: 'cancelledJobsNumber',
+      header: 'Cancelled',
+      size: 128,
+    },
+    {
+      accessorKey: 'nextCleaning',
+      id: 'nextCleaning3',
+      header: 'Next job',
+      size: 115,
+      Cell: ({ cell, row }) => (
+        <a
+          className={row.original.nextCleaningId && 'link'}
+          href={row.original.nextCleaningId ? `/cleaning/${row.original.nextCleaningId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {cell.getValue()}
+        </a>
+      ),
+    },
+    {
+      accessorKey: 'lastJobDate',
+      header: 'Last job',
+      size: 115,
+      Cell: ({ cell, row }) => (
+        <a
+          className={row.original.lastJobId && 'link'}
+          href={row.original.lastJobId ? `/cleaning/${row.original.lastJobId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {cell.getValue()}
+        </a>
+      ),
+    },
+    {
+      accessorKey: 'rating',
+      id: 'rating1',
+      header: 'Rating',
+      size: 100,
+    },
+    {
+      accessorKey: 'email',
+      id: 'email1',
+      header: 'Email',
+      size: 200,
+    },
+    {
+      accessorKey: 'mobile',
+      id: 'mobile1',
+      header: 'Phone number',
+      size: 163,
+    },
+    {
+      accessorKey: 'onboardingDate',
+      id: 'onboardingDate1',
+      header: 'Onboarding date',
+      size: 180,
+    },
+  ];
+
+  return cleanerCols;
+};
+
 const getCustomerCols = (navigate) => {
   const customerCols = [
     {
@@ -172,12 +200,13 @@ const getCustomerCols = (navigate) => {
       header: 'Next cleaning',
       size: 156,
       Cell: ({ cell, row }) => (
-        <span
+        <a
           className={row.original.nextCleaningId && 'link'}
-          onClick={(e) => openLink(e, row.original.nextCleaningId, 'cleaning', navigate)}
+          href={row.original.nextCleaningId ? `/cleaning/${row.original.nextCleaningId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
         >
           {cell.getValue()}
-        </span>
+        </a>
       ),
     },
     {
@@ -267,12 +296,13 @@ const getJobCols = (navigate, isWide) => {
       header: 'Cleaner',
       size: 150,
       Cell: ({ cell, row }) => (
-        <span
+        <a
           className={row.original.cleanerId && 'link'}
-          onClick={(e) => openLink(e, row.original.cleanerId, 'cleaner', navigate)}
+          href={row.original.cleanerId ? `/cleaner/${row.original.cleanerId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
         >
           {cell.getValue()}
-        </span>
+        </a>
       ),
     },
     {
@@ -317,12 +347,13 @@ const getJobCols = (navigate, isWide) => {
       header: 'Customer',
       size: 150,
       Cell: ({ cell, row }) => (
-        <span
+        <a
           className={row.original.customerId && 'link'}
-          onClick={(e) => openLink(e, row.original.customerId, 'customer', navigate)}
+          href={row.original.customerId ? `/customer/${row.original.customerId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
         >
           {cell.getValue()}
-        </span>
+        </a>
       ),
     },
     {
@@ -330,6 +361,15 @@ const getJobCols = (navigate, isWide) => {
       id: 'fullAddress2',
       header: 'Address',
       size: 200,
+      Cell: ({ cell, row }) => (
+        <a
+          className={row.original.addressId && 'link'}
+          href={row.original.addressId ? `/address/${row.original.addressId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {cell.getValue()}
+        </a>
+      ),
     },
     {
       accessorKey: 'sqm',
@@ -383,7 +423,9 @@ const getAdjustmentCols = (navigate, isWide, isWider, isMiddle) => {
       enableSorting: false,
       enableColumnFilter: false,
       Cell: ({ cell }) => (
-        <LaunchIcon className="launch-icon" onClick={(e) => openLink(e, cell.getValue(), 'cleaning', navigate)} />
+        <a href={cell.getValue() ? `/cleaning/${cell.getValue()}` : undefined} onClick={(e) => e.stopPropagation()}>
+          <LaunchIcon className="launch-icon" />
+        </a>
       ),
     },
     {
@@ -392,12 +434,13 @@ const getAdjustmentCols = (navigate, isWide, isWider, isMiddle) => {
       header: 'Cleaner',
       size: isMiddle ? 282 : isWide ? 250 : 189,
       Cell: ({ cell, row }) => (
-        <span
+        <a
           className={row.original.cleanerId && 'link'}
-          onClick={(e) => openLink(e, row.original.cleanerId, 'cleaner', navigate)}
+          href={row.original.cleanerId ? `/cleaner/${row.original.cleanerId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
         >
           {cell.getValue()}
-        </span>
+        </a>
       ),
     },
     {
@@ -444,7 +487,9 @@ const getCancelledJobCols = (navigate, isWide) => {
       enableSorting: false,
       enableColumnFilter: false,
       Cell: ({ cell }) => (
-        <LaunchIcon className="launch-icon" onClick={(e) => openLink(e, cell.getValue(), 'cleaning', navigate)} />
+        <a href={cell.getValue() ? `/cleaning/${cell.getValue()}` : undefined} onClick={(e) => e.stopPropagation()}>
+          <LaunchIcon className="launch-icon" />
+        </a>
       ),
     },
     {
@@ -452,12 +497,13 @@ const getCancelledJobCols = (navigate, isWide) => {
       header: 'New cleaner',
       size: isWide ? 250 : 160,
       Cell: ({ cell, row }) => (
-        <span
+        <a
           className={row.original.newCleanerId && 'link'}
-          onClick={(e) => row.original.newCleanerId && openLink(e, row.original.newCleanerId, 'cleaner', navigate)}
+          href={row.original.newCleanerId ? `/cleaner/${row.original.newCleanerId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
         >
           {cell.getValue()}
-        </span>
+        </a>
       ),
     },
     {
@@ -466,9 +512,13 @@ const getCancelledJobCols = (navigate, isWide) => {
       header: 'Cleaner',
       size: 160,
       Cell: ({ cell, row }) => (
-        <span className="link" onClick={(e) => openLink(e, row.original.cleanerId, 'cleaner', navigate)}>
+        <a
+          className={row.original.cleanerId && 'link'}
+          href={row.original.cleanerId ? `/cleaner/${row.original.cleanerId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
+        >
           {cell.getValue()}
-        </span>
+        </a>
       ),
     },
     {
@@ -524,9 +574,13 @@ const getRequestCols = (navigate) => {
       header: 'Customer',
       size: 150,
       Cell: ({ cell, row }) => (
-        <span className="link" onClick={(e) => openLink(e, row.original.customerId, 'customer', navigate)}>
+        <a
+          className={row.original.customerId && 'link'}
+          href={row.original.customerId ? `/customer/${row.original.customerId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
+        >
           {cell.getValue()}
-        </span>
+        </a>
       ),
     },
     {
@@ -582,6 +636,15 @@ const getRequestCols = (navigate) => {
       id: 'fullAddress3',
       header: 'Address',
       size: 200,
+      Cell: ({ cell, row }) => (
+        <a
+          className={row.original.addressId && 'link'}
+          href={row.original.addressId ? `/address/${row.original.addressId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {cell.getValue()}
+        </a>
+      ),
     },
     {
       accessorKey: 'sqm',
@@ -596,12 +659,22 @@ const getRequestCols = (navigate) => {
       size: 205,
     },
     {
-      accessorKey: 'isRecurring',
-      id: 'isRecurring1',
+      accessorKey: 'subscriptionInfo',
+      id: 'subscriptionInfo1',
       header: 'Recurring',
-      size: 125,
-      filterVariant: 'checkbox',
-      Cell: ({ cell }) => (cell.getValue() ? <CheckIcon /> : <CloseIcon />),
+      size: 200,
+      Cell: ({ cell, row }) =>
+        row.original.isRecurring ? (
+          <a
+            className={row.original.subscriptionId && 'link'}
+            href={row.original.subscriptionId ? `/subscription/${row.original.subscriptionId}` : undefined}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {cell.getValue()}
+          </a>
+        ) : (
+          <CloseIcon />
+        ),
     },
     {
       accessorKey: 'creationDate',
@@ -629,7 +702,9 @@ const getCancelledRequestCols = (navigate, isWide) => {
       enableSorting: false,
       enableColumnFilter: false,
       Cell: ({ cell }) => (
-        <LaunchIcon className="launch-icon" onClick={(e) => openLink(e, cell.getValue(), 'cleaning', navigate)} />
+        <a href={cell.getValue() ? `/cleaning/${cell.getValue()}` : undefined} onClick={(e) => e.stopPropagation()}>
+          <LaunchIcon className="launch-icon" />
+        </a>
       ),
     },
     {
@@ -638,9 +713,13 @@ const getCancelledRequestCols = (navigate, isWide) => {
       header: 'Customer',
       size: isWide ? 240 : 204,
       Cell: ({ cell, row }) => (
-        <span className="link" onClick={(e) => openLink(e, row.original.customerId, 'customer', navigate)}>
+        <a
+          className={row.original.customerId && 'link'}
+          href={row.original.customerId ? `/customer/${row.original.customerId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
+        >
           {cell.getValue()}
-        </span>
+        </a>
       ),
     },
     {
@@ -689,9 +768,13 @@ const getUnconfirmedRequestCols = (navigate) => {
       header: 'Customer',
       size: 150,
       Cell: ({ cell, row }) => (
-        <span className="link" onClick={(e) => openLink(e, row.original.customerId, 'customer', navigate)}>
+        <a
+          className={row.original.customerId && 'link'}
+          href={row.original.customerId ? `/customer/${row.original.customerId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
+        >
           {cell.getValue()}
-        </span>
+        </a>
       ),
     },
     {
@@ -776,6 +859,15 @@ const getUnconfirmedRequestCols = (navigate) => {
       id: 'fullAddress4',
       header: 'Address',
       size: 200,
+      Cell: ({ cell, row }) => (
+        <a
+          className={row.original.addressId && 'link'}
+          href={row.original.addressId ? `/address/${row.original.addressId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {cell.getValue()}
+        </a>
+      ),
     },
     {
       accessorKey: 'sqm',
@@ -790,12 +882,22 @@ const getUnconfirmedRequestCols = (navigate) => {
       size: 205,
     },
     {
-      accessorKey: 'isRecurring',
-      id: 'isRecurring2',
+      accessorKey: 'subscriptionInfo',
+      id: 'subscriptionInfo2',
       header: 'Recurring',
-      size: 125,
-      filterVariant: 'checkbox',
-      Cell: ({ cell }) => (cell.getValue() ? <CheckIcon /> : <CloseIcon />),
+      size: 200,
+      Cell: ({ cell, row }) =>
+        row.original.isRecurring ? (
+          <a
+            className={row.original.subscriptionId && 'link'}
+            href={row.original.subscriptionId ? `/subscription/${row.original.subscriptionId}` : undefined}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {cell.getValue()}
+          </a>
+        ) : (
+          <CloseIcon />
+        ),
     },
   ];
 
@@ -835,12 +937,13 @@ const getSubscriptionCols = (navigate, isWide) => {
       header: 'Next cleaning',
       size: 160,
       Cell: ({ cell, row }) => (
-        <span
+        <a
           className={row.original.nextCleaningId && 'link'}
-          onClick={(e) => openLink(e, row.original.nextCleaningId, 'cleaning', navigate)}
+          href={row.original.nextCleaningId ? `/cleaning/${row.original.nextCleaningId}` : undefined}
+          onClick={(e) => e.stopPropagation()}
         >
           {cell.getValue()}
-        </span>
+        </a>
       ),
     },
     {
@@ -859,8 +962,8 @@ const getSubscriptionCols = (navigate, isWide) => {
 
 export {
   weekdays,
-  cleanerCols,
   addressCols,
+  getCleanerCols,
   getCustomerCols,
   getJobCols,
   getAdjustmentCols,
