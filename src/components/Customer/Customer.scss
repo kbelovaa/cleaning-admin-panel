@@ -138,10 +138,6 @@
       margin-right: 8px;
       color: #be0f0f;
     }
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
   }
 
   &__add {
@@ -163,6 +159,10 @@
       margin-top: -2px;
     }
   }
+}
+
+span.personal__text:last-of-type {
+  margin-bottom: 0;
 }
 
 .arrow {

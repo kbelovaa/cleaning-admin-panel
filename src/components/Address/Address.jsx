@@ -103,9 +103,9 @@ const Address = () => {
                   <span className="personal__text">Postal code</span>
                 </div>
                 <div className="personal__values">
-                  <span className="personal__text link" onClick={() => navigate(`/customer/${address.customerId}`)}>
+                  <a className="personal__text link" href={`/customer/${address.customerId}`}>
                     {address.customer}
-                  </span>
+                  </a>
                   <span className="personal__text">{address.address1}</span>
                   <span className="personal__text">{address.address2}</span>
                   <span className="personal__text">{address.city}</span>

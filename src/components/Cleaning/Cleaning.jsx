@@ -5,6 +5,7 @@ import HistoryContext from '../../utils/HistoryContext';
 import { setCleaningAction } from '../../store/actions/cardActions';
 import { getCleaning } from '../../http/cardsAPI';
 import { getAdjustmentCols } from '../../constants/tableColumns';
+import { formatStatusDate } from '../../utils/formatDate';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import ListTable from '../Lists/ListTable/ListTable';
 import './Cleaning.scss';
@@ -105,6 +106,7 @@ const Cleaning = () => {
                   />
                 </svg>
                 <span className="status__label">New</span>
+                <span className="status__date">{cleaning.creationDate.split(', ').reverse().join(', ')}</span>
                 <span className="status__payment">Not paid</span>
               </div>
               <div
@@ -132,6 +134,7 @@ const Cleaning = () => {
                   />
                 </svg>
                 <span className="status__label">Invoiced</span>
+                <span className="status__date">{formatStatusDate(cleaning.invoiceSendingDate)}</span>
                 <span className="status__payment">Awaiting payment</span>
               </div>
               <div
@@ -159,6 +162,7 @@ const Cleaning = () => {
                   />
                 </svg>
                 <span className="status__label">Awaiting confirmation</span>
+                <span className="status__date">{formatStatusDate(cleaning.paymentReservationDate)}</span>
                 <span className="status__payment">Payment reserved</span>
               </div>
               <div
@@ -186,6 +190,7 @@ const Cleaning = () => {
                   />
                 </svg>
                 <span className="status__label">Confirmed</span>
+                <span className="status__date">{formatStatusDate(cleaning.confirmationDate)}</span>
               </div>
               <div
                 className={`status__line ${cleaning.stageNumber < 5 ? 'status__line_inactive' : ''}`}
@@ -212,6 +217,7 @@ const Cleaning = () => {
                   />
                 </svg>
                 <span className="status__label">In progress</span>
+                <span className="status__date">{formatStatusDate(cleaning.cleaningStartDate)}</span>
               </div>
               <div
                 className={`status__line ${cleaning.stageNumber < 6 ? 'status__line_inactive' : ''}`}
@@ -238,6 +244,7 @@ const Cleaning = () => {
                   />
                 </svg>
                 <span className="status__label">Completed</span>
+                <span className="status__date">{formatStatusDate(cleaning.paymentDate)}</span>
                 <span className="status__payment">Paid</span>
               </div>
               {cleaning.status === 'Cancelled' && (
@@ -255,6 +262,7 @@ const Cleaning = () => {
                     <path d="M5.49994 5L19.4999 19" stroke="#BE0F0F" strokeLinecap="square" />
                   </svg>
                   <span className="status__label">Cancelled</span>
+                  <span className="status__date">{formatStatusDate(cleaning.cancellationDate)}</span>
                   <span className="status__payment">Refund</span>
                 </div>
               )}

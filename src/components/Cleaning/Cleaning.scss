@@ -8,7 +8,9 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    height: 85px;
+    height: 100px;
+    padding-top: 3px;
+    white-space: nowrap;
   }
 
   &__tick {
@@ -35,17 +37,24 @@
     }
   }
 
+  &__date {
+    color: #909090;
+    font-size: 10px;
+    margin-bottom: 2.5px;
+
+    .status__block_inactive & {
+      display: none;
+    }
+  }
+
   &__line {
     height: 1px;
-    width: 92.2px;
+    width: 100%;
+    margin: 0 16px;
     background: #2329d6;
 
     &_inactive {
       background: #d8d8d8;
-    }
-
-    .cancelled & {
-      width: 58.8px;
     }
   }
 }

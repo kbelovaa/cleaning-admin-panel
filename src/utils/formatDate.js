@@ -1,4 +1,5 @@
 import { differenceInDays, format, parseISO, formatDistance } from 'date-fns';
+import { formatInTimeZone } from 'date-fns-tz';
 
 const formatDate = (dateString) => {
   const dateParts = dateString.split('.');
@@ -44,4 +45,9 @@ const formatActivityDate = (dateStr) => {
   return formatDistance(date, today, { addSuffix: true });
 };
 
-export { formatDate, calculateTimeLeft, formatActivityDate };
+const formatStatusDate = (dateStr) => {
+  const date = parseISO(dateStr);
+  return formatInTimeZone(date, 'Europe/Madrid', 'HH:mm, dd.MM.yyyy');
+};
+
+export { formatDate, calculateTimeLeft, formatActivityDate, formatStatusDate };

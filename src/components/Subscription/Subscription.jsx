@@ -100,15 +100,12 @@ const Subscription = () => {
                   <span className="personal__text">Excluded dates</span>
                 </div>
                 <div className="personal__values">
-                  <span
-                    className="personal__text link"
-                    onClick={() => navigate(`/customer/${subscription.customerId}`)}
-                  >
+                  <a className="personal__text link" href={`/customer/${subscription.customerId}`}>
                     {subscription.customer}
-                  </span>
-                  <span className="personal__text link" onClick={() => navigate(`/address/${subscription.addressId}`)}>
+                  </a>
+                  <a className="personal__text link" href={`/address/${subscription.addressId}`}>
                     {subscription.address}
-                  </span>
+                  </a>
                   <span className="personal__text">{subscription.startDate}</span>
                   <span className="personal__text">{subscription.endDate}</span>
                   <span className="personal__text">{subscription.excludedDates}</span>
@@ -118,12 +115,12 @@ const Subscription = () => {
             <div className="kpi">
               <div className="kpi__block">
                 <span className="kpi__label">Next cleaning</span>
-                <span
+                <a
                   className={`kpi__value ${subscription.nextCleaningId && 'link'}`}
-                  onClick={() => subscription.nextCleaningId && navigate(`/cleaning/${subscription.nextCleaningId}`)}
+                  href={subscription.nextCleaningId ? `/cleaning/${subscription.nextCleaningId}` : undefined}
                 >
                   {subscription.nextCleaning}
-                </span>
+                </a>
               </div>
               <div className="kpi__block">
                 <span className="kpi__label">Cleanings</span>
