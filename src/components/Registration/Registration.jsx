@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { checkEmail, register } from '../../http/authAPI';
 import { getAllCleaners } from '../../http/listsAPI';
 import { setCleanersAction } from '../../store/actions/listActions';
-import { knowingWays } from '../../constants/constantsList';
+import { knowingWays, levels } from '../../constants/constantsList';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import PhoneField from '../PhoneField/PhoneField';
 import CustomSelect from '../CustomSelect/CustomSelect';
@@ -19,13 +19,15 @@ const Registration = () => {
   const [isEmailUnique, setIsEmailUnique] = useState('');
   const [mobile, setMobile] = useState('');
   const [isMobileValid, setIsMobileValid] = useState(true);
-  const [address, setAddress] = useState('');
-  const [knowingWay, setKnowingWay] = useState('');
-  const [knowingWayText, setKnowingWayText] = useState('');
+  const [address1, setAddress1] = useState('');
+  const [address2, setAddress2] = useState('');
+  const [level, setLevel] = useState('');
+  const [comment, setComment] = useState('');
   const [contractCheckbox, setContractCheckbox] = useState(false);
   const [passportCheckbox, setPassportCheckbox] = useState(false);
   const [insuranceCheckbox, setInsuranceCheckbox] = useState(false);
-  const [areCredentialsValid, setAreCredentialsValid] = useState('');
+  const [knowingWay, setKnowingWay] = useState('');
+  const [knowingWayText, setKnowingWayText] = useState('');
   const [isFormValid, setIsFormValid] = useState(true);
   const [loading, setLoading] = useState(false);
 
@@ -35,8 +37,8 @@ const Registration = () => {
   const pathname = location.pathname.split('/')[2];
 
   const isForm = pathname === 'form';
-  const isDiscover = pathname === 'discover';
   const isSummary = pathname === 'summary';
+  const isDiscover = pathname === 'discover';
 
   const navigate = useNavigate();
 
@@ -50,12 +52,15 @@ const Registration = () => {
       setSurname(cleaner.surname || '');
       setEmail(cleaner.email || '');
       setMobile(cleaner.mobile || '');
-      setAddress(cleaner.address || '');
-      setKnowingWay(cleaner.knowingWay || '');
-      setKnowingWayText(cleaner.knowingWayText || '');
+      setAddress1(cleaner.address1 || '');
+      setAddress2(cleaner.address2 || '');
+      setLevel(cleaner.level || '');
+      setComment(cleaner.comment || '');
       setContractCheckbox(cleaner.contractCheckbox || false);
       setPassportCheckbox(cleaner.passportCheckbox || false);
       setInsuranceCheckbox(cleaner.insuranceCheckbox || false);
+      setKnowingWay(cleaner.knowingWay || '');
+      setKnowingWayText(cleaner.knowingWayText || '');
     }
   }, []);
 
@@ -65,12 +70,15 @@ const Registration = () => {
       surname,
       email,
       mobile,
-      address,
-      knowingWay,
-      knowingWayText,
+      address1,
+      address2,
+      level,
+      comment,
       contractCheckbox,
       passportCheckbox,
       insuranceCheckbox,
+      knowingWay,
+      knowingWayText,
     };
     sessionStorage.setItem('cleaner', JSON.stringify(cleaner));
   }, [
@@ -78,28 +86,30 @@ const Registration = () => {
     surname,
     email,
     mobile,
-    address,
-    knowingWay,
-    knowingWayText,
+    address1,
+    address2,
+    level,
+    comment,
     contractCheckbox,
     passportCheckbox,
     insuranceCheckbox,
+    knowingWay,
+    knowingWayText,
   ]);
 
   const handleEmailChange = (email) => {
     setEmail(email);
     setIsEmailUnique('');
-    setAreCredentialsValid('');
 
     const isEmailValid = email === '' || /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/.test(email);
     setIsEmailValid(isEmailValid);
   };
 
   const goBack = () => {
-    if (isDiscover) {
+    if (isSummary) {
       navigate('/register/form');
-    } else if (isSummary) {
-      navigate('/register/discover');
+    } else if (isDiscover) {
+      navigate('/register/summary');
     }
     setIsFormValid(true);
   };
@@ -108,31 +118,42 @@ const Registration = () => {
     e.preventDefault();
 
     if (isForm) {
-      if (name && surname && mobile && isMobileValid && email && isEmailValid && address) {
+      if (name && surname && mobile && isMobileValid && email && isEmailValid && address1 && level) {
         setLoading(true);
         const result = await checkEmail(email);
         if (result.message && result.error) {
           setIsEmailUnique(result.message);
           setIsFormValid(false);
         } else {
-          navigate('/register/discover');
+          navigate('/register/summary');
           setIsFormValid(true);
         }
         setLoading(false);
       } else {
         setIsFormValid(false);
       }
-    } else if (isDiscover) {
-      if ((knowingWay && knowingWay !== 'Other') || (knowingWay && knowingWay === 'Other' && knowingWayText)) {
-        navigate('/register/summary');
+    } else if (isSummary) {
+      if (contractCheckbox && passportCheckbox && insuranceCheckbox) {
+        navigate('/register/discover');
         setIsFormValid(true);
       } else {
         setIsFormValid(false);
       }
-    } else if (isSummary) {
-      if (contractCheckbox && passportCheckbox && insuranceCheckbox) {
+    } else if (isDiscover) {
+      if ((knowingWay && knowingWay !== 'Other') || (knowingWay && knowingWay === 'Other' && knowingWayText)) {
         setLoading(true);
-        const result = await register(name, surname, email, mobile, address, knowingWay, knowingWayText);
+        const result = await register(
+          name,
+          surname,
+          email,
+          mobile,
+          address1,
+          address2,
+          level,
+          comment,
+          knowingWay,
+          knowingWayText,
+        );
         if (result.message && result.error) {
           setIsFormValid(false);
         } else {
@@ -153,15 +174,15 @@ const Registration = () => {
 
   const checkIsFormValid = () => {
     if (isForm) {
-      if (name && surname && mobile && isMobileValid && email && isEmailValid && address) {
-        return true;
-      }
-    } else if (isDiscover) {
-      if ((knowingWay && knowingWay !== 'Other') || (knowingWay && knowingWay === 'Other' && knowingWayText)) {
+      if (name && surname && mobile && isMobileValid && email && isEmailValid && address1 && level) {
         return true;
       }
     } else if (isSummary) {
       if (contractCheckbox && passportCheckbox && insuranceCheckbox) {
+        return true;
+      }
+    } else if (isDiscover) {
+      if ((knowingWay && knowingWay !== 'Other') || (knowingWay && knowingWay === 'Other' && knowingWayText)) {
         return true;
       }
     }
@@ -187,7 +208,7 @@ const Registration = () => {
         </svg>
         <h2 className="card__title">Registration</h2>
       </div>
-      <p className="card__step">Step {isForm ? 1 : isDiscover ? 2 : 3} / 3</p>
+      <p className="card__step">Step {isForm ? 1 : isSummary ? 2 : 3} / 3</p>
       {isForm && (
         <div className="registration__fields">
           <div className="registration__field-wrap">
@@ -244,59 +265,53 @@ const Registration = () => {
             />
           </div>
           <div className="registration__field-wrap">
-            <label htmlFor="auth-address" className="registration__label">
+            <label htmlFor="auth-address1" className="registration__label">
               {t('homeAddress')}
             </label>
             <input
-              id="auth-address"
+              id="auth-address1"
               type="text"
-              className={`input ${!address ? 'invalid-field' : ''}`}
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              className={`input registration__address ${!address1 ? 'invalid-field' : ''}`}
+              value={address1}
+              onChange={(e) => setAddress1(e.target.value)}
               autoComplete="off"
-              placeholder="Street & nr, complex, building, apt. nr"
+              placeholder="Streetname and number"
+            />
+            <input
+              id="auth-address2"
+              type="text"
+              className="input"
+              value={address2}
+              onChange={(e) => setAddress2(e.target.value)}
+              autoComplete="off"
+              placeholder="Complex, building, apt. nr"
             />
           </div>
-          <p
-            className={
-              !isFormValid && (!name || !surname || !mobile || !email || !address)
-                ? 'auth__note registration__fill'
-                : 'hidden'
-            }
-          >
-            {t('fillInAllFieldsMessage')}
-          </p>
-        </div>
-      )}
-      {isDiscover && (
-        <div className="registration__fields">
-          <div className="registration__field-wrap">
-            <span className="registration__label">{t('howDidYouHearAboutUs')}</span>
+          <div className="registration__field-wrap small">
+            <span className="registration__label">{t('level')}</span>
             <CustomSelect
-              options={knowingWays}
-              selectedOption={knowingWay}
-              setSelectedOption={setKnowingWay}
+              options={levels}
+              selectedOption={level}
+              setSelectedOption={setLevel}
               defaultOption={'Choose'}
             />
           </div>
-          {knowingWay === 'Other' && (
-            <div className="registration__field-wrap">
-              <label htmlFor="other-version" className="registration__label">
-                {t('writeOtherVersion')}
-              </label>
-              <input
-                id="other-version"
-                type="text"
-                className={`input ${!knowingWayText ? 'invalid-field' : ''}`}
-                value={knowingWayText}
-                onChange={(e) => setKnowingWayText(e.target.value)}
-                autoComplete="off"
-              />
-            </div>
-          )}
+          <div className="registration__field-wrap">
+            <label htmlFor="auth-comment" className="registration__label">
+              {t('comment')}
+            </label>
+            <input
+              id="auth-comment"
+              type="text"
+              className="input"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              autoComplete="off"
+            />
+          </div>
           <p
             className={
-              !isFormValid && (!knowingWay || (knowingWay === 'Other' && !knowingWayText))
+              !isFormValid && (!name || !surname || !mobile || !email || !address1 || !level)
                 ? 'auth__note registration__fill'
                 : 'hidden'
             }
@@ -313,14 +328,18 @@ const Registration = () => {
               <span className="summary__text">Surname</span>
               <span className="summary__text">Email</span>
               <span className="summary__text">Phone number</span>
-              <span className="summary__text">Address</span>
+              <span className="summary__text">Home address</span>
+              <span className="summary__text">Level</span>
+              <span className="summary__text">Comment</span>
             </div>
             <div className="summary__values">
               <span className="summary__text">{name}</span>
               <span className="summary__text">{surname}</span>
               <span className="summary__text">{email}</span>
               <span className="summary__text">+{mobile}</span>
-              <span className="summary__text">{address}</span>
+              <span className="summary__text">{`${address1}${address2 ? `, ${address2}` : ''}`}</span>
+              <span className="summary__text">{level}</span>
+              <span className="summary__text">{comment || '-'}</span>
             </div>
           </div>
           <div className="checkbox">
@@ -400,11 +419,48 @@ const Registration = () => {
           </p>
         </div>
       )}
+      {isDiscover && (
+        <div className="registration__fields">
+          <div className="registration__field-wrap">
+            <span className="registration__label">{t('howDidYouHearAboutUs')}</span>
+            <CustomSelect
+              options={knowingWays}
+              selectedOption={knowingWay}
+              setSelectedOption={setKnowingWay}
+              defaultOption={'Choose'}
+            />
+          </div>
+          {knowingWay === 'Other' && (
+            <div className="registration__field-wrap">
+              <label htmlFor="other-version" className="registration__label">
+                {t('writeOtherVersion')}
+              </label>
+              <input
+                id="other-version"
+                type="text"
+                className={`input ${!knowingWayText ? 'invalid-field' : ''}`}
+                value={knowingWayText}
+                onChange={(e) => setKnowingWayText(e.target.value)}
+                autoComplete="off"
+              />
+            </div>
+          )}
+          <p
+            className={
+              !isFormValid && (!knowingWay || (knowingWay === 'Other' && !knowingWayText))
+                ? 'auth__note registration__fill'
+                : 'hidden'
+            }
+          >
+            {t('fillInAllFieldsMessage')}
+          </p>
+        </div>
+      )}
       {loading ? (
         <div className="spinner spinner_small"></div>
       ) : (
         <button className={`btn ${checkIsFormValid() ? '' : 'inactive'}`} onClick={handleFormSending}>
-          {isSummary ? t('create') : t('next')}
+          {isDiscover ? t('save') : t('next')}
         </button>
       )}
     </div>

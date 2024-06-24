@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getAllJobs } from '../../http/listsAPI';
 import { setActiveJobsAction, setPastJobsAction } from '../../store/actions/listActions';
@@ -17,8 +16,6 @@ const Jobs = () => {
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   const { t } = useTranslation();
 
@@ -48,7 +45,7 @@ const Jobs = () => {
     }
   }, [jobsType, activeJobs, pastJobs]);
 
-  const columns = useMemo(() => getJobCols(navigate), []);
+  const columns = useMemo(() => getJobCols(), []);
 
   return (
     <div className="data">

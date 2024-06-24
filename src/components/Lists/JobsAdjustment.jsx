@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { getAdjustmentJobs } from '../../http/listsAPI';
 import { setAdjustmentJobsAction } from '../../store/actions/listActions';
 import { getAdjustmentCols } from '../../constants/tableColumns';
@@ -13,8 +12,6 @@ const JobsAdjustment = () => {
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +30,7 @@ const JobsAdjustment = () => {
     }
   }, []);
 
-  const columns = useMemo(() => getAdjustmentCols(navigate, false, false), []);
+  const columns = useMemo(() => getAdjustmentCols(false, false), []);
 
   return (
     <div className="data">

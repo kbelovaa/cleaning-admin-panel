@@ -49,7 +49,7 @@ const Cleaning = () => {
     navigate(history[history.length - 2]);
   };
 
-  const adjustmentColumns = useMemo(() => getAdjustmentCols(navigate, true, false, true), []);
+  const adjustmentColumns = useMemo(() => getAdjustmentCols(true, false, true), []);
 
   const setOrder = (stageNumber) => {
     if (cleaning.status === 'Cancelled' && stageNumber > cleaning.stageNumber) {

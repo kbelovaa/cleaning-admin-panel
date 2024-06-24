@@ -51,9 +51,9 @@ const Cleaner = () => {
     navigate(history[history.length - 2]);
   };
 
-  const cleaningColumns = useMemo(() => getJobCols(navigate).filter((_, i) => i !== 2), []);
-  const cancelledJobsColumns = useMemo(() => getCancelledJobCols(navigate, true), []);
-  const adjustmentColumns = useMemo(() => getAdjustmentCols(navigate, true, true), []);
+  const cleaningColumns = useMemo(() => getJobCols().filter((_, i) => i !== 2), []);
+  const cancelledJobsColumns = useMemo(() => getCancelledJobCols(true), []);
+  const adjustmentColumns = useMemo(() => getAdjustmentCols(true, true), []);
 
   return (
     <div className="cleaner">
@@ -98,12 +98,16 @@ const Cleaner = () => {
                   <span className="personal__text">Email</span>
                   <span className="personal__text">Phone</span>
                   <span className="personal__text">Address</span>
+                  <span className="personal__text">Level</span>
+                  {cleaner.comment !== '-' && <span className="personal__text">Comment</span>}
                   <span className="personal__text">Reg.</span>
                 </div>
                 <div className="personal__values">
                   <span className="personal__text">{cleaner.email}</span>
                   <span className="personal__text">{cleaner.mobile}</span>
                   <span className="personal__text">{cleaner.homeAddress}</span>
+                  <span className="personal__text">{cleaner.level}</span>
+                  {cleaner.comment !== '-' && <span className="personal__text">{cleaner.comment}</span>}
                   <span className="personal__text">{cleaner.onboardingDate}</span>
                 </div>
               </div>

@@ -3,6 +3,7 @@
   width: 100%;
   height: 60px;
   font-size: 18px;
+  font-weight: 300;
 }
 
 .selected-option {
@@ -24,7 +25,7 @@
     letter-spacing: 0.36px;
 
     &.default {
-      color: #92a1a9;
+      color: #d8d8d8;
     }
   }
 }
@@ -68,6 +69,10 @@
     box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
     padding: 8px 0;
     height: 208px;
+
+    .small & {
+      height: 160px;
+    }
   }
 
   &-list {

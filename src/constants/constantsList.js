@@ -12,4 +12,6 @@ const pricingList = [
 
 const knowingWays = ['Google', 'Facebook', 'Instagram', 'Friend', 'Neighbour', 'Other'];
 
-export { pricingList, knowingWays };
+const levels = ['Junior', 'Middle', 'Senior'];
+
+export { pricingList, knowingWays, levels };

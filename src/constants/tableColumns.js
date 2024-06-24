@@ -59,225 +59,227 @@ const addressCols = [
   },
 ];
 
-const getCleanerCols = (navigate) => {
-  const cleanerCols = [
-    {
-      accessorKey: 'id',
-      header: '№',
-      size: 68,
-    },
-    {
-      accessorKey: 'name',
-      id: 'name1',
-      header: 'Name',
-      size: 150,
-    },
-    {
-      accessorKey: 'surname',
-      id: 'surname1',
-      header: 'Surname',
-      size: 150,
-    },
-    {
-      accessorKey: 'workingStatus',
-      header: 'Status',
-      size: 101,
-      filterVariant: 'select',
-      filterSelectOptions: ['Active', 'Working', 'Inactive'],
-      Cell: ({ cell }) => <div className={`status-wrapper ${cell.getValue()}`}>{cell.getValue()}</div>,
-    },
-    {
-      accessorKey: 'salary',
-      id: 'salary1',
-      header: 'Salary, €',
-      size: 118,
-    },
-    {
-      accessorKey: 'avgJobPrice',
-      header: 'Avg job price, €',
-      size: 170,
-    },
-    {
-      accessorKey: 'numberOfJobs',
-      header: 'Nr of jobs',
-      size: 126,
-    },
-    {
-      accessorKey: 'doneJobsNumber',
-      header: 'Completed',
-      size: 136,
-    },
-    {
-      accessorKey: 'pendingJobsNumber',
-      header: 'Pending',
-      size: 114,
-    },
-    {
-      accessorKey: 'cancelledJobsNumber',
-      header: 'Cancelled',
-      size: 128,
-    },
-    {
-      accessorKey: 'nextCleaning',
-      id: 'nextCleaning3',
-      header: 'Next job',
-      size: 115,
-      Cell: ({ cell, row }) => (
-        <a
-          className={row.original.nextCleaningId && 'link'}
-          href={row.original.nextCleaningId ? `/cleaning/${row.original.nextCleaningId}` : undefined}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {cell.getValue()}
-        </a>
-      ),
-    },
-    {
-      accessorKey: 'lastJobDate',
-      header: 'Last job',
-      size: 115,
-      Cell: ({ cell, row }) => (
-        <a
-          className={row.original.lastJobId && 'link'}
-          href={row.original.lastJobId ? `/cleaning/${row.original.lastJobId}` : undefined}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {cell.getValue()}
-        </a>
-      ),
-    },
-    {
-      accessorKey: 'rating',
-      id: 'rating1',
-      header: 'Rating',
-      size: 100,
-    },
-    {
-      accessorKey: 'email',
-      id: 'email1',
-      header: 'Email',
-      size: 200,
-    },
-    {
-      accessorKey: 'mobile',
-      id: 'mobile1',
-      header: 'Phone number',
-      size: 163,
-    },
-    {
-      accessorKey: 'onboardingDate',
-      id: 'onboardingDate1',
-      header: 'Onboarding date',
-      size: 180,
-    },
-    {
-      accessorKey: 'homeAddress',
-      header: 'Home address',
-      size: 200,
-    },
-  ];
+const cleanerCols = [
+  {
+    accessorKey: 'id',
+    header: '№',
+    size: 68,
+  },
+  {
+    accessorKey: 'name',
+    id: 'name1',
+    header: 'Name',
+    size: 150,
+  },
+  {
+    accessorKey: 'surname',
+    id: 'surname1',
+    header: 'Surname',
+    size: 150,
+  },
+  {
+    accessorKey: 'workingStatus',
+    header: 'Status',
+    size: 101,
+    filterVariant: 'select',
+    filterSelectOptions: ['Active', 'Working', 'Inactive'],
+    Cell: ({ cell }) => <div className={`status-wrapper ${cell.getValue()}`}>{cell.getValue()}</div>,
+  },
+  {
+    accessorKey: 'level',
+    header: 'Level',
+    size: 100,
+  },
+  {
+    accessorKey: 'comment',
+    header: 'Comment',
+    size: 126,
+  },
+  {
+    accessorKey: 'salary',
+    id: 'salary1',
+    header: 'Salary, €',
+    size: 118,
+  },
+  {
+    accessorKey: 'avgJobPrice',
+    header: 'Avg job price, €',
+    size: 170,
+  },
+  {
+    accessorKey: 'numberOfJobs',
+    header: 'Nr of jobs',
+    size: 126,
+  },
+  {
+    accessorKey: 'doneJobsNumber',
+    header: 'Completed',
+    size: 136,
+  },
+  {
+    accessorKey: 'pendingJobsNumber',
+    header: 'Pending',
+    size: 114,
+  },
+  {
+    accessorKey: 'cancelledJobsNumber',
+    header: 'Cancelled',
+    size: 128,
+  },
+  {
+    accessorKey: 'nextCleaning',
+    id: 'nextCleaning3',
+    header: 'Next job',
+    size: 115,
+    Cell: ({ cell, row }) => (
+      <a
+        className={row.original.nextCleaningId && 'link'}
+        href={row.original.nextCleaningId ? `/cleaning/${row.original.nextCleaningId}` : undefined}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {cell.getValue()}
+      </a>
+    ),
+  },
+  {
+    accessorKey: 'lastJobDate',
+    header: 'Last job',
+    size: 115,
+    Cell: ({ cell, row }) => (
+      <a
+        className={row.original.lastJobId && 'link'}
+        href={row.original.lastJobId ? `/cleaning/${row.original.lastJobId}` : undefined}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {cell.getValue()}
+      </a>
+    ),
+  },
+  {
+    accessorKey: 'rating',
+    id: 'rating1',
+    header: 'Rating',
+    size: 100,
+  },
+  {
+    accessorKey: 'email',
+    id: 'email1',
+    header: 'Email',
+    size: 200,
+  },
+  {
+    accessorKey: 'mobile',
+    id: 'mobile1',
+    header: 'Phone number',
+    size: 163,
+  },
+  {
+    accessorKey: 'onboardingDate',
+    id: 'onboardingDate1',
+    header: 'Onboarding date',
+    size: 180,
+  },
+  {
+    accessorKey: 'homeAddress',
+    header: 'Home address',
+    size: 200,
+  },
+];
 
-  return cleanerCols;
-};
+const customerCols = [
+  {
+    accessorKey: 'id',
+    header: '№',
+    size: 68,
+  },
+  {
+    accessorKey: 'name',
+    id: 'name2',
+    header: 'Name',
+    size: 150,
+  },
+  {
+    accessorKey: 'surname',
+    id: 'surname2',
+    header: 'Surname',
+    size: 150,
+  },
+  {
+    accessorKey: 'nextCleaning',
+    id: 'nextCleaning1',
+    header: 'Next cleaning',
+    size: 156,
+    Cell: ({ cell, row }) => (
+      <a
+        className={row.original.nextCleaningId && 'link'}
+        href={row.original.nextCleaningId ? `/cleaning/${row.original.nextCleaningId}` : undefined}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {cell.getValue()}
+      </a>
+    ),
+  },
+  {
+    accessorKey: 'numberOfOrders',
+    header: 'Cleanings',
+    size: 130,
+  },
+  {
+    accessorKey: 'numberOfCompletedOrders',
+    header: 'Completed',
+    size: 136,
+  },
+  {
+    accessorKey: 'numberOfPendingOrders',
+    header: 'Pending',
+    size: 114,
+  },
+  {
+    accessorKey: 'numberOfCancelledOrders',
+    header: 'Cancelled',
+    size: 128,
+  },
+  {
+    accessorKey: 'onboardingDate',
+    id: 'onboardingDate2',
+    header: 'Onboarding date',
+    size: 180,
+  },
+  {
+    accessorKey: 'lastActivityDate',
+    header: 'Last activity',
+    size: 145,
+  },
+  {
+    accessorKey: 'avgScore',
+    header: 'Avg score',
+    size: 127,
+  },
+  {
+    accessorKey: 'avgOrder',
+    header: 'Avg cleaning, €',
+    size: 170,
+  },
+  {
+    accessorKey: 'orderPriceSum',
+    header: 'Total spend, €',
+    size: 160,
+  },
+  {
+    accessorKey: 'email',
+    id: 'email2',
+    header: 'Email',
+    size: 200,
+  },
+  {
+    accessorKey: 'mobile',
+    id: 'mobile2',
+    header: 'Phone number',
+    size: 163,
+  },
+];
 
-const getCustomerCols = (navigate) => {
-  const customerCols = [
-    {
-      accessorKey: 'id',
-      header: '№',
-      size: 68,
-    },
-    {
-      accessorKey: 'name',
-      id: 'name2',
-      header: 'Name',
-      size: 150,
-    },
-    {
-      accessorKey: 'surname',
-      id: 'surname2',
-      header: 'Surname',
-      size: 150,
-    },
-    {
-      accessorKey: 'nextCleaning',
-      id: 'nextCleaning1',
-      header: 'Next cleaning',
-      size: 156,
-      Cell: ({ cell, row }) => (
-        <a
-          className={row.original.nextCleaningId && 'link'}
-          href={row.original.nextCleaningId ? `/cleaning/${row.original.nextCleaningId}` : undefined}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {cell.getValue()}
-        </a>
-      ),
-    },
-    {
-      accessorKey: 'numberOfOrders',
-      header: 'Cleanings',
-      size: 130,
-    },
-    {
-      accessorKey: 'numberOfCompletedOrders',
-      header: 'Completed',
-      size: 136,
-    },
-    {
-      accessorKey: 'numberOfPendingOrders',
-      header: 'Pending',
-      size: 114,
-    },
-    {
-      accessorKey: 'numberOfCancelledOrders',
-      header: 'Cancelled',
-      size: 128,
-    },
-    {
-      accessorKey: 'onboardingDate',
-      id: 'onboardingDate2',
-      header: 'Onboarding date',
-      size: 180,
-    },
-    {
-      accessorKey: 'lastActivityDate',
-      header: 'Last activity',
-      size: 145,
-    },
-    {
-      accessorKey: 'avgScore',
-      header: 'Avg score',
-      size: 127,
-    },
-    {
-      accessorKey: 'avgOrder',
-      header: 'Avg cleaning, €',
-      size: 170,
-    },
-    {
-      accessorKey: 'orderPriceSum',
-      header: 'Total spend, €',
-      size: 160,
-    },
-    {
-      accessorKey: 'email',
-      id: 'email2',
-      header: 'Email',
-      size: 200,
-    },
-    {
-      accessorKey: 'mobile',
-      id: 'mobile2',
-      header: 'Phone number',
-      size: 163,
-    },
-  ];
-
-  return customerCols;
-};
-
-const getJobCols = (navigate, isWide) => {
+const getJobCols = (isWide) => {
   const jobCols = [
     {
       accessorKey: 'id',
@@ -413,7 +415,7 @@ const getJobCols = (navigate, isWide) => {
   return jobCols;
 };
 
-const getAdjustmentCols = (navigate, isWide, isWider, isMiddle) => {
+const getAdjustmentCols = (isWide, isWider, isMiddle) => {
   const adjustmentCols = [
     {
       accessorKey: 'id',
@@ -477,7 +479,7 @@ const getAdjustmentCols = (navigate, isWide, isWider, isMiddle) => {
   return adjustmentCols;
 };
 
-const getCancelledJobCols = (navigate, isWide) => {
+const getCancelledJobCols = (isWide) => {
   const cancelledJobCols = [
     {
       accessorKey: 'id',
@@ -555,144 +557,138 @@ const getCancelledJobCols = (navigate, isWide) => {
   return cancelledJobCols;
 };
 
-const getRequestCols = (navigate) => {
-  const requestCols = [
-    {
-      accessorKey: 'id',
-      header: '№',
-      size: 68,
-    },
-    {
-      accessorKey: 'status',
-      id: 'status2',
-      header: 'Status',
-      size: 145,
-      filterVariant: 'select',
-      filterSelectOptions: ['New', 'Invoiced', 'Awaiting confirmation', 'Cancelled'],
-      Cell: ({ cell }) => (
-        <div className={`status-wrapper ${cell.getValue().replace(/\s/g, '')}`}>{cell.getValue()}</div>
-      ),
-    },
-    {
-      accessorKey: 'customer',
-      id: 'customer2',
-      header: 'Customer',
-      size: 150,
-      Cell: ({ cell, row }) => (
+const requestCols = [
+  {
+    accessorKey: 'id',
+    header: '№',
+    size: 68,
+  },
+  {
+    accessorKey: 'status',
+    id: 'status2',
+    header: 'Status',
+    size: 145,
+    filterVariant: 'select',
+    filterSelectOptions: ['New', 'Invoiced', 'Awaiting confirmation', 'Cancelled'],
+    Cell: ({ cell }) => <div className={`status-wrapper ${cell.getValue().replace(/\s/g, '')}`}>{cell.getValue()}</div>,
+  },
+  {
+    accessorKey: 'customer',
+    id: 'customer2',
+    header: 'Customer',
+    size: 150,
+    Cell: ({ cell, row }) => (
+      <a
+        className={row.original.customerId && 'link'}
+        href={row.original.customerId ? `/customer/${row.original.customerId}` : undefined}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {cell.getValue()}
+      </a>
+    ),
+  },
+  {
+    accessorKey: 'date',
+    id: 'date4',
+    header: 'Date',
+    size: 100,
+  },
+  {
+    accessorKey: 'time',
+    id: 'time4',
+    header: 'Time',
+    size: 85,
+  },
+  {
+    accessorKey: 'cleaningType',
+    id: 'cleaningType2',
+    header: 'Type',
+    size: 110,
+  },
+  {
+    accessorKey: 'extraServices',
+    id: 'extraServices2',
+    header: 'Extras',
+    size: 160,
+  },
+  {
+    accessorKey: 'howFast',
+    id: 'howFast2',
+    header: 'How fast',
+    size: 120,
+  },
+  {
+    accessorKey: 'tariff',
+    id: 'tariff1',
+    header: 'Tariff',
+    size: 100,
+  },
+  {
+    accessorKey: 'price',
+    id: 'price1',
+    header: 'Price, €',
+    size: 110,
+  },
+  {
+    accessorKey: 'salary',
+    id: 'salary3',
+    header: 'Salary, €',
+    size: 118,
+  },
+  {
+    accessorKey: 'fullAddress',
+    id: 'fullAddress3',
+    header: 'Address',
+    size: 200,
+    Cell: ({ cell, row }) => (
+      <a
+        className={row.original.addressId && 'link'}
+        href={row.original.addressId ? `/address/${row.original.addressId}` : undefined}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {cell.getValue()}
+      </a>
+    ),
+  },
+  {
+    accessorKey: 'sqm',
+    id: 'sqm3',
+    header: 'sqm',
+    size: 84,
+  },
+  {
+    accessorKey: 'specialInstructions',
+    id: 'specialInstructions2',
+    header: 'Special instructions',
+    size: 205,
+  },
+  {
+    accessorKey: 'subscriptionInfo',
+    id: 'subscriptionInfo1',
+    header: 'Recurring',
+    size: 200,
+    Cell: ({ cell, row }) =>
+      row.original.isRecurring ? (
         <a
-          className={row.original.customerId && 'link'}
-          href={row.original.customerId ? `/customer/${row.original.customerId}` : undefined}
+          className={row.original.subscriptionId && 'link'}
+          href={row.original.subscriptionId ? `/subscription/${row.original.subscriptionId}` : undefined}
           onClick={(e) => e.stopPropagation()}
         >
           {cell.getValue()}
         </a>
+      ) : (
+        <CloseIcon />
       ),
-    },
-    {
-      accessorKey: 'date',
-      id: 'date4',
-      header: 'Date',
-      size: 100,
-    },
-    {
-      accessorKey: 'time',
-      id: 'time4',
-      header: 'Time',
-      size: 85,
-    },
-    {
-      accessorKey: 'cleaningType',
-      id: 'cleaningType2',
-      header: 'Type',
-      size: 110,
-    },
-    {
-      accessorKey: 'extraServices',
-      id: 'extraServices2',
-      header: 'Extras',
-      size: 160,
-    },
-    {
-      accessorKey: 'howFast',
-      id: 'howFast2',
-      header: 'How fast',
-      size: 120,
-    },
-    {
-      accessorKey: 'tariff',
-      id: 'tariff1',
-      header: 'Tariff',
-      size: 100,
-    },
-    {
-      accessorKey: 'price',
-      id: 'price1',
-      header: 'Price, €',
-      size: 110,
-    },
-    {
-      accessorKey: 'salary',
-      id: 'salary3',
-      header: 'Salary, €',
-      size: 118,
-    },
-    {
-      accessorKey: 'fullAddress',
-      id: 'fullAddress3',
-      header: 'Address',
-      size: 200,
-      Cell: ({ cell, row }) => (
-        <a
-          className={row.original.addressId && 'link'}
-          href={row.original.addressId ? `/address/${row.original.addressId}` : undefined}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {cell.getValue()}
-        </a>
-      ),
-    },
-    {
-      accessorKey: 'sqm',
-      id: 'sqm3',
-      header: 'sqm',
-      size: 84,
-    },
-    {
-      accessorKey: 'specialInstructions',
-      id: 'specialInstructions2',
-      header: 'Special instructions',
-      size: 205,
-    },
-    {
-      accessorKey: 'subscriptionInfo',
-      id: 'subscriptionInfo1',
-      header: 'Recurring',
-      size: 200,
-      Cell: ({ cell, row }) =>
-        row.original.isRecurring ? (
-          <a
-            className={row.original.subscriptionId && 'link'}
-            href={row.original.subscriptionId ? `/subscription/${row.original.subscriptionId}` : undefined}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {cell.getValue()}
-          </a>
-        ) : (
-          <CloseIcon />
-        ),
-    },
-    {
-      accessorKey: 'creationDate',
-      id: 'creationDate1',
-      header: 'Creation date',
-      size: 155,
-    },
-  ];
+  },
+  {
+    accessorKey: 'creationDate',
+    id: 'creationDate1',
+    header: 'Creation date',
+    size: 155,
+  },
+];
 
-  return requestCols;
-};
-
-const getCancelledRequestCols = (navigate, isWide) => {
+const getCancelledRequestCols = (isWide) => {
   const cancelledRequestCols = [
     {
       accessorKey: 'id',
@@ -760,156 +756,152 @@ const getCancelledRequestCols = (navigate, isWide) => {
   return cancelledRequestCols;
 };
 
-const getUnconfirmedRequestCols = (navigate) => {
-  const unconfirmedRequestCols = [
-    {
-      accessorKey: 'id',
-      header: '№',
-      size: 68,
+const unconfirmedRequestCols = [
+  {
+    accessorKey: 'id',
+    header: '№',
+    size: 68,
+  },
+  {
+    accessorKey: 'customer',
+    id: 'customer4',
+    header: 'Customer',
+    size: 150,
+    Cell: ({ cell, row }) => (
+      <a
+        className={row.original.customerId && 'link'}
+        href={row.original.customerId ? `/customer/${row.original.customerId}` : undefined}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {cell.getValue()}
+      </a>
+    ),
+  },
+  {
+    accessorKey: 'creationDate',
+    id: 'creationDate2',
+    header: 'Creation date',
+    size: 155,
+  },
+  {
+    accessorKey: 'paymentReservationDate',
+    header: 'Time to confirm',
+    size: 172,
+    filterVariant: 'select',
+    filterSelectOptions: ['Active', 'Expired'],
+    filterFn: (row, columnId, filterValue) => {
+      const cellValue = calculateTimeLeft(row.original[columnId]);
+      if (filterValue === 'Active') {
+        return cellValue !== null;
+      }
+      if (filterValue === 'Expired') {
+        return cellValue === null;
+      }
+      return true;
     },
-    {
-      accessorKey: 'customer',
-      id: 'customer4',
-      header: 'Customer',
-      size: 150,
-      Cell: ({ cell, row }) => (
+    Cell: TimerCell,
+  },
+  {
+    accessorKey: 'cleanersNumber',
+    header: 'Nr of cleaners',
+    size: 160,
+  },
+  {
+    accessorKey: 'date',
+    id: 'date6',
+    header: 'Date',
+    size: 100,
+  },
+  {
+    accessorKey: 'time',
+    id: 'time6',
+    header: 'Time',
+    size: 85,
+  },
+  {
+    accessorKey: 'cleaningType',
+    id: 'cleaningType3',
+    header: 'Type',
+    size: 110,
+  },
+  {
+    accessorKey: 'extraServices',
+    id: 'extraServices3',
+    header: 'Extras',
+    size: 160,
+  },
+  {
+    accessorKey: 'howFast',
+    id: 'howFast3',
+    header: 'How fast',
+    size: 120,
+  },
+  {
+    accessorKey: 'tariff',
+    id: 'tariff2',
+    header: 'Tariff',
+    size: 100,
+  },
+  {
+    accessorKey: 'price',
+    id: 'price2',
+    header: 'Price, €',
+    size: 110,
+  },
+  {
+    accessorKey: 'salary',
+    id: 'salary4',
+    header: 'Salary, €',
+    size: 118,
+  },
+  {
+    accessorKey: 'fullAddress',
+    id: 'fullAddress4',
+    header: 'Address',
+    size: 200,
+    Cell: ({ cell, row }) => (
+      <a
+        className={row.original.addressId && 'link'}
+        href={row.original.addressId ? `/address/${row.original.addressId}` : undefined}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {cell.getValue()}
+      </a>
+    ),
+  },
+  {
+    accessorKey: 'sqm',
+    id: 'sqm4',
+    header: 'sqm',
+    size: 84,
+  },
+  {
+    accessorKey: 'specialInstructions',
+    id: 'specialInstructions3',
+    header: 'Special instructions',
+    size: 205,
+  },
+  {
+    accessorKey: 'subscriptionInfo',
+    id: 'subscriptionInfo2',
+    header: 'Recurring',
+    size: 200,
+    Cell: ({ cell, row }) =>
+      row.original.isRecurring ? (
         <a
-          className={row.original.customerId && 'link'}
-          href={row.original.customerId ? `/customer/${row.original.customerId}` : undefined}
+          className={row.original.subscriptionId && 'link'}
+          href={row.original.subscriptionId ? `/subscription/${row.original.subscriptionId}` : undefined}
           onClick={(e) => e.stopPropagation()}
         >
           {cell.getValue()}
         </a>
+      ) : (
+        <CloseIcon />
       ),
-    },
-    {
-      accessorKey: 'creationDate',
-      id: 'creationDate2',
-      header: 'Creation date',
-      size: 155,
-    },
-    {
-      accessorKey: 'paymentReservationDate',
-      header: 'Time to confirm',
-      size: 172,
-      filterVariant: 'select',
-      filterSelectOptions: ['Active', 'Expired'],
-      filterFn: (row, columnId, filterValue) => {
-        const cellValue = calculateTimeLeft(row.original[columnId]);
-        if (filterValue === 'Active') {
-          return cellValue !== null;
-        }
-        if (filterValue === 'Expired') {
-          return cellValue === null;
-        }
-        return true;
-      },
-      Cell: TimerCell,
-    },
-    {
-      accessorKey: 'cleanersNumber',
-      header: 'Nr of cleaners',
-      size: 160,
-    },
-    {
-      accessorKey: 'date',
-      id: 'date6',
-      header: 'Date',
-      size: 100,
-    },
-    {
-      accessorKey: 'time',
-      id: 'time6',
-      header: 'Time',
-      size: 85,
-    },
-    {
-      accessorKey: 'cleaningType',
-      id: 'cleaningType3',
-      header: 'Type',
-      size: 110,
-    },
-    {
-      accessorKey: 'extraServices',
-      id: 'extraServices3',
-      header: 'Extras',
-      size: 160,
-    },
-    {
-      accessorKey: 'howFast',
-      id: 'howFast3',
-      header: 'How fast',
-      size: 120,
-    },
-    {
-      accessorKey: 'tariff',
-      id: 'tariff2',
-      header: 'Tariff',
-      size: 100,
-    },
-    {
-      accessorKey: 'price',
-      id: 'price2',
-      header: 'Price, €',
-      size: 110,
-    },
-    {
-      accessorKey: 'salary',
-      id: 'salary4',
-      header: 'Salary, €',
-      size: 118,
-    },
-    {
-      accessorKey: 'fullAddress',
-      id: 'fullAddress4',
-      header: 'Address',
-      size: 200,
-      Cell: ({ cell, row }) => (
-        <a
-          className={row.original.addressId && 'link'}
-          href={row.original.addressId ? `/address/${row.original.addressId}` : undefined}
-          onClick={(e) => e.stopPropagation()}
-        >
-          {cell.getValue()}
-        </a>
-      ),
-    },
-    {
-      accessorKey: 'sqm',
-      id: 'sqm4',
-      header: 'sqm',
-      size: 84,
-    },
-    {
-      accessorKey: 'specialInstructions',
-      id: 'specialInstructions3',
-      header: 'Special instructions',
-      size: 205,
-    },
-    {
-      accessorKey: 'subscriptionInfo',
-      id: 'subscriptionInfo2',
-      header: 'Recurring',
-      size: 200,
-      Cell: ({ cell, row }) =>
-        row.original.isRecurring ? (
-          <a
-            className={row.original.subscriptionId && 'link'}
-            href={row.original.subscriptionId ? `/subscription/${row.original.subscriptionId}` : undefined}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {cell.getValue()}
-          </a>
-        ) : (
-          <CloseIcon />
-        ),
-    },
-  ];
+  },
+];
 
-  return unconfirmedRequestCols;
-};
-
-const getSubscriptionCols = (navigate, isWide) => {
+const getSubscriptionCols = (isWide) => {
   const subscriptionCols = [
     {
       accessorKey: 'id',
@@ -968,13 +960,13 @@ const getSubscriptionCols = (navigate, isWide) => {
 export {
   weekdays,
   addressCols,
-  getCleanerCols,
-  getCustomerCols,
+  cleanerCols,
+  customerCols,
   getJobCols,
   getAdjustmentCols,
   getCancelledJobCols,
-  getRequestCols,
+  requestCols,
   getCancelledRequestCols,
-  getUnconfirmedRequestCols,
+  unconfirmedRequestCols,
   getSubscriptionCols,
 };

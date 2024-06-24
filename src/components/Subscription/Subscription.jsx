@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import HistoryContext from '../../utils/HistoryContext';
 import { setSubscriptionAction } from '../../store/actions/cardActions';
 import { getSubscription } from '../../http/cardsAPI';
-import { getCancelledRequestCols, getJobCols, getRequestCols } from '../../constants/tableColumns';
+import { getCancelledRequestCols, getJobCols, requestCols } from '../../constants/tableColumns';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import ListTable from '../Lists/ListTable/ListTable';
 import './Subscription.scss';
@@ -50,9 +50,9 @@ const Subscription = () => {
     navigate(history[history.length - 2]);
   };
 
-  const requestColumns = useMemo(() => getRequestCols(navigate), []);
-  const cancelledRequestColumns = useMemo(() => getCancelledRequestCols(navigate, true), []);
-  const cleaningColumns = useMemo(() => getJobCols(navigate).filter((_, i) => i !== 9 && i !== 10 && i !== 11), []);
+  const requestColumns = useMemo(() => requestCols, []);
+  const cancelledRequestColumns = useMemo(() => getCancelledRequestCols(true), []);
+  const cleaningColumns = useMemo(() => getJobCols().filter((_, i) => i !== 9 && i !== 10 && i !== 11), []);
 
   return (
     <div className="subscription">

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { MaterialReactTable, useMaterialReactTable } from 'material-react-table';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './ListTable.scss';
 
 const ListTable = ({ data, columns, isClickable }) => {
   const [dataList, setDataList] = useState([]);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     setDataList(data);

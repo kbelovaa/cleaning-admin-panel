@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import HistoryContext from '../../utils/HistoryContext';
 import { setAddressAction } from '../../store/actions/cardActions';
 import { getAddress } from '../../http/cardsAPI';
-import { getAdjustmentCols, getCancelledRequestCols, getJobCols, getRequestCols } from '../../constants/tableColumns';
+import { getAdjustmentCols, getCancelledRequestCols, getJobCols, requestCols } from '../../constants/tableColumns';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import ListTable from '../Lists/ListTable/ListTable';
 import './Address.scss';
@@ -51,10 +51,10 @@ const Address = () => {
     navigate(history[history.length - 2]);
   };
 
-  const requestColumns = useMemo(() => getRequestCols(navigate), []);
-  const cancelledRequestColumns = useMemo(() => getCancelledRequestCols(navigate, true), []);
-  const cleaningColumns = useMemo(() => getJobCols(navigate).filter((_, i) => i !== 9 && i !== 10 && i !== 11), []);
-  const adjustmentColumns = useMemo(() => getAdjustmentCols(navigate, true, false), []);
+  const requestColumns = useMemo(() => requestCols, []);
+  const cancelledRequestColumns = useMemo(() => getCancelledRequestCols(true), []);
+  const cleaningColumns = useMemo(() => getJobCols().filter((_, i) => i !== 9 && i !== 10 && i !== 11), []);
+  const adjustmentColumns = useMemo(() => getAdjustmentCols(true, false), []);
 
   return (
     <div className="address">

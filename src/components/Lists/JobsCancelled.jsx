@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { getCancelledJobs } from '../../http/listsAPI';
 import { setCancelledJobsAction } from '../../store/actions/listActions';
 import { getCancelledJobCols } from '../../constants/tableColumns';
@@ -13,8 +12,6 @@ const JobsCancelled = () => {
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +30,7 @@ const JobsCancelled = () => {
     }
   }, []);
 
-  const columns = useMemo(() => getCancelledJobCols(navigate, false), []);
+  const columns = useMemo(() => getCancelledJobCols(false), []);
 
   return (
     <div className="data">

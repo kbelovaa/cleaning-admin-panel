@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { getAllOrders } from '../../http/listsAPI';
 import { setOrdersAction } from '../../store/actions/listActions';
-import { getRequestCols } from '../../constants/tableColumns';
+import { requestCols } from '../../constants/tableColumns';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import ListTable from './ListTable/ListTable';
 
@@ -13,8 +12,6 @@ const Requests = () => {
   const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +30,7 @@ const Requests = () => {
     }
   }, []);
 
-  const columns = useMemo(() => getRequestCols(navigate), []);
+  const columns = useMemo(() => requestCols, []);
 
   return (
     <div className="data">
