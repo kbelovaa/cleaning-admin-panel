@@ -5,13 +5,15 @@
   z-index: 2;
   height: 24px;
   transition: all 0.3s ease;
+  animation: fadeIn 0.3s ease-in;
 
   .settings & {
     margin-bottom: 60px;
     margin-left: 0;
   }
 
-  .data & {
+  .data &,
+  .registration & {
     margin-bottom: 20px;
     margin-left: 0;
   }

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 import { auth } from '../../http/authAPI';
-import { setIsAuthAction, setUserAction } from '../../store/actions/userActions';
+import { setIpCountryAction, setIsAuthAction, setUserAction } from '../../store/actions/userActions';
 import { HistoryProvider } from '../../utils/HistoryContext';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import Sidebar from '../Sidebar/Sidebar';
@@ -16,6 +18,7 @@ import Requests from '../Lists/Requests';
 import RequestsUnconfirmed from '../Lists/RequestsUnconfirmed';
 import RequestsCancelled from '../Lists/RequestsCancelled';
 import Cleaner from '../Cleaner/Cleaner';
+import Registration from '../Registration/Registration';
 import Customer from '../Customer/Customer';
 import Address from '../Address/Address';
 import Cleaning from '../Cleaning/Cleaning';
@@ -41,6 +44,8 @@ const App = () => {
 
   const dispatch = useDispatch();
 
+  const { i18n } = useTranslation();
+
   useEffect(() => {
     const getUser = async () => {
       const result = await auth();
@@ -54,6 +59,33 @@ const App = () => {
     };
 
     getUser();
+
+    const getCountryFromIP = async () => {
+      try {
+        const response = await axios.get('https://ipinfo.io/json?token=353f74029ca066');
+        const countryCode = response.data.country;
+        dispatch(setIpCountryAction(countryCode.toLowerCase()));
+
+        return countryCode.toLowerCase();
+      } catch {
+        dispatch(setIpCountryAction(''));
+      }
+    };
+
+    const countryCode = getCountryFromIP();
+
+    const setLang = (lng) => {
+      i18n.changeLanguage(lng);
+      document.documentElement.lang = lng;
+    };
+
+    const storedLanguage = localStorage.getItem('language');
+
+    if (storedLanguage) {
+      setLang(storedLanguage);
+    } else if (Object.keys(i18n.options.resources).includes(countryCode)) {
+      setLang(countryCode);
+    }
   }, []);
 
   return (
@@ -68,6 +100,9 @@ const App = () => {
               <Route path="/" element={<Sidebar />}>
                 <Route index element={<Home />} />
                 <Route path="cleaners" element={<Cleaners />} />
+                <Route path="register/form" element={<Registration />} />
+                <Route path="register/discover" element={<Registration />} />
+                <Route path="register/summary" element={<Registration />} />
                 <Route path="customers" element={<Customers />} />
                 <Route path="jobs" element={<Jobs />} />
                 <Route path="adjustments" element={<JobsAdjustment />} />

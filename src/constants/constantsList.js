@@ -10,4 +10,6 @@ const pricingList = [
   { name: 'Salary formula', link: 'salary_formula' },
 ];
 
-export { pricingList };
+const knowingWays = ['Google', 'Facebook', 'Instagram', 'Friend', 'Neighbour', 'Other'];
+
+export { pricingList, knowingWays };

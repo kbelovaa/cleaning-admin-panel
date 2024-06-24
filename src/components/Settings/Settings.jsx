@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
-import { pricingList } from '../../constants/settingsList';
+import { pricingList } from '../../constants/constantsList';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import './Settings.scss';
 

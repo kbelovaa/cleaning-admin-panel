@@ -23,6 +23,8 @@ export const HistoryProvider = ({ children }) => {
       pathname.startsWith('/adjustments');
     if (isNew) {
       setHistory([pathname]);
+    } else if (pathname.startsWith('/register')) {
+      setHistory(['/cleaners', pathname]);
     } else {
       setHistory((prevHistory) => {
         const cleanHistory = prevHistory.map((str) => str.replace(/\//g, ''));

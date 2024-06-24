@@ -30,6 +30,16 @@ const Sidebar = () => {
               <NavLink className="sidebar__link" to="/cleaners">
                 {t('cleaners')}
               </NavLink>
+              <ul className="sidebar__sublist">
+                <li className="sidebar__item">
+                  <NavLink
+                    className={`sidebar__link ${pathname.startsWith('/register') ? 'active' : ''}`}
+                    to="/register/form"
+                  >
+                    + {t('register')}
+                  </NavLink>
+                </li>
+              </ul>
             </li>
             <li className="sidebar__item">
               <NavLink className="sidebar__link" to="/customers">

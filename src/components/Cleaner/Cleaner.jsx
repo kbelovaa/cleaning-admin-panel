@@ -97,11 +97,13 @@ const Cleaner = () => {
                 <div className="personal__values">
                   <span className="personal__text">Email</span>
                   <span className="personal__text">Phone</span>
+                  <span className="personal__text">Address</span>
                   <span className="personal__text">Reg.</span>
                 </div>
                 <div className="personal__values">
                   <span className="personal__text">{cleaner.email}</span>
                   <span className="personal__text">{cleaner.mobile}</span>
+                  <span className="personal__text">{cleaner.homeAddress}</span>
                   <span className="personal__text">{cleaner.onboardingDate}</span>
                 </div>
               </div>

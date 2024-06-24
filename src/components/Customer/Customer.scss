@@ -37,7 +37,18 @@
       .block & {
         cursor: pointer;
       }
+
+      .registration & {
+        margin-bottom: 20px;
+      }
     }
+  }
+
+  &__step {
+    color: #284657;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 40px;
   }
 
   &__activity {

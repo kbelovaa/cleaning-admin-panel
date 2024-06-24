@@ -170,6 +170,11 @@ const getCleanerCols = (navigate) => {
       header: 'Onboarding date',
       size: 180,
     },
+    {
+      accessorKey: 'homeAddress',
+      header: 'Home address',
+      size: 200,
+    },
   ];
 
   return cleanerCols;
