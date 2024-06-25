@@ -2,7 +2,7 @@ import $host from './index';
 
 export const checkEmail = async (email) => {
   try {
-    const { data } = await $host.get(`api/auth/check_cleaner_email/${email}`);
+    const { data } = await $host.post('api/auth/check_cleaner_email', { email });
     return data;
   } catch (error) {
     if (error.response && error.response.data && error.response.data.message) {
