@@ -114,11 +114,29 @@ const Registration = () => {
     setIsFormValid(true);
   };
 
+  const checkIsFormValid = () => {
+    if (isForm) {
+      if (name && surname && mobile && isMobileValid && email && isEmailValid && address1 && level) {
+        return true;
+      }
+    } else if (isSummary) {
+      if (name && surname && mobile && isMobileValid && email && isEmailValid && address1 && level && contractCheckbox && passportCheckbox && insuranceCheckbox) {
+        return true;
+      }
+    } else if (isDiscover) {
+      if (name && surname && mobile && isMobileValid && email && isEmailValid && address1 && level && contractCheckbox && passportCheckbox && insuranceCheckbox && ((knowingWay && knowingWay !== 'Other') || (knowingWay && knowingWay === 'Other' && knowingWayText))) {
+        return true;
+      }
+    }
+
+    return false;
+  };
+
   const handleFormSending = async (e) => {
     e.preventDefault();
 
     if (isForm) {
-      if (name && surname && mobile && isMobileValid && email && isEmailValid && address1 && level) {
+      if (checkIsFormValid()) {
         setLoading(true);
         const result = await checkEmail(email);
         if (result.message && result.error) {
@@ -133,14 +151,14 @@ const Registration = () => {
         setIsFormValid(false);
       }
     } else if (isSummary) {
-      if (contractCheckbox && passportCheckbox && insuranceCheckbox) {
+      if (checkIsFormValid()) {
         navigate('/register/discover');
         setIsFormValid(true);
       } else {
         setIsFormValid(false);
       }
     } else if (isDiscover) {
-      if ((knowingWay && knowingWay !== 'Other') || (knowingWay && knowingWay === 'Other' && knowingWayText)) {
+      if (checkIsFormValid()) {
         setLoading(true);
         const result = await register(
           name,
@@ -170,24 +188,6 @@ const Registration = () => {
         setIsFormValid(false);
       }
     }
-  };
-
-  const checkIsFormValid = () => {
-    if (isForm) {
-      if (name && surname && mobile && isMobileValid && email && isEmailValid && address1 && level) {
-        return true;
-      }
-    } else if (isSummary) {
-      if (contractCheckbox && passportCheckbox && insuranceCheckbox) {
-        return true;
-      }
-    } else if (isDiscover) {
-      if ((knowingWay && knowingWay !== 'Other') || (knowingWay && knowingWay === 'Other' && knowingWayText)) {
-        return true;
-      }
-    }
-
-    return false;
   };
 
   return (
