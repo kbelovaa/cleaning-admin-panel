@@ -90,6 +90,7 @@ i18n.use(initReactI18next).init({
         salary: 'Salary',
         total: 'Total',
         socialSecurityCoeff: 'Social security coefficient',
+        contactRequests: 'Contact requests',
       },
     },
   },

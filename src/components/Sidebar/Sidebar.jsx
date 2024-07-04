@@ -80,6 +80,11 @@ const Sidebar = () => {
                 </li>
               </ul>
             </li>
+            <li className="sidebar__item">
+              <NavLink className="sidebar__link" to="/contact_requests">
+                {t('contactRequests')}
+              </NavLink>
+            </li>
           </ul>
         </div>
         <div className={`content ${isHidden && 'expanded'}`}>

@@ -4,6 +4,7 @@ import {
   SET_ADJUSTMENT_JOBS,
   SET_CANCELLED_JOBS,
   SET_CANCELLED_ORDERS,
+  SET_CONTACT_REQUESTS,
   SET_CLEANER,
   SET_CLEANERS,
   SET_CLEANING,
@@ -51,6 +52,11 @@ export const setOrdersAction = (payload) => ({
 
 export const setCancelledOrdersAction = (payload) => ({
   type: SET_CANCELLED_ORDERS,
+  payload,
+});
+
+export const setContactRequestsAction = (payload) => ({
+  type: SET_CONTACT_REQUESTS,
   payload,
 });
 

@@ -20,7 +20,8 @@ export const HistoryProvider = ({ children }) => {
       pathname.startsWith('/unconfirmed_requests') ||
       pathname.startsWith('/cancelled') ||
       pathname.startsWith('/jobs') ||
-      pathname.startsWith('/adjustments');
+      pathname.startsWith('/adjustments') ||
+      pathname.startsWith('/contact_requests');
     if (isNew) {
       setHistory([pathname]);
     } else if (pathname.startsWith('/register')) {

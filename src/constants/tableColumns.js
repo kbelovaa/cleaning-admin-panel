@@ -7,6 +7,47 @@ import TimerCell from '../components/Lists/TimerCell';
 
 const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
+const contactRequestCols = [
+  {
+    accessorKey: 'id',
+    header: '№',
+    size: 68,
+  },
+  {
+    accessorKey: 'name',
+    id: 'name3',
+    header: 'Name',
+    size: 150,
+  },
+  {
+    accessorKey: 'email',
+    id: 'email3',
+    header: 'Email',
+    size: 200,
+  },
+  {
+    accessorKey: 'mobile',
+    id: 'mobile3',
+    header: 'Phone number',
+    size: 163,
+  },
+  {
+    accessorKey: 'contactForm',
+    header: 'Contact form',
+    size: 155,
+  },
+  {
+    accessorKey: 'language',
+    header: 'Language',
+    size: 130,
+  },
+  {
+    accessorKey: 'text',
+    header: 'Text',
+    size: 200,
+  },
+];
+
 const addressCols = [
   {
     accessorKey: 'id',
@@ -959,6 +1000,7 @@ const getSubscriptionCols = (isWide) => {
 
 export {
   weekdays,
+  contactRequestCols,
   addressCols,
   cleanerCols,
   customerCols,

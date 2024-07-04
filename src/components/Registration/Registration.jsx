@@ -120,11 +120,36 @@ const Registration = () => {
         return true;
       }
     } else if (isSummary) {
-      if (name && surname && mobile && isMobileValid && email && isEmailValid && address1 && level && contractCheckbox && passportCheckbox && insuranceCheckbox) {
+      if (
+        name &&
+        surname &&
+        mobile &&
+        isMobileValid &&
+        email &&
+        isEmailValid &&
+        address1 &&
+        level &&
+        contractCheckbox &&
+        passportCheckbox &&
+        insuranceCheckbox
+      ) {
         return true;
       }
     } else if (isDiscover) {
-      if (name && surname && mobile && isMobileValid && email && isEmailValid && address1 && level && contractCheckbox && passportCheckbox && insuranceCheckbox && ((knowingWay && knowingWay !== 'Other') || (knowingWay && knowingWay === 'Other' && knowingWayText))) {
+      if (
+        name &&
+        surname &&
+        mobile &&
+        isMobileValid &&
+        email &&
+        isEmailValid &&
+        address1 &&
+        level &&
+        contractCheckbox &&
+        passportCheckbox &&
+        insuranceCheckbox &&
+        ((knowingWay && knowingWay !== 'Other') || (knowingWay && knowingWay === 'Other' && knowingWayText))
+      ) {
         return true;
       }
     }

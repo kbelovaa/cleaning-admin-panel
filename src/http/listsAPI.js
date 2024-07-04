@@ -103,3 +103,16 @@ export const getCancelledOrders = async () => {
     return { error: 'Unexpected error' };
   }
 };
+
+export const getContactRequests = async () => {
+  try {
+    const data = await $host.get('api/contact/get_requests');
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      return { message: error.response.data.message, error: true };
+    }
+
+    return { error: 'Unexpected error' };
+  }
+};

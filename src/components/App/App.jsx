@@ -17,6 +17,7 @@ import JobsCancelled from '../Lists/JobsCancelled';
 import Requests from '../Lists/Requests';
 import RequestsUnconfirmed from '../Lists/RequestsUnconfirmed';
 import RequestsCancelled from '../Lists/RequestsCancelled';
+import ContactRequests from '../Lists/ContactRequests';
 import Cleaner from '../Cleaner/Cleaner';
 import Registration from '../Registration/Registration';
 import Customer from '../Customer/Customer';
@@ -110,6 +111,7 @@ const App = () => {
                 <Route path="requests" element={<Requests />} />
                 <Route path="unconfirmed_requests" element={<RequestsUnconfirmed />} />
                 <Route path="cancelled_requests" element={<RequestsCancelled />} />
+                <Route path="contact_requests" element={<ContactRequests />} />
                 <Route path="cleaner/:id" element={<Cleaner />} />
                 <Route path="customer/:id" element={<Customer />} />
                 <Route path="address/:id" element={<Address />} />

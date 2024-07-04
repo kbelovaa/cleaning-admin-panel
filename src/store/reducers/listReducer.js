@@ -7,6 +7,7 @@ import {
   SET_PAST_JOBS,
   SET_ADJUSTMENT_JOBS,
   SET_ORDERS,
+  SET_CONTACT_REQUESTS,
 } from '../../constants/actionsRedux';
 
 const defaultState = {
@@ -18,6 +19,7 @@ const defaultState = {
   cancelledJobs: [],
   orders: [],
   cancelledOrders: [],
+  contactRequests: [],
 };
 
 const listReducer = (state = defaultState, action) => {
@@ -38,6 +40,8 @@ const listReducer = (state = defaultState, action) => {
       return { ...state, orders: action.payload };
     case SET_CANCELLED_ORDERS:
       return { ...state, cancelledOrders: action.payload };
+    case SET_CONTACT_REQUESTS:
+      return { ...state, contactRequests: action.payload };
     default:
       return state;
   }
