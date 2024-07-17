@@ -6,7 +6,7 @@ import { isValidNumber } from 'libphonenumber-js';
 import 'react-phone-input-2/lib/style.css';
 import './PhoneField.scss';
 
-const PhoneField = ({ mobile, setMobile, isMobileValid, setIsMobileValid }) => {
+const PhoneField = ({ mobile, setMobile, isMobileValid, setIsMobileValid, email }) => {
   const ipCountry = useSelector((state) => state.user.ipCountry);
 
   const { t } = useTranslation();
@@ -29,8 +29,8 @@ const PhoneField = ({ mobile, setMobile, isMobileValid, setIsMobileValid }) => {
         onChange={handleMobileChange}
         country={ipCountry}
         enableSearch={true}
-        inputClass={`${!ipCountry && !mobile ? 'default' : ''} ${mobile && !isMobileValid ? 'invalid-field' : ''}`}
-        buttonClass={`${!ipCountry && !mobile ? 'hidden' : ''} ${mobile && !isMobileValid ? 'invalid-field' : ''}`}
+        inputClass={`${!ipCountry && !mobile ? 'default' : ''} ${(mobile && !isMobileValid) || (!mobile && !email) ? 'invalid-field' : ''}`}
+        buttonClass={`${!ipCountry && !mobile ? 'hidden' : ''} ${(mobile && !isMobileValid) || (!mobile && !email) ? 'invalid-field' : ''}`}
         autoFormat
       />
       <p className={isMobileValid ? 'hidden' : 'auth__note'}>{t('validMobileMessage')}</p>

@@ -56,7 +56,7 @@ const AgentAdding = () => {
   };
 
   const checkIsFormValid = () => {
-    if (name && agency && role && ((mobile && isMobileValid) || !mobile) && email && isEmailValid) {
+    if (name && agency && role && ((mobile && isMobileValid) || !mobile) && ((email && isEmailValid) || !email)) {
       return true;
     }
 
@@ -139,7 +139,7 @@ const AgentAdding = () => {
           <input
             id="auth-email"
             type="email"
-            className={`input ${!email || !isEmailValid ? 'invalid-field' : ''}`}
+            className={`input ${(email && !isEmailValid) || (!email && !mobile) ? 'invalid-field' : ''}`}
             value={email}
             onChange={(e) => handleEmailChange(e.target.value)}
             autoComplete="off"
@@ -152,11 +152,12 @@ const AgentAdding = () => {
             setMobile={setMobile}
             isMobileValid={isMobileValid}
             setIsMobileValid={setIsMobileValid}
+            email={email}
           />
         </div>
         <p
           className={
-            !isFormValid && (!name || !agency || !role || !mobile || !email)
+            !isFormValid && (!name || !agency || !role || (!mobile && !email))
               ? 'auth__note registration__fill'
               : 'hidden'
           }
