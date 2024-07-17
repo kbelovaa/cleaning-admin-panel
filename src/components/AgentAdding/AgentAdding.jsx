@@ -56,7 +56,7 @@ const AgentAdding = () => {
   };
 
   const checkIsFormValid = () => {
-    if (name && agency && role && mobile && isMobileValid && email && isEmailValid) {
+    if (name && agency && role && ((mobile && isMobileValid) || !mobile) && email && isEmailValid) {
       return true;
     }
 

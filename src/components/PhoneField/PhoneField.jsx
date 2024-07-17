@@ -29,8 +29,8 @@ const PhoneField = ({ mobile, setMobile, isMobileValid, setIsMobileValid }) => {
         onChange={handleMobileChange}
         country={ipCountry}
         enableSearch={true}
-        inputClass={`${!ipCountry && !mobile ? 'default' : ''} ${!mobile || !isMobileValid ? 'invalid-field' : ''}`}
-        buttonClass={`${!ipCountry && !mobile ? 'hidden' : ''} ${!mobile || !isMobileValid ? 'invalid-field' : ''}`}
+        inputClass={`${!ipCountry && !mobile ? 'default' : ''} ${mobile && !isMobileValid ? 'invalid-field' : ''}`}
+        buttonClass={`${!ipCountry && !mobile ? 'hidden' : ''} ${mobile && !isMobileValid ? 'invalid-field' : ''}`}
         autoFormat
       />
       <p className={isMobileValid ? 'hidden' : 'auth__note'}>{t('validMobileMessage')}</p>

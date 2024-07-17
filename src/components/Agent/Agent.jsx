@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import HistoryContext from '../../utils/HistoryContext';
 import { setAgentAction } from '../../store/actions/cardActions';
 import { getAgent } from '../../http/cardsAPI';
-import { formatActivityDate } from '../../utils/formatDate';
 import { customerCols } from '../../constants/tableColumns';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import ListTable from '../Lists/ListTable/ListTable';
