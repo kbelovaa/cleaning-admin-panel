@@ -206,6 +206,14 @@ span.personal__text:last-of-type {
       width: calc((100% - 60px) / 7);
     }
 
+    .agent & {
+      width: calc((100% - 50px) / 6.2);
+
+      &:nth-of-type(3) {
+        width: calc((100% - 50px) / 5);
+      }
+    }
+
     .address &,
     .subscription & {
       width: calc((100% - 40px) / 5);
@@ -246,6 +254,7 @@ span.personal__text:last-of-type {
 .customer .block:nth-last-of-type(4) .data__table,
 .address .block:nth-last-of-type(1) .data__table,
 .cleaner .block:nth-last-of-type(1) .data__table,
-.cleaning .block:nth-last-of-type(1) .data__table {
+.cleaning .block:nth-last-of-type(1) .data__table,
+.agent .block:nth-last-of-type(1) .data__table {
   margin-top: 0;
 }

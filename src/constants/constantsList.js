@@ -14,4 +14,6 @@ const knowingWays = ['Google', 'Facebook', 'Instagram', 'Friend', 'Neighbour', '
 
 const levels = ['Junior', 'Middle', 'Senior'];
 
-export { pricingList, knowingWays, levels };
+const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+export { pricingList, knowingWays, levels, weekdays };

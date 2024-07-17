@@ -5,8 +5,6 @@ import LaunchIcon from '@mui/icons-material/Launch';
 import { calculateTimeLeft } from '../utils/formatDate';
 import TimerCell from '../components/Lists/TimerCell';
 
-const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-
 const contactRequestCols = [
   {
     accessorKey: 'id',
@@ -45,6 +43,42 @@ const contactRequestCols = [
     accessorKey: 'text',
     header: 'Text',
     size: 200,
+  },
+];
+
+const agentCols = [
+  {
+    accessorKey: 'id',
+    header: '№',
+    size: 68,
+  },
+  {
+    accessorKey: 'name',
+    id: 'name4',
+    header: 'Name',
+    size: 200,
+  },
+  {
+    accessorKey: 'agency',
+    header: 'Agency',
+    size: 176,
+  },
+  {
+    accessorKey: 'role',
+    header: 'Role',
+    size: 176,
+  },
+  {
+    accessorKey: 'email',
+    id: 'email4',
+    header: 'Email',
+    size: 200,
+  },
+  {
+    accessorKey: 'mobile',
+    id: 'mobile4',
+    header: 'Phone number',
+    size: 163,
   },
 ];
 
@@ -999,8 +1033,8 @@ const getSubscriptionCols = (isWide) => {
 };
 
 export {
-  weekdays,
   contactRequestCols,
+  agentCols,
   addressCols,
   cleanerCols,
   customerCols,

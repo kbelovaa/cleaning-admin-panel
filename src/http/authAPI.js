@@ -65,6 +65,26 @@ export const register = async (
   }
 };
 
+export const addAgent = async (name, agency, role, email, mobile) => {
+  try {
+    const { data } = await $host.post('api/agent/create_agent', {
+      name,
+      agency,
+      role,
+      email,
+      mobile,
+    });
+
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      return { message: error.response.data.message };
+    }
+
+    return { error: 'Unexpected error' };
+  }
+};
+
 export const auth = async () => {
   try {
     const { data } = await $host.get('api/auth/auth_web');

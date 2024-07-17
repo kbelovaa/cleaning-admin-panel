@@ -21,11 +21,14 @@ export const HistoryProvider = ({ children }) => {
       pathname.startsWith('/cancelled') ||
       pathname.startsWith('/jobs') ||
       pathname.startsWith('/adjustments') ||
-      pathname.startsWith('/contact_requests');
+      pathname.startsWith('/contact_requests') ||
+      pathname.startsWith('/agents');
     if (isNew) {
       setHistory([pathname]);
     } else if (pathname.startsWith('/register')) {
       setHistory(['/cleaners', pathname]);
+    } else if (pathname.startsWith('/add_agent')) {
+      setHistory(['/agents', pathname]);
     } else {
       setHistory((prevHistory) => {
         const cleanHistory = prevHistory.map((str) => str.replace(/\//g, ''));

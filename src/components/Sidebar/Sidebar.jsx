@@ -10,7 +10,7 @@ const Sidebar = () => {
   const { pathname } = useLocation();
 
   const isHidden = useMemo(() => {
-    const regex = /^(\/customer\/|\/cleaner\/|\/cleaning\/|\/address\/|\/subscription\/)/;
+    const regex = /^(\/customer\/|\/cleaner\/|\/cleaning\/|\/address\/|\/subscription\/|\/agent\/)/;
     return regex.test(pathname);
   }, [pathname]);
 
@@ -84,6 +84,21 @@ const Sidebar = () => {
               <NavLink className="sidebar__link" to="/contact_requests">
                 {t('contactRequests')}
               </NavLink>
+            </li>
+            <li className="sidebar__item">
+              <NavLink className="sidebar__link" to="/agents">
+                {t('agents')}
+              </NavLink>
+              <ul className="sidebar__sublist">
+                <li className="sidebar__item">
+                  <NavLink
+                    className={`sidebar__link ${pathname.startsWith('/add_agent') ? 'active' : ''}`}
+                    to="/add_agent"
+                  >
+                    + {t('add')}
+                  </NavLink>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>

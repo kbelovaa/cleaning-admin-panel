@@ -1,4 +1,11 @@
-import { SET_ADDRESS, SET_CLEANER, SET_CLEANING, SET_CUSTOMER, SET_SUBSCRIPTION } from '../../constants/actionsRedux';
+import {
+  SET_ADDRESS,
+  SET_CLEANER,
+  SET_CLEANING,
+  SET_CUSTOMER,
+  SET_SUBSCRIPTION,
+  SET_AGENT,
+} from '../../constants/actionsRedux';
 
 export const setCleanerAction = (payload) => ({
   type: SET_CLEANER,
@@ -22,5 +29,10 @@ export const setCleaningAction = (payload) => ({
 
 export const setSubscriptionAction = (payload) => ({
   type: SET_SUBSCRIPTION,
+  payload,
+});
+
+export const setAgentAction = (payload) => ({
+  type: SET_AGENT,
   payload,
 });

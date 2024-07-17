@@ -64,3 +64,16 @@ export const getCleaning = async (id) => {
     return { error: 'Unexpected error' };
   }
 };
+
+export const getAgent = async (id) => {
+  try {
+    const data = await $host.get(`api/agent/get_agent/${id}`);
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      return { message: error.response.data.message, error: true };
+    }
+
+    return { error: 'Unexpected error' };
+  }
+};

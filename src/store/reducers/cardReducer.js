@@ -1,4 +1,11 @@
-import { SET_CLEANER, SET_CUSTOMER, SET_ADDRESS, SET_CLEANING, SET_SUBSCRIPTION } from '../../constants/actionsRedux';
+import {
+  SET_CLEANER,
+  SET_CUSTOMER,
+  SET_ADDRESS,
+  SET_CLEANING,
+  SET_SUBSCRIPTION,
+  SET_AGENT,
+} from '../../constants/actionsRedux';
 
 const defaultState = {
   cleaner: null,
@@ -6,6 +13,7 @@ const defaultState = {
   address: null,
   cleaning: null,
   subscription: null,
+  agent: null,
 };
 
 const cardReducer = (state = defaultState, action) => {
@@ -20,6 +28,8 @@ const cardReducer = (state = defaultState, action) => {
       return { ...state, cleaning: action.payload };
     case SET_SUBSCRIPTION:
       return { ...state, subscription: action.payload };
+    case SET_AGENT:
+      return { ...state, agent: action.payload };
     default:
       return state;
   }

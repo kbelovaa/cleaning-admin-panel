@@ -10,7 +10,7 @@ import {
   isSameMonth,
   addMonths,
 } from 'date-fns';
-import { weekdays } from '../../constants/tableColumns';
+import { weekdays } from '../../constants/constantsList';
 import './Calendar.scss';
 
 const Calendar = ({ schedule }) => {

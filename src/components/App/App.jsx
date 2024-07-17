@@ -18,12 +18,15 @@ import Requests from '../Lists/Requests';
 import RequestsUnconfirmed from '../Lists/RequestsUnconfirmed';
 import RequestsCancelled from '../Lists/RequestsCancelled';
 import ContactRequests from '../Lists/ContactRequests';
+import Agents from '../Lists/Agents';
+import AgentAdding from '../AgentAdding/AgentAdding';
 import Cleaner from '../Cleaner/Cleaner';
 import Registration from '../Registration/Registration';
 import Customer from '../Customer/Customer';
 import Address from '../Address/Address';
 import Cleaning from '../Cleaning/Cleaning';
 import Subscription from '../Subscription/Subscription';
+import Agent from '../Agent/Agent';
 import Settings from '../Settings/Settings';
 import Authorization from '../Authorization/Authorization';
 import Holidays from '../Pricing/Holidays';
@@ -112,11 +115,14 @@ const App = () => {
                 <Route path="unconfirmed_requests" element={<RequestsUnconfirmed />} />
                 <Route path="cancelled_requests" element={<RequestsCancelled />} />
                 <Route path="contact_requests" element={<ContactRequests />} />
+                <Route path="agents" element={<Agents />} />
+                <Route path="add_agent" element={<AgentAdding />} />
                 <Route path="cleaner/:id" element={<Cleaner />} />
                 <Route path="customer/:id" element={<Customer />} />
                 <Route path="address/:id" element={<Address />} />
                 <Route path="cleaning/:id" element={<Cleaning />} />
                 <Route path="subscription/:id" element={<Subscription />} />
+                <Route path="agent/:id" element={<Agent />} />
                 <Route path="settings" element={<Settings />} />
                 <Route path="holidays" element={<Holidays />} />
                 <Route path="price_per_sqm" element={<PricePerSqm />} />

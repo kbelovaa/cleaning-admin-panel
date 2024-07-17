@@ -26,19 +26,6 @@ export const getAllCustomers = async () => {
   }
 };
 
-export const getAllAddresses = async () => {
-  try {
-    const data = await $host.get('api/address/get_all_addresses');
-    return data;
-  } catch (error) {
-    if (error.response && error.response.data && error.response.data.message) {
-      return { message: error.response.data.message, error: true };
-    }
-
-    return { error: 'Unexpected error' };
-  }
-};
-
 export const getAllJobs = async () => {
   try {
     const data = await $host.get('api/job/get_all_jobs_admin');
@@ -107,6 +94,19 @@ export const getCancelledOrders = async () => {
 export const getContactRequests = async () => {
   try {
     const data = await $host.get('api/contact/get_requests');
+    return data;
+  } catch (error) {
+    if (error.response && error.response.data && error.response.data.message) {
+      return { message: error.response.data.message, error: true };
+    }
+
+    return { error: 'Unexpected error' };
+  }
+};
+
+export const getAllAgents = async () => {
+  try {
+    const data = await $host.get('api/agent/get_agents');
     return data;
   } catch (error) {
     if (error.response && error.response.data && error.response.data.message) {
